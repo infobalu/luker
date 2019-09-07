@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Check Out</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form *ngIf="checkInFor == 'distributor'" class="add-employee-form" [formGroup]="distributorForm"
+    (ngSubmit)="distributorFormSubmit(distributorForm)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-label position="floating">Distributor Name*</ion-label>
+              <ion-input name="distributorName" type="text" formControlName="distributorName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Retailer Name*</ion-label>
+              <ion-input name="retailerName" type="text" formControlName="retailerName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Location*</ion-label>
+              <ion-input name="location" type="text" formControlName="location" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Top Selling Brands</ion-label>
+              <ion-select name="topSellingBrands" formControlName="topSellingBrands" okText="Ok" cancelText="Dismiss">
+                <ion-select-option value="Philips">Philips</ion-select-option>
+                <ion-select-option value="Videocon">Videocon</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Top Selling Verticals</ion-label>
+              <ion-select name="topSellingVerticals" formControlName="topSellingVerticals" okText="Ok"
+                cancelText="Dismiss">
+                <ion-select-option value="Educational">Educational</ion-select-option>
+                <ion-select-option value="Other">Other</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Secondary Sales Verticals</ion-label>
+              <ion-select name="secondarySalesVerticals" formControlName="secondarySalesVerticals" okText="Ok"
+                cancelText="Dismiss">
+                <ion-select-option value="Educational">Educational</ion-select-option>
+                <ion-select-option value="Other">Other</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Luker Secondary</ion-label>
+              <ion-input name="lukerSecondary" type="text" formControlName="lukerSecondary"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Luker Counter Share</ion-label>
+              <ion-input name="lukerCounterShare" type="text" formControlName="lukerCounterShare"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Targeted Value</ion-label>
+              <ion-input name="targetedValue" type="text" formControlName="targetedValue"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Luker Targeted Counter Share</ion-label>
+              <ion-input name="lukerTargetedCounterShare" type="text" formControlName="lukerTargetedCounterShare">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Comments</ion-label>
+              <ion-input name="comments" type="text" formControlName="comments"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Photo</ion-label>
+              <ion-input name="pic" type="file" formControlName="pic"></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="distributorForm.invalid" expand="block">Add Check In
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <form *ngIf="checkInFor == 'dealer'" class="add-employee-form" [formGroup]="dealerForm"
+    (ngSubmit)="dealerFormSubmit(dealerForm)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-label position="floating">Dealer Name*</ion-label>
+              <ion-input name="dealerName" type="text" formControlName="dealerName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Mobile Number*</ion-label>
+              <ion-input name="mobileNumber" type="text" formControlName="mobileNumber"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Location*</ion-label>
+              <ion-input name="location" type="text" formControlName="location" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Type Or Segment</ion-label>
+              <ion-select name="typeOrSegment" formControlName="typeOrSegment" okText="Ok" cancelText="Dismiss">
+                <ion-select-option value="Electrition">Electrition</ion-select-option>
+                <ion-select-option value="Videocon">Videocon</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Project % Completed</ion-label>
+              <ion-input name="projectCompleted" type="text" formControlName="projectCompleted"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Focused Verticals</ion-label>
+              <ion-select name="focusedVerticals" formControlName="focusedVerticals" okText="Ok" cancelText="Dismiss">
+                <ion-select-option value="Educational">Educational</ion-select-option>
+                <ion-select-option value="Other">Other</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Other Value Expected</ion-label>
+              <ion-input name="otherValueExpected" type="text" formControlName="otherValueExpected"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Comments</ion-label>
+              <ion-input name="comments" type="text" formControlName="comments"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Photo</ion-label>
+              <ion-input name="pic" type="file" formControlName="pic"></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="dealerForm.invalid" expand="block">Add Check In
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,66 @@
+<ion-content class="signup-page" padding>
+  <form [formGroup]="firstForm" (ngSubmit)="firstFormSubmit(firstForm)">
+    <ion-grid *ngIf="!showSeconfForm">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h1>Team Guru</h1>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="emailid" type="email" placeholder="your@email.com" formControlName="emailid"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Password" formControlName="password"></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="firstForm.invalid" expand="block">CONTINUE</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <form [formGroup]="secondForm" (ngSubmit)="secondFormSubmit(secondForm)">
+    <ion-grid *ngIf="showSeconfForm">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>Sign Up</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="companyName" type="text" placeholder="Company Name" formControlName="companyName">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="contactPerson" type="text" placeholder="Contact Person" formControlName="contactPerson">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="designation" type="text" placeholder="Designation" formControlName="designation">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="email" type="email" placeholder="Work email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="contactNumber" type="text" placeholder="Contact Number" formControlName="contactNumber">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-select name="country" formControlName="country" okText="Ok" cancelText="Dismiss">
+                <ion-select-option value="">Select Country</ion-select-option>
+                <ion-select-option value="India">India</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="secondForm.invalid" expand="block">Create Account
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

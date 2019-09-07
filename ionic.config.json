@@ -1,0 +1,7 @@
+{
+  "name": "teamGuru",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/sumeshb/Desktop/sample/guru/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/home/sumeshb/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/0376595c708af43a5b3a62c846eb2eec/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/miyas/Desktop/ionic4/guru/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/home/miyas/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/3f8b03181c4791dfb17001db253672c7/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

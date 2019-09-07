@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Client type</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-radio-group>
+          <ion-list-header>
+            Please choose client type
+          </ion-list-header>
+      
+          <ion-item>
+            <ion-label>Dealer</ion-label>
+            <ion-radio value="dealer" checked (ionSelect)="radioChecked('dealer')"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Distributor</ion-label>
+            <ion-radio value="distributor" (ionSelect)="radioChecked('distributor')"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <div padding>
+          <ion-button size="small" type="submit" (click)="addCheckin()">Confirm</ion-button>
+        </div>
+
+</ion-content>

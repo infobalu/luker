@@ -1,0 +1,15 @@
+.signup-page {
+    .item-native {
+        border-color: black;
+    }
+    ion-item{
+        --color: rgb(0, 0, 0);
+    }
+    ion-button{
+        --background: #062f77;
+    }
+    ion-select {
+        padding-left: 0px;
+        max-width: 100%;
+    }
+}

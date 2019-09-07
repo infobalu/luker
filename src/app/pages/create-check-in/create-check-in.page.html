@@ -1,0 +1,249 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Check In</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form *ngIf="checkInFor == 'distributor'" class="add-employee-form" [formGroup]="distributorForm"
+    (ngSubmit)="distributorFormSubmit(distributorForm)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+
+            <ion-item>
+              <ion-label position="floating">Distributor Name</ion-label>
+              <ion-input name="distributorName" type="text" formControlName="distributorName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Retailer Name</ion-label>
+              <ion-input name="retailerName" type="text" formControlName="retailerName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Retailer Number</ion-label>
+              <ion-input name="retailerNum" type="tel" formControlName="retailerNum"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Address</ion-label>
+                <ion-input name="retaileraddr" type="text" formControlName="retaileraddr"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Route name</ion-label>
+                <ion-input name="routename" type="text" formControlName="routename"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Top Selling Brands</ion-label>
+                <ion-input name="topbrand" type="text" formControlName="topbrand"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Secondary sales vertical</ion-label>
+                <ion-input name="secsales" type="text" formControlName="secsales"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Luker order of day</ion-label>
+                <ion-input name="lukerorder" type="text" formControlName="lukerorder"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Luker secondary</ion-label>
+                <ion-input name="lukersec" type="text" formControlName="lukersec"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Luker counter share</ion-label>
+                <ion-input name="lukershare" type="text" formControlName="lukershare"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Luker Targeted value</ion-label>
+                <ion-input name="targetval" type="text" formControlName="targetval"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Luker Targeted share</ion-label>
+                <ion-input name="lukertarget" type="text" formControlName="lukertarget"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Upload Image</ion-label>
+                <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
+                <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>
+                
+                <ion-avatar>
+                  <img *ngIf="capturedPhoto" [src]="capturedPhoto"/>
+                  <!-- <div class="header" *ngIf="image" [style.background-image]="image"></div> -->
+                </ion-avatar>
+                
+              </ion-item>
+            
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="distributorForm.invalid" expand="block">Add Check In
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <form *ngIf="checkInFor == 'dealer'" class="add-employee-form" [formGroup]="dealerForm"
+    (ngSubmit)="dealerFormSubmit(dealerForm)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-label position="floating">Dealer Name</ion-label>
+              <ion-input name="dealerName" type="text" formControlName="dealerName"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Date of Visit</ion-label>
+              <ion-input name="dateofvisit" type="date" formControlName="dateofvisit" disabled="true"></ion-input>
+              <!-- <ion-datetime displayFormat="MM DD YY" formControlName="dateofvisit"></ion-datetime> -->
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Name of Project</ion-label>
+              <ion-input name="projectname" type="text" formControlName="projectname"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Type or Segment</ion-label>
+              <ion-select interface="popover" formControlName="segment">
+                <ion-select-option value="project">Project</ion-select-option>
+                <ion-select-option value="directcustomer">Direct Customer</ion-select-option>
+                <ion-select-option value="consultant">Consultant</ion-select-option>
+                <ion-select-option value="builder">Builder</ion-select-option>
+                <ion-select-option value="architect">Architect</ion-select-option>
+                <ion-select-option value="electrician">Electrician</ion-select-option>
+                <ion-select-option value="others">Others</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Name of the customer</ion-label>
+              <ion-input name="custname" type="text" formControlName="custname"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Mobile Number</ion-label>
+              <ion-input name="mobileNumber" type="tel" formControlName="mobileNumber"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Decision maker name</ion-label>
+              <ion-input name="decmakername" type="text" formControlName="decmakername"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Decision maker contact number</ion-label>
+              <ion-input name="decmakernum" type="tel" formControlName="decmakernum"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Contractor name</ion-label>
+              <ion-input name="contractorname" type="text" formControlName="contractorname"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Contractor contact number</ion-label>
+              <ion-input name="contractornum" type="tel" formControlName="contractornum"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Consultant name</ion-label>
+              <ion-input name="consultantname" type="text" formControlName="consultantname"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Consultant contact number</ion-label>
+              <ion-input name="consultantnum" type="tel" formControlName="consultantnum"></ion-input>
+            </ion-item>
+            
+
+            <ion-item>
+              <ion-label position="floating">Architect name</ion-label>
+              <ion-input name="architectname" type="text" formControlName="architectname"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Architect contact number</ion-label>
+              <ion-input name="architectnum" type="tel" formControlName="architectnum"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Electrician name</ion-label>
+              <ion-input name="electricianname" type="text" formControlName="electricianname"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Electrician contact number</ion-label>
+              <ion-input name="electriciannum" type="tel" formControlName="electriciannum"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Builder name</ion-label>
+              <ion-input name="buildername" type="text" formControlName="buildername"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Builder contact number</ion-label>
+              <ion-input name="buildernum" type="tel" formControlName="buildernum"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Stage of construction</ion-label>
+              <ion-input name="stageconstruction" type="text" formControlName="stageconstruction"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Expected project finalization</ion-label>
+              <ion-input name="expectprice" type="text" formControlName="expectprice"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Check In Location</ion-label>
+              <ion-input name="location" type="text" formControlName="location" readonly></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-textarea placeholder="Remarks ..." formControlName="remarks"></ion-textarea>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Competitor Name</ion-label>
+              <ion-input name="compname" type="text" formControlName="compname"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Project value</ion-label>
+              <ion-input name="projectvalue" type="text" formControlName="projectvalue"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked>Upload Image</ion-label>
+              <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
+              <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>
+              
+              <ion-avatar>
+                <img *ngIf="base64Image" [src]="base64Image"/>
+                <!-- <div class="header" *ngIf="image" [style.background-image]="image"></div> -->
+              </ion-avatar>
+              
+            </ion-item>
+
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="dealerForm.invalid" expand="block">Add Check In
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

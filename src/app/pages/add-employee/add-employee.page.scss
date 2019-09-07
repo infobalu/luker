@@ -1,0 +1,10 @@
+.add-employee-form{
+    ion-label {
+        padding-top: 4px;
+        letter-spacing: 0.6px;
+        font-size: 15px;
+    }
+    ion-input, ion-datetime, ion-select {
+        color: #0d8a63;
+    }
+}

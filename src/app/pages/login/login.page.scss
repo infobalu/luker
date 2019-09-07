@@ -1,0 +1,11 @@
+.login-page {
+    .item-native {
+        border-color: black;
+    }
+    ion-item{
+        --color: rgb(0, 0, 0);
+    }
+    ion-button{
+        --background: #062f77;
+    }
+}

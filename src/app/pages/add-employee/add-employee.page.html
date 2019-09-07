@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Employee</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="add-employee-form" [formGroup]="firstForm" (ngSubmit)="firstFormSubmit(firstForm)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-label position="floating">Employee Email (Username)*</ion-label>
+              <ion-input name="username" type="text" formControlName="username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Employee Password*</ion-label>
+              <ion-input name="password" type="text" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Employee Name*</ion-label>
+              <ion-input name="ename" type="text" formControlName="ename"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Employee Account Email</ion-label>
+              <ion-input name="accountEmail" type="text" formControlName="accountEmail"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Employee Mobile</ion-label>
+              <ion-input name="mobile" type="text" formControlName="mobile"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Employee Designation</ion-label>
+              <ion-input name="designation" type="text" formControlName="designation"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Employee Shift Start Time*</ion-label>
+              <ion-datetime name="startTime" formControlName="startTime" display-format="hh:mm a"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Employee Shift End Time*</ion-label>
+              <ion-datetime name="endTime" formControlName="endTime" display-format="hh:mm a"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Employee Photo</ion-label>
+              <ion-input name="pic" type="file" formControlName="pic"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Employee Type*</ion-label>
+              <ion-select name="type" formControlName="type" okText="Ok" cancelText="Dismiss">
+                <ion-select-option value="Normal Employee">Normal Employee</ion-select-option>
+                <ion-select-option value="Authorized Employee">Authorized Employee</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="firstForm.invalid" expand="block">Add Employee
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>View Check-ins</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item type="item-text-wrap" *ngFor="let album of activeCheckins">
+      <ion-card background-color: #BEBEBE;>
+        <ion-card-header>
+          <ion-card-subtitle>Rep : {{album.dealer_name}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <ion-item>
+            <ion-label>Checkin Time :{{album.checkin_time}}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Checkout Time :{{album.checkout_time}}</ion-label>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Dealer Name :{{album.dealer_name}}</ion-label>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Mobile Number :{{album.contractor_number}}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Location :{{album.checkin_loc}}</ion-label>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Type of segment :{{album.type_of_segment}}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Project completion persontage :</ion-label>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Focused verticals :</ion-label>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Other value expected :</ion-label>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Comments :{{album.remarks}}</ion-label>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Support needed: </ion-label>
+          </ion-item>
+
+
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
