@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'markattendance', loadChildren: './pages/markattendance/markattendance.module#MarkattendancePageModule' },
   { path: 'clenttype', loadChildren: './pages/clenttype/clenttype.module#ClenttypePageModule' },
   { path: 'mycheckins', loadChildren: './pages/mycheckins/mycheckins.module#MycheckinsPageModule' },
-  { path: 'viewcheckin', loadChildren: './pages/viewcheckin/viewcheckin.module#ViewcheckinPageModule' }
+  { path: 'viewcheckin', loadChildren: './pages/viewcheckin/viewcheckin.module#ViewcheckinPageModule' },
+  { path: 'viewemployees', loadChildren: './pages/viewemployees/viewemployees.module#ViewemployeesPageModule' }
 ];
 
 @NgModule({

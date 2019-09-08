@@ -42,7 +42,7 @@ export class DashboardPage implements OnInit {
 
   ionViewWillEnter() {
     this.menu.enable(true);
-    this.getActiveCheckins();
+   // this.getActiveCheckins();
   }
 
   ngOnInit() {
@@ -284,8 +284,11 @@ export class DashboardPage implements OnInit {
   }
 
   goToMyCheckin() {
-    console.log("==goToMyCheckin  mycheckins=");
     this.router.navigateByUrl('/mycheckins');
+  }
+
+  goToViewEmployee(){
+    this.router.navigateByUrl('/viewemployees');
   }
 
 }

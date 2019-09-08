@@ -45,10 +45,16 @@
               <ion-label position="floating">Employee Shift End Time*</ion-label>
               <ion-datetime name="endTime" formControlName="endTime" display-format="hh:mm a"></ion-datetime>
             </ion-item>
-            <ion-item>
+            <!-- <ion-item>
               <ion-label position="stacked">Employee Photo</ion-label>
               <ion-input name="pic" type="file" formControlName="pic"></ion-input>
+            </ion-item> -->
+
+            <ion-item>
+                <ion-label position="floating">Employee No</ion-label>
+                <ion-input name="empno" type="text" formControlName="empno"></ion-input>
             </ion-item>
+
             <ion-item>
               <ion-label position="stacked">Employee Type*</ion-label>
               <ion-select name="type" formControlName="type" okText="Ok" cancelText="Dismiss">

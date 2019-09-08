@@ -10,6 +10,7 @@
     <ion-item type="item-text-wrap" *ngFor="let album of activeCheckins">
       <ion-card background-color: #BEBEBE;>
         <ion-card-header>
+          <ion-img [src]="imgurl"></ion-img>
           <ion-card-subtitle>Rep : {{album.dealer_name}}</ion-card-subtitle>
         </ion-card-header>
 

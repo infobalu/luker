@@ -8,7 +8,6 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { HttpHeaders } from '@angular/common/http';
 import { File } from '@ionic-native/file/ngx';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -119,19 +118,7 @@ export class CreateCheckInPage implements OnInit {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-
-    // let watch = this.geolocation.watchPosition();
-    // watch.subscribe((data) => {
-    //   this.whereInTheEarth(data.coords.latitude, data.coords.longitude)
-    //   this.latitude = data.coords.latitude;
-    //   this.longitude = data.coords.longitude;
-    // });
   }
-
-  // changeListener($event): void {
-  //   this.file = $event.target.files[0];
-  //   console.log('this file', this.file);
-  // }
 
   distributorFormSubmit(data) {
     console.log('data', data);
@@ -245,7 +232,7 @@ export class CreateCheckInPage implements OnInit {
       const cameraInfo = await this.camera.getPicture(options);
       const blobInfo = await this.makeFileIntoBlob(cameraInfo);
       this.base64Image = cameraInfo;
-      console.log("base64", this.base64Image);
+     
       this.capturedPhoto = blobInfo;
       console.log('this.capturedPhoto', this.capturedPhoto);
     } catch (e) {
@@ -258,13 +245,10 @@ export class CreateCheckInPage implements OnInit {
     let _self = this;
     console.log("==path=NEW= : "+path);
     cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', { checkin_id: path },
-     '', this.base64Image, 'image', function (response) {
-      console.log(response.status);
+    {  /*checkin_id: path */}, this.base64Image, 'image', function (response) {
       console.log('response', JSON.stringify(response));
-      if(response.status === 200){
-        _self.presentToast('checked in successfully','bottom');
-        _self.router.navigateByUrl('/dashboard');
-      }
+      _self.presentToast('checked in successfully','bottom');
+      _self.router.navigateByUrl('/dashboard');
     }, function (response) {
       console.error(response.error);
     });

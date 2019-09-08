@@ -45,14 +45,20 @@ export class AddEmployeePage implements OnInit {
       endTime: new FormControl("05:00 pm", Validators.compose([
         Validators.required
       ])),
-      pic: new FormControl(""),
-      type: new FormControl("", Validators.compose([
+      // pic: new FormControl(""),
+      // type: new FormControl("", Validators.compose([
+      //   Validators.required
+      // ])),
+
+      empno: new FormControl("", Validators.compose([
         Validators.required
       ])),
     });
   }
 
   firstFormSubmit(data) {
+    console.log("= data.value.empno== : " + data.value.empno);
+
     let params = {
       email: data.value.username,
       password: data.value.password,
@@ -64,12 +70,19 @@ export class AddEmployeePage implements OnInit {
       employee_shift_end: data.value.endTime,
       employee_type: data.value.type,
       user_type: 'employee',
-      added_by: this.userDetails._id
+      added_by: this.userDetails._id,
+      employee_post_location: 'palakkad',
+      employee_no: data.value.empno
     };
 
     this.apiService.postData('/users', params).subscribe(result => {
+
+      console.log('==result= : ' + JSON.stringify(result));
+
       this.presentToast("Employee added successfully", "bottom");
       this.router.navigateByUrl('/dashboard');
+    }, error => {
+      alert(JSON.stringify(error));
     });
   }
 
