@@ -291,4 +291,30 @@ export class DashboardPage implements OnInit {
     this.router.navigateByUrl('/viewemployees');
   }
 
+  goToAttendanceRpt(){
+
+    let time = moment().format('YYYY-MM-DD');
+    
+    this.apiService.getData('/attendanceReport/' + time).subscribe(result => {
+      //this.activeCheckins = result['data'];
+      console.log("== this.attendanceReport == : "+  JSON.stringify(result['data']));
+
+      if(result['success'] == 1){
+        
+      }
+
+    });
+
+
+    this.apiService.getData('/getCheckins/' + '5d71d8546f6282269c53d82e').subscribe(result => {
+      //this.activeCheckins = result['data'];
+      console.log("== this.getCheckins == : "+  JSON.stringify(result['data']));
+
+      if(result['success'] == 1){
+        
+      }
+
+    });
+  }
+
 }

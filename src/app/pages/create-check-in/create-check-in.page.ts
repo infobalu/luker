@@ -4,14 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { ApiService } from './../../services/api.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { File } from '@ionic-native/file/ngx';
-import { DomSanitizer } from '@angular/platform-browser';
+import { File, FileEntry } from '@ionic-native/file/ngx';
 
 declare var cordova;
+
 @Component({
   selector: 'app-create-check-in',
   templateUrl: './create-check-in.page.html',
@@ -29,16 +29,20 @@ export class CreateCheckInPage implements OnInit {
   capturedPhoto: any;
   base64Image: any;
   image: any;
+  loading: any;
+
+
+  imgBlob: any;
   constructor(
     private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
-    private sanitizer: DomSanitizer,
     private camera: Camera,
     private file: File,
     private router: Router,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public loadingController: LoadingController
   ) {
     this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
     this.checkInFor = this.activatedRoute.snapshot.paramMap.get('checkInFor');
@@ -149,6 +153,7 @@ export class CreateCheckInPage implements OnInit {
       const finaldatas = result;
       if (finaldatas.message === 'Chek in created!') {
         this.uploadImages(finaldatas.data._id);
+        this.presentToast('checked in successfully', 'bottom');
       }
     });
   }
@@ -190,6 +195,7 @@ export class CreateCheckInPage implements OnInit {
       const finaldatas = result;
       if (finaldatas.message === 'Chek in created!') {
         this.uploadImages(finaldatas.data._id);
+        this.presentToast('checked in successfully', 'bottom');
       }
     });
   }
@@ -232,7 +238,7 @@ export class CreateCheckInPage implements OnInit {
       const cameraInfo = await this.camera.getPicture(options);
       const blobInfo = await this.makeFileIntoBlob(cameraInfo);
       this.base64Image = cameraInfo;
-     
+
       this.capturedPhoto = blobInfo;
       console.log('this.capturedPhoto', this.capturedPhoto);
     } catch (e) {
@@ -241,19 +247,24 @@ export class CreateCheckInPage implements OnInit {
     }
   }
 
+
   uploadImages(path: any) {
     let _self = this;
-    console.log("==path=NEW= : "+path);
-    cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', { checkin_id: path },
-    {  /*checkin_id: path */}, this.base64Image, 'image', function (response) {
-      console.log('response', JSON.stringify(response));
-      _self.presentToast('checked in successfully','bottom');
-      _self.router.navigateByUrl('/dashboard');
-    }, function (response) {
-      console.error(response.error);
-    });
-  }
+    console.log("==path=NEW= : " + path);
+    this.presentLoading('Loading...');
 
+
+    cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', { checkin_id: path },
+      {}, this.base64Image, 'image', function (response) {
+        console.log('response', JSON.stringify(response));
+        _self.dismissLoading();
+        _self.presentToast('checked in successfully', 'bottom');
+        _self.router.navigateByUrl('/dashboard');
+      }, function (response) {
+        console.error(response.error);
+        _self.dismissLoading();
+      });
+  }
   async presentToast(msg, position) {
     const toast = await this.toastController.create({
       message: msg,
@@ -303,6 +314,8 @@ export class CreateCheckInPage implements OnInit {
 
         this.distributorForm.controls.location.setValue(this.locationName);
         this.dealerForm.controls.location.setValue(this.locationName);
+
+        this.distributorForm.controls.retaileraddr.setValue(this.locationName);
       })
       .catch((error: any) => {
         this.locationName = "Unable to fetch geolocation";
@@ -312,4 +325,15 @@ export class CreateCheckInPage implements OnInit {
 
   }
 
+  async presentLoading(message) {
+    this.loading = await this.loadingController.create({
+      message: message
+    });
+    await this.loading.present();
+
+  }
+
+  async dismissLoading() {
+    await this.loading.onDidDismiss();
+  }
 }

@@ -23,7 +23,7 @@
 
       <ion-row>
         <ion-button expand="block" color="secondary" (click)="goToCheckIn()" style="width: 100%"
-          *ngIf="userDetails.user_type == 'employee'">
+          *ngIf="userDetails.user_type == 'employee' && day_plan_status == '1'">
           Create Check-In</ion-button>
       </ion-row>
 
@@ -46,6 +46,13 @@
           View Employees</ion-button>
       </ion-row>
 
+
+      <ion-row>
+        <ion-button expand="block" color="secondary" (click)="goToAttendanceRpt()" style="width: 100%">
+          Attendance Report</ion-button>
+      </ion-row>
+
+      
     </ion-grid>
   </ion-card>
 </ion-content>
