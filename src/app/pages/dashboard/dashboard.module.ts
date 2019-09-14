@@ -10,8 +10,20 @@ import { DashboardPage } from './dashboard.page';
 const routes: Routes = [
   {
     path: '',
-    component: DashboardPage
-  }
+    component: DashboardPage,
+    children:[
+      { path: 'viewemployees', loadChildren: '../viewemployees/viewemployees.module#ViewemployeesPageModule' },
+      { path: 'homee', loadChildren: '../homee/homee.module#HomeePageModule' },
+      { path: 'profileadmin', loadChildren: '../profileadmin/profileadmin.module#ProfileadminPageModule' },
+      { path: 'empallcheckin', loadChildren: '../empallcheckin/empallcheckin.module#EmpallcheckinPageModule' }
+    ]
+
+  },
+  {
+    path:'',
+    redirectTo:'../homee/homee',
+    pathMatch:'full'
+   }
 ];
 
 @NgModule({

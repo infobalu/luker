@@ -27,7 +27,18 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        component: _dashboard_page__WEBPACK_IMPORTED_MODULE_6__["DashboardPage"]
+        component: _dashboard_page__WEBPACK_IMPORTED_MODULE_6__["DashboardPage"],
+        children: [
+            { path: 'viewemployees', loadChildren: '../viewemployees/viewemployees.module#ViewemployeesPageModule' },
+            { path: 'homee', loadChildren: '../homee/homee.module#HomeePageModule' },
+            { path: 'profileadmin', loadChildren: '../profileadmin/profileadmin.module#ProfileadminPageModule' },
+            { path: 'empallcheckin', loadChildren: '../empallcheckin/empallcheckin.module#EmpallcheckinPageModule' }
+        ]
+    },
+    {
+        path: '',
+        redirectTo: '../homee/homee',
+        pathMatch: 'full'
     }
 ];
 var DashboardPageModule = /** @class */ (function () {
@@ -58,7 +69,7 @@ var DashboardPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button autoHide=\"false\"></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Dashboard</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"dashboard\">\n\n    <ion-card>\n        <ion-grid>\n    \n          <ion-row style=\"border: bottom 1px solid #cccccc;\">\n            <ion-col col-6>\n              <p>Checkins Left<span class='count'> {{checkins}} </span></p>\n            </ion-col>\n            <ion-col col-6 text-right>\n                <ion-toggle [(ngModel)]=\"isToggled\" (ionChange)=\"notify(n1)\"></ion-toggle>\n            </ion-col>\n          </ion-row>\n    \n          <ion-row>\n            <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToCheckIn()\" style=\"width: 100%\"\n              *ngIf=\"userDetails.user_type == 'employee'\">\n              Create Check-In</ion-button>\n          </ion-row>\n    \n          <ion-row>\n            <ion-button expand=\"block\" color=\"secondary\" *ngIf=\"userDetails.user_type == 'employee'\"\n              (click)=\"goToMyCheckin()\" style=\"width: 100%\">\n              My Check-In</ion-button>\n          </ion-row>\n    \n        </ion-grid>\n      </ion-card>\n\n  <!-- <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToCheckIn()\" *ngIf=\"userDetails.user_type == 'employee'\">\n    Create Check-In</ion-button>\n\n  <ion-button expand=\"block\" color=\"secondary\" *ngIf=\"userDetails.user_type == 'employee'\">\n    My Check-In</ion-button>\n\n  <ion-button expand=\"block\" color=\"secondary\" (click)=\"triggerStop()\"> Stop</ion-button> -->\n\n  <ion-grid class=\"active-check-ins\" *ngIf=\"activeCheckins.length\">\n    <ion-row class=\"head\">\n      <ion-col>\n        Active Check-In\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>Name</ion-col>\n      <ion-col>Type</ion-col>\n      <ion-col>Action</ion-col>\n    </ion-row>\n    <ion-row *ngFor=\"let item of activeCheckins\">\n      <ion-col *ngIf=\"item.check_in_for == 'distributor'\">{{ item.distributor_name }}</ion-col>\n      <ion-col *ngIf=\"item.check_in_for == 'dealer'\">{{ item.dealer_name }}</ion-col>\n      <ion-col *ngIf=\"item.check_in_for == 'distributor'\">Distributor</ion-col>\n      <ion-col *ngIf=\"item.check_in_for == 'dealer'\">Dealer</ion-col>\n      <ion-col>\n        <ion-button color=\"warning\">Check Out</ion-button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
+module.exports = "\n  <!-- <ion-content class=\"dashboard\">\n\n<ion-card>\n    <ion-grid>\n\n      <ion-row style=\"border: bottom 1px solid #cccccc;\">\n        <ion-col col-6>\n          <p>Checkins Left<span class='count'> {{checkins}} </span></p>\n        </ion-col>\n        <ion-col col-6 text-right>\n          <ion-toggle [(ngModel)]=\"isToggled\" (ionChange)=\"notify(n1)\"></ion-toggle>\n        </ion-col>\n      </ion-row>\n\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToCheckIn()\" style=\"width: 100%\"\n          *ngIf=\"userDetails.user_type == 'employee'\">\n          Create Check-In</ion-button>\n      </ion-row>\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" *ngIf=\"userDetails.user_type == 'employee'\"\n          (click)=\"goToMyCheckin()\" style=\"width: 100%\">\n          My Check-In</ion-button>\n      </ion-row>\n\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToAddEmployee()\" style=\"width: 100%\">\n          Add Employee</ion-button>\n      </ion-row>\n\n\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToViewEmployee()\" style=\"width: 100%\">\n          View Employees</ion-button>\n      </ion-row>\n\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToAttendanceRpt()\" style=\"width: 100%\">\n          Attendance Report</ion-button>\n      </ion-row>\n    \n    </ion-grid>\n  </ion-card> \n\n\n</ion-content>-->\n\n\n<ion-tabs>\n    <ion-tab-bar slot=\"bottom\">\n      <ion-tab-button tab=\"homee\" (click)='tab2Selected()' *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-icon name=\"home\"></ion-icon>\n        <ion-label>HOME</ion-label>\n       \n      </ion-tab-button>\n\n      <ion-tab-button tab=\"viewemployees\" *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-icon name=\"representative\"></ion-icon>\n        <ion-label>REPRESENTATIVE</ion-label>\n      </ion-tab-button>\n\n      <ion-tab-button tab=\"empallcheckin\" *ngIf=\"userDetails.user_type == 'owner'\">\n          <ion-icon name=\"checkins\"></ion-icon>\n          <ion-label>Check-Ins</ion-label>\n        </ion-tab-button>\n\n        <ion-tab-button tab=\"profileadmin\" *ngIf=\"userDetails.user_type == 'owner'\">\n            <ion-icon name=\"profile\"></ion-icon>\n            <ion-label>Profile</ion-label>\n          </ion-tab-button>\n\n    </ion-tab-bar>\n  </ion-tabs>"
 
 /***/ }),
 
@@ -113,17 +124,20 @@ var DashboardPage = /** @class */ (function () {
         this.activeCheckins = [];
         this.n1 = 1;
         this.checkins = 0;
+        this.forCheckin = 0;
     }
     DashboardPage.prototype.ionViewWillEnter = function () {
         this.menu.enable(true);
-        this.getActiveCheckins();
+        // this.getActiveCheckins();
     };
     DashboardPage.prototype.ngOnInit = function () {
+        console.log("==HAIIIII=");
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.attendance = JSON.parse(localStorage.getItem("attendance"));
         //this.day_plan_status = this.userDetails.day_plan_status;
         this.day_plan_status = this.userDetails.day_plan_status;
         console.log("=this.userDetails= : " + JSON.stringify(this.userDetails));
+        console.log("=this.user_type= : " + this.userDetails.user_type);
         console.log("=this.attendance= : " + JSON.stringify(this.attendance));
         this.checkins = this.userDetails.checkins;
         this.att_id = this.userDetails.att_id;
@@ -146,7 +160,8 @@ var DashboardPage = /** @class */ (function () {
         this.router.navigateByUrl('/add-employee');
     };
     DashboardPage.prototype.goToCheckIn = function () {
-        this.router.navigateByUrl('/clenttype');
+        this.forCheckin = 1;
+        this.getGeoLocation();
     };
     DashboardPage.prototype.radioChecked = function (val) {
         console.log("radioGroupChange : ", val);
@@ -202,7 +217,7 @@ var DashboardPage = /** @class */ (function () {
                 console.log("= this.locationName final= : " + _this.locationName);
                 var time = moment__WEBPACK_IMPORTED_MODULE_5__().format('DD-MM-YYYY, hh:mm:ss a'); // August 31st 2019, 9:52:34 pm
                 console.log('==this.userDetails ID === : ' + _this.userDetails._id);
-                if (!_this.isToggled) {
+                if (!_this.isToggled && _this.forCheckin == 0) {
                     _this.params = {
                         end_time: time,
                         end_location: _this.locationName,
@@ -228,9 +243,29 @@ var DashboardPage = /** @class */ (function () {
                         _this.n1 = 0;
                     });
                 }
-                else {
+                else if (_this.isToggled && _this.forCheckin == 0) {
                     console.log("mark atten");
                     _this.markAttendance();
+                }
+                else if (_this.forCheckin == 1) {
+                    console.log('====LOCATION====== : ' + _this.locationName);
+                    console.log('=FOR CHECKIN==');
+                    var params = {
+                        created_by: _this.userDetails._id,
+                        checkin_time: moment__WEBPACK_IMPORTED_MODULE_5__().format('DD-MM-YYYY, hh:mm:ss a'),
+                        checkin_loc: _this.locationName,
+                    };
+                    _this.apiService.postData('/startCheckIn', params).subscribe(function (result) {
+                        console.log("=startCheckIn= :" + JSON.stringify(result));
+                        if (result['success'] == "1") {
+                            _this.router.navigateByUrl('/clenttype');
+                        }
+                        else {
+                            _this.presentToast(result['message'], 'bottom');
+                        }
+                    }, function (error) {
+                        alert(JSON.stringify(error));
+                    });
                 }
             }
             else {
@@ -353,8 +388,28 @@ var DashboardPage = /** @class */ (function () {
         this.n1 = 1;
     };
     DashboardPage.prototype.goToMyCheckin = function () {
-        console.log("==goToMyCheckin  mycheckins=");
         this.router.navigateByUrl('/mycheckins');
+    };
+    DashboardPage.prototype.goToViewEmployee = function () {
+        this.router.navigateByUrl('/viewemployees');
+    };
+    DashboardPage.prototype.goToAttendanceRpt = function () {
+        var time = moment__WEBPACK_IMPORTED_MODULE_5__().format('YYYY-MM-DD');
+        this.apiService.getData('/attendanceReport/' + time).subscribe(function (result) {
+            //this.activeCheckins = result['data'];
+            console.log("== this.attendanceReport == : " + JSON.stringify(result['data']));
+            if (result['success'] == 1) {
+            }
+        });
+        this.apiService.getData('/getCheckins/' + '5d71d8546f6282269c53d82e').subscribe(function (result) {
+            //this.activeCheckins = result['data'];
+            console.log("== this.getCheckins == : " + JSON.stringify(result['data']));
+            if (result['success'] == 1) {
+            }
+        });
+    };
+    DashboardPage.prototype.tab2Selected = function () {
+        console.log("=TAB 2 SELECTED==");
     };
     DashboardPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

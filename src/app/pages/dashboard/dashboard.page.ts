@@ -29,6 +29,7 @@ export class DashboardPage implements OnInit {
   n1: number = 1;
   checkins: number = 0;
   att_id:any;
+  forCheckin: number = 0;
 
   constructor(
     public menu: MenuController,
@@ -46,11 +47,14 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log("==HAIIIII=");
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
     this.attendance = JSON.parse(localStorage.getItem("attendance"));
     //this.day_plan_status = this.userDetails.day_plan_status;
     this.day_plan_status = this.userDetails.day_plan_status;
     console.log("=this.userDetails= : " + JSON.stringify(this.userDetails));
+
+    console.log("=this.user_type= : " + this.userDetails.user_type);
 
     console.log("=this.attendance= : " + JSON.stringify(this.attendance));
     this.checkins = this.userDetails.checkins;
@@ -76,7 +80,8 @@ export class DashboardPage implements OnInit {
   }
 
   goToCheckIn() {
-    this.router.navigateByUrl('/clenttype');
+    this.forCheckin = 1;
+    this.getGeoLocation();
   }
 
   radioChecked(val) {
@@ -140,7 +145,10 @@ export class DashboardPage implements OnInit {
 
 
           console.log('==this.userDetails ID === : ' + this.userDetails._id);
-          if (!this.isToggled) {
+
+         
+
+          if (!this.isToggled && this.forCheckin == 0) {
 
             this.params = {
               end_time: time,
@@ -166,9 +174,29 @@ export class DashboardPage implements OnInit {
               this.isToggled = true;
               this.n1 = 0;
             });
-          } else {
+          } else if(this.isToggled && this.forCheckin == 0) {
             console.log("mark atten");
             this.markAttendance();
+          }else if(this.forCheckin == 1){
+            console.log('====LOCATION====== : '+this.locationName);
+
+            console.log('=FOR CHECKIN==');
+            let params = {
+              created_by: this.userDetails._id,
+              checkin_time:  moment().format('DD-MM-YYYY, hh:mm:ss a') ,
+              checkin_loc: this.locationName,
+            };
+
+            this.apiService.postData('/startCheckIn', params).subscribe(result => {
+              console.log("=startCheckIn= :"+JSON.stringify(result));
+              if(result['success'] == "1") {
+                this.router.navigateByUrl('/clenttype');
+              } else {
+                this.presentToast(result['message'], 'bottom');
+              }
+            }, error => {
+              alert(JSON.stringify(error));
+            });
           }
 
         } else {
@@ -316,5 +344,11 @@ export class DashboardPage implements OnInit {
 
     });
   }
+
+  tab2Selected(){
+    console.log("=TAB 2 SELECTED==")
+  }
+
+
 
 }

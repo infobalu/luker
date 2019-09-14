@@ -59,7 +59,7 @@ var AddEmployeePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button autoHide=\"false\"></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Add Employee</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form class=\"add-employee-form\" [formGroup]=\"firstForm\" (ngSubmit)=\"firstFormSubmit(firstForm)\">\n    <ion-grid>\n      <ion-row justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div padding>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Email (Username)*</ion-label>\n              <ion-input name=\"username\" type=\"text\" formControlName=\"username\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Password*</ion-label>\n              <ion-input name=\"password\" type=\"text\" formControlName=\"password\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Name*</ion-label>\n              <ion-input name=\"ename\" type=\"text\" formControlName=\"ename\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Account Email</ion-label>\n              <ion-input name=\"accountEmail\" type=\"text\" formControlName=\"accountEmail\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Mobile</ion-label>\n              <ion-input name=\"mobile\" type=\"text\" formControlName=\"mobile\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Designation</ion-label>\n              <ion-input name=\"designation\" type=\"text\" formControlName=\"designation\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Shift Start Time*</ion-label>\n              <ion-datetime name=\"startTime\" formControlName=\"startTime\" display-format=\"hh:mm a\"></ion-datetime>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Shift End Time*</ion-label>\n              <ion-datetime name=\"endTime\" formControlName=\"endTime\" display-format=\"hh:mm a\"></ion-datetime>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"stacked\">Employee Photo</ion-label>\n              <ion-input name=\"pic\" type=\"file\" formControlName=\"pic\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"stacked\">Employee Type*</ion-label>\n              <ion-select name=\"type\" formControlName=\"type\" okText=\"Ok\" cancelText=\"Dismiss\">\n                <ion-select-option value=\"Normal Employee\">Normal Employee</ion-select-option>\n                <ion-select-option value=\"Authorized Employee\">Authorized Employee</ion-select-option>\n              </ion-select>\n            </ion-item>\n          </div>\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"firstForm.invalid\" expand=\"block\">Add Employee\n            </ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button autoHide=\"false\"></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Add Employee</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form class=\"add-employee-form\" [formGroup]=\"firstForm\" (ngSubmit)=\"firstFormSubmit(firstForm)\">\n    <ion-grid>\n      <ion-row justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div padding>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Email (Username)*</ion-label>\n              <ion-input name=\"username\" type=\"text\" formControlName=\"username\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Password*</ion-label>\n              <ion-input name=\"password\" type=\"text\" formControlName=\"password\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Name*</ion-label>\n              <ion-input name=\"ename\" type=\"text\" formControlName=\"ename\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Account Email</ion-label>\n              <ion-input name=\"accountEmail\" type=\"text\" formControlName=\"accountEmail\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Mobile</ion-label>\n              <ion-input name=\"mobile\" type=\"text\" formControlName=\"mobile\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Designation</ion-label>\n              <ion-input name=\"designation\" type=\"text\" formControlName=\"designation\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Shift Start Time*</ion-label>\n              <ion-datetime name=\"startTime\" formControlName=\"startTime\" display-format=\"hh:mm a\"></ion-datetime>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Employee Shift End Time*</ion-label>\n              <ion-datetime name=\"endTime\" formControlName=\"endTime\" display-format=\"hh:mm a\"></ion-datetime>\n            </ion-item>\n            <!-- <ion-item>\n              <ion-label position=\"stacked\">Employee Photo</ion-label>\n              <ion-input name=\"pic\" type=\"file\" formControlName=\"pic\"></ion-input>\n            </ion-item> -->\n\n            <ion-item>\n                <ion-label position=\"floating\">Employee No</ion-label>\n                <ion-input name=\"empno\" type=\"text\" formControlName=\"empno\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"stacked\">Employee Type*</ion-label>\n              <ion-select name=\"type\" formControlName=\"type\" okText=\"Ok\" cancelText=\"Dismiss\">\n                <ion-select-option value=\"Normal Employee\">Dealer</ion-select-option>\n                <ion-select-option value=\"Authorized Employee\">Distributor</ion-select-option>\n              </ion-select>\n            </ion-item>\n          </div>\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"firstForm.invalid\" expand=\"block\">Add Employee\n            </ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
 
 /***/ }),
 
@@ -126,14 +126,18 @@ var AddEmployeePage = /** @class */ (function () {
             endTime: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("05:00 pm", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
             ])),
-            pic: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](""),
-            type: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
+            // pic: new FormControl(""),
+            // type: new FormControl("", Validators.compose([
+            //   Validators.required
+            // ])),
+            empno: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
             ])),
         });
     };
     AddEmployeePage.prototype.firstFormSubmit = function (data) {
         var _this = this;
+        console.log("= data.value.empno== : " + data.value.empno);
         var params = {
             email: data.value.username,
             password: data.value.password,
@@ -145,11 +149,16 @@ var AddEmployeePage = /** @class */ (function () {
             employee_shift_end: data.value.endTime,
             employee_type: data.value.type,
             user_type: 'employee',
-            added_by: this.userDetails._id
+            added_by: this.userDetails._id,
+            employee_post_location: 'palakkad',
+            employee_no: data.value.empno
         };
         this.apiService.postData('/users', params).subscribe(function (result) {
+            console.log('==result= : ' + JSON.stringify(result));
             _this.presentToast("Employee added successfully", "bottom");
             _this.router.navigateByUrl('/dashboard');
+        }, function (error) {
+            alert(JSON.stringify(error));
         });
     };
     AddEmployeePage.prototype.presentToast = function (msg, position) {

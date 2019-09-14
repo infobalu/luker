@@ -1,15 +1,7 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content class="dashboard">
+  <!-- <ion-content class="dashboard">
 
-  <ion-card>
+<ion-card>
     <ion-grid>
 
       <ion-row style="border: bottom 1px solid #cccccc;">
@@ -21,9 +13,10 @@
         </ion-col>
       </ion-row>
 
+
       <ion-row>
         <ion-button expand="block" color="secondary" (click)="goToCheckIn()" style="width: 100%"
-          *ngIf="userDetails.user_type == 'employee' && day_plan_status == '1'">
+          *ngIf="userDetails.user_type == 'employee'">
           Create Check-In</ion-button>
       </ion-row>
 
@@ -51,8 +44,36 @@
         <ion-button expand="block" color="secondary" (click)="goToAttendanceRpt()" style="width: 100%">
           Attendance Report</ion-button>
       </ion-row>
-
-      
+    
     </ion-grid>
-  </ion-card>
-</ion-content>
+  </ion-card> 
+
+
+</ion-content>-->
+
+
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="homee" (click)='tab2Selected()' *ngIf="userDetails.user_type == 'owner'">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>HOME</ion-label>
+       
+      </ion-tab-button>
+
+      <ion-tab-button tab="viewemployees" *ngIf="userDetails.user_type == 'owner'">
+        <ion-icon name="representative"></ion-icon>
+        <ion-label>REPRESENTATIVE</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="empallcheckin" *ngIf="userDetails.user_type == 'owner'">
+          <ion-icon name="checkins"></ion-icon>
+          <ion-label>Check-Ins</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profileadmin" *ngIf="userDetails.user_type == 'owner'">
+            <ion-icon name="profile"></ion-icon>
+            <ion-label>Profile</ion-label>
+          </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>

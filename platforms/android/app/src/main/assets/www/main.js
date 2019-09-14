@@ -833,6 +833,23 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../empallcheckin/empallcheckin.module": [
+		"./src/app/pages/empallcheckin/empallcheckin.module.ts",
+		"empallcheckin-empallcheckin-module"
+	],
+	"../homee/homee.module": [
+		"./src/app/pages/homee/homee.module.ts",
+		"homee-homee-module"
+	],
+	"../profileadmin/profileadmin.module": [
+		"./src/app/pages/profileadmin/profileadmin.module.ts",
+		"profileadmin-profileadmin-module"
+	],
+	"../viewemployees/viewemployees.module": [
+		"./src/app/pages/viewemployees/viewemployees.module.ts",
+		"common",
+		"viewemployees-viewemployees-module"
+	],
 	"./pages/add-employee/add-employee.module": [
 		"./src/app/pages/add-employee/add-employee.module.ts",
 		"common",
@@ -857,9 +874,17 @@ var map = {
 		"common",
 		"pages-dashboard-dashboard-module"
 	],
+	"./pages/empallcheckin/empallcheckin.module": [
+		"./src/app/pages/empallcheckin/empallcheckin.module.ts",
+		"empallcheckin-empallcheckin-module"
+	],
 	"./pages/home/home.module": [
 		"./src/app/pages/home/home.module.ts",
 		"pages-home-home-module"
+	],
+	"./pages/homee/homee.module": [
+		"./src/app/pages/homee/homee.module.ts",
+		"homee-homee-module"
 	],
 	"./pages/list/list.module": [
 		"./src/app/pages/list/list.module.ts",
@@ -881,6 +906,10 @@ var map = {
 		"common",
 		"pages-mycheckins-mycheckins-module"
 	],
+	"./pages/profileadmin/profileadmin.module": [
+		"./src/app/pages/profileadmin/profileadmin.module.ts",
+		"profileadmin-profileadmin-module"
+	],
 	"./pages/signup/signup.module": [
 		"./src/app/pages/signup/signup.module.ts",
 		"common",
@@ -888,7 +917,13 @@ var map = {
 	],
 	"./pages/viewcheckin/viewcheckin.module": [
 		"./src/app/pages/viewcheckin/viewcheckin.module.ts",
+		"common",
 		"pages-viewcheckin-viewcheckin-module"
+	],
+	"./pages/viewemployees/viewemployees.module": [
+		"./src/app/pages/viewemployees/viewemployees.module.ts",
+		"common",
+		"viewemployees-viewemployees-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -942,7 +977,11 @@ var routes = [
     { path: 'markattendance', loadChildren: './pages/markattendance/markattendance.module#MarkattendancePageModule' },
     { path: 'clenttype', loadChildren: './pages/clenttype/clenttype.module#ClenttypePageModule' },
     { path: 'mycheckins', loadChildren: './pages/mycheckins/mycheckins.module#MycheckinsPageModule' },
-    { path: 'viewcheckin', loadChildren: './pages/viewcheckin/viewcheckin.module#ViewcheckinPageModule' }
+    { path: 'viewcheckin', loadChildren: './pages/viewcheckin/viewcheckin.module#ViewcheckinPageModule' },
+    { path: 'viewemployees', loadChildren: './pages/viewemployees/viewemployees.module#ViewemployeesPageModule' },
+    { path: 'homee', loadChildren: './pages/homee/homee.module#HomeePageModule' },
+    { path: 'profileadmin', loadChildren: './pages/profileadmin/profileadmin.module#ProfileadminPageModule' },
+    { path: 'empallcheckin', loadChildren: './pages/empallcheckin/empallcheckin.module#EmpallcheckinPageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

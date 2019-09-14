@@ -57,7 +57,9 @@ export class LoginPage implements OnInit {
         } else {
           this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
         }
+        console.log("dash=======11111");
         this.router.navigateByUrl('/dashboard');
+        console.log("dash=======2222222222");
 
       } else {
         this.presentToast('Username or password is incorrect', 'middle');

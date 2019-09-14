@@ -145,7 +145,8 @@ export class CreateCheckInPage implements OnInit {
       luker_month: this.distributorForm.value.lukersec,
       luker_share: this.distributorForm.value.lukershare,
       targeted_value: this.distributorForm.value.targetval,
-      targeted_share: this.distributorForm.value.lukertarget
+      targeted_share: this.distributorForm.value.lukertarget,
+      checkin_id:"5d7a6c73b7c9ae247cd6772b"
     };
     console.log('params', JSON.stringify(params));
     this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
@@ -188,12 +189,13 @@ export class CreateCheckInPage implements OnInit {
       construction_stage: this.dealerForm.value.stageconstruction,
       exp_pro_final: this.dealerForm.value.expectprice,
       remarks: this.dealerForm.value.remarks,
-      competitor_name: this.dealerForm.value.compname
+      competitor_name: this.dealerForm.value.compname,
+      checkin_id:"5d7a7121b7c9ae247cd6772e"
     };
     this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
       console.log('result dealer', JSON.stringify(result));
       const finaldatas = result;
-      if (finaldatas.message === 'Chek in created!') {
+      if (finaldatas.message === 'Check out successfully!') {
         this.uploadImages(finaldatas.data._id);
         this.presentToast('checked in successfully', 'bottom');
       }

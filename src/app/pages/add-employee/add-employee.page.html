@@ -1,61 +1,54 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Add Employee</ion-title>
+ <ion-header class="black_header" text-center>
+  <ion-toolbar text-center padding>
+    <ion-title>New representative</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="padding: 0 1.6rem">
   <form class="add-employee-form" [formGroup]="firstForm" (ngSubmit)="firstFormSubmit(firstForm)">
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
-            <ion-item>
+            <ion-item class="inp_box">
               <ion-label position="floating">Employee Email (Username)*</ion-label>
               <ion-input name="username" type="text" formControlName="username"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item  class="inp_box">
               <ion-label position="floating">Employee Password*</ion-label>
               <ion-input name="password" type="text" formControlName="password"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item  class="inp_box">
               <ion-label position="floating">Employee Name*</ion-label>
               <ion-input name="ename" type="text" formControlName="ename"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item  class="inp_box">
               <ion-label position="floating">Employee Account Email</ion-label>
               <ion-input name="accountEmail" type="text" formControlName="accountEmail"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item  class="inp_box">
               <ion-label position="floating">Employee Mobile</ion-label>
               <ion-input name="mobile" type="text" formControlName="mobile"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item  class="inp_box">
               <ion-label position="floating">Employee Designation</ion-label>
               <ion-input name="designation" type="text" formControlName="designation"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item  class="inp_box">
               <ion-label position="floating">Employee Shift Start Time*</ion-label>
               <ion-datetime name="startTime" formControlName="startTime" display-format="hh:mm a"></ion-datetime>
             </ion-item>
-            <ion-item>
+            <ion-item  class="inp_box">
               <ion-label position="floating">Employee Shift End Time*</ion-label>
               <ion-datetime name="endTime" formControlName="endTime" display-format="hh:mm a"></ion-datetime>
             </ion-item>
-            <!-- <ion-item>
-              <ion-label position="stacked">Employee Photo</ion-label>
-              <ion-input name="pic" type="file" formControlName="pic"></ion-input>
-            </ion-item> -->
-
-            <ion-item>
+           
+            <ion-item  class="inp_box">
                 <ion-label position="floating">Employee No</ion-label>
                 <ion-input name="empno" type="text" formControlName="empno"></ion-input>
             </ion-item>
 
-            <ion-item>
+            <ion-item  class="inp_box">
               <ion-label position="stacked">Employee Type*</ion-label>
               <ion-select name="type" formControlName="type" okText="Ok" cancelText="Dismiss">
                 <ion-select-option value="Normal Employee">Dealer</ion-select-option>
@@ -72,3 +65,29 @@
     </ion-grid>
   </form>
 </ion-content>
+
+<!-- 
+
+<ion-header class="black_header" text-center>
+    <ion-toolbar text-center padding>
+      <ion-title> New representative</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content style="padding: 0 1.6rem">
+    <ion-grid>
+      <ion-list>
+        <ion-item class="inp_box">
+          <ion-label floating>Username</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item class="inp_box">
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+          <ion-item class="inp_box">
+              <ion-label floating>Username</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+      </ion-list>
+    </ion-grid>
+  </ion-content> -->

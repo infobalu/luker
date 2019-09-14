@@ -1,0 +1,38 @@
+<!-- Default Segment -->
+<ion-segment (ionChange)="segmentChanged($event)">
+
+  <ion-segment-button value="today" (click)='todaysCheckin()' checked>
+    <ion-label>Today</ion-label>
+  </ion-segment-button>
+
+  <ion-segment-button value="dealer" (click)='dealerCheckin()'>
+    <ion-label>Dealer</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="distributor" (click)='distributorCheckin()'>
+    <ion-label>Distributor</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+
+<ion-header class="red_header">
+    <ion-toolbar text-center>
+    </ion-toolbar>
+  <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>  -->
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-card class="card_list" padding *ngFor="let album of activeCheckins">
+        <div class="card_top_bar">
+          <h1 class="card_title">Sumesh</h1>
+          <p class="text_muted"> {{album.dealer_name}}</p>
+        </div>
+        <div class="card_bottom_bar">
+          <p class="text_dark"> Mobile Number : {{album.dealer_name}}</p>
+          <p class="text_dark"> Location : {{album.dealer_name}}</p>
+        </div>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>

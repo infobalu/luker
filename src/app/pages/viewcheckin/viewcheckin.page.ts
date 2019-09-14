@@ -32,7 +32,6 @@ export class ViewcheckinPage implements OnInit {
         this.activeCheckins = result['data'];
         console.log("== this.activeCheckins qqq== : "+  JSON.stringify(this.activeCheckins));
       }
-
     });
   }
 }

@@ -84,7 +84,7 @@
   "cordova-plugin-advanced-http": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-advanced-http"
+      "id": "cordova-plugin-advanced-http@^2.1.1"
     },
     "is_top_level": true,
     "variables": {}

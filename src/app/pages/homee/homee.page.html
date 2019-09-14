@@ -1,0 +1,64 @@
+<ion-header class="red_header" text-center>
+    <ion-toolbar text-center padding>
+      <img src="assets/img/user.svg" class="user_img">
+    </ion-toolbar>
+    <ion-toolbar text-center>
+      <ion-title>{{name}} </ion-title>
+      <p class="_text_md _text_white"> welcome</p>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="red_mask"></div>
+    <ion-grid padding style="margin-top: 5vh">
+      <ion-row>
+        <ion-card class="card_list" padding>
+          <div class="card_top_bar">
+            <ion-row>
+              <ion-col col-6>
+                <p class="text_muted"> Total <br> representatives</p>
+              </ion-col>
+              <ion-col col-6 text-right>
+                <button ion-button class="btn_plane" (click)="goToViewEmployee()"> View all</button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-6>
+                <h1 class="count_num"> 500</h1>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div class="card_bottom_bar" text-center padding>
+            <!-- <button ion-button class="btn_blue"> Add new representative </button> -->
+            <ion-button expand="block" class="btn_blue"  (click)='goToAddEmployee()'>Add new representative</ion-button>
+          </div>
+        </ion-card>
+      </ion-row>
+  
+      <ion-row>
+        <ion-card class="card_list _card_black" padding>
+          <ion-row>
+            <ion-col col-6>
+              <p class="_text_white"> todays total <br>attendance</p>
+            </ion-col>
+            <ion-col col-6 text-right>
+              <p class="_text_white"> <span class="count_num"> 88</span> / 150</p>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-row>
+  
+      <ion-row>
+        <ion-card class="card_list _card_muted" padding>
+          <ion-row>
+            <ion-col col-6>
+              <p class="_text_white"> Download Check-in <br>report</p>
+            </ion-col>
+            <ion-col col-6 text-right>
+             date picker
+  
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

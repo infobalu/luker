@@ -138,7 +138,9 @@ var LoginPage = /** @class */ (function () {
                 else {
                     _this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
                 }
+                console.log("dash=======11111");
                 _this.router.navigateByUrl('/dashboard');
+                console.log("dash=======2222222222");
             }
             else {
                 _this.presentToast('Username or password is incorrect', 'middle');

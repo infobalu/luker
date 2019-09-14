@@ -1,0 +1,19 @@
+<ion-header class="red_header" text-center>
+  <ion-toolbar text-center padding>
+    <img src="assets/img/user.svg" class="user_img">
+  </ion-toolbar>
+  <ion-toolbar text-center>
+    <ion-title>{{name}} </ion-title>
+    <p class="_text_md _text_white"> {{email}}</p>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+      <ion-list>
+          <ion-item (click)='Logout()'>
+            <ion-icon name="log-out" item-start></ion-icon>
+              Logout
+          </ion-item>
+        </ion-list>
+  </ion-grid>
+</ion-content>
