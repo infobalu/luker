@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'viewemployees', loadChildren: './pages/viewemployees/viewemployees.module#ViewemployeesPageModule' },
   { path: 'homee', loadChildren: './pages/homee/homee.module#HomeePageModule' },
   { path: 'profileadmin', loadChildren: './pages/profileadmin/profileadmin.module#ProfileadminPageModule' },
-  { path: 'empallcheckin', loadChildren: './pages/empallcheckin/empallcheckin.module#EmpallcheckinPageModule' }
+  { path: 'empallcheckin', loadChildren: './pages/empallcheckin/empallcheckin.module#EmpallcheckinPageModule' },
+  { path: 'emp-attendane-rpt', loadChildren: './pages/emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' }
 
 ];
 

@@ -833,12 +833,27 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../clenttype/clenttype.module": [
+		"./src/app/pages/clenttype/clenttype.module.ts",
+		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"common",
+		"clenttype-clenttype-module"
+	],
+	"../emp-attendane-rpt/emp-attendane-rpt.module": [
+		"./src/app/pages/emp-attendane-rpt/emp-attendane-rpt.module.ts",
+		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"common",
+		"emp-attendane-rpt-emp-attendane-rpt-module"
+	],
 	"../empallcheckin/empallcheckin.module": [
 		"./src/app/pages/empallcheckin/empallcheckin.module.ts",
+		"common",
 		"empallcheckin-empallcheckin-module"
 	],
 	"../homee/homee.module": [
 		"./src/app/pages/homee/homee.module.ts",
+		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"common",
 		"homee-homee-module"
 	],
 	"../profileadmin/profileadmin.module": [
@@ -857,7 +872,9 @@ var map = {
 	],
 	"./pages/clenttype/clenttype.module": [
 		"./src/app/pages/clenttype/clenttype.module.ts",
-		"pages-clenttype-clenttype-module"
+		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"common",
+		"clenttype-clenttype-module"
 	],
 	"./pages/create-check-in/create-check-in.module": [
 		"./src/app/pages/create-check-in/create-check-in.module.ts",
@@ -870,12 +887,19 @@ var map = {
 	],
 	"./pages/dashboard/dashboard.module": [
 		"./src/app/pages/dashboard/dashboard.module.ts",
-		"default~pages-dashboard-dashboard-module~pages-markattendance-markattendance-module",
+		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
 		"common",
 		"pages-dashboard-dashboard-module"
 	],
+	"./pages/emp-attendane-rpt/emp-attendane-rpt.module": [
+		"./src/app/pages/emp-attendane-rpt/emp-attendane-rpt.module.ts",
+		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"common",
+		"emp-attendane-rpt-emp-attendane-rpt-module"
+	],
 	"./pages/empallcheckin/empallcheckin.module": [
 		"./src/app/pages/empallcheckin/empallcheckin.module.ts",
+		"common",
 		"empallcheckin-empallcheckin-module"
 	],
 	"./pages/home/home.module": [
@@ -884,6 +908,8 @@ var map = {
 	],
 	"./pages/homee/homee.module": [
 		"./src/app/pages/homee/homee.module.ts",
+		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"common",
 		"homee-homee-module"
 	],
 	"./pages/list/list.module": [
@@ -897,7 +923,7 @@ var map = {
 	],
 	"./pages/markattendance/markattendance.module": [
 		"./src/app/pages/markattendance/markattendance.module.ts",
-		"default~pages-dashboard-dashboard-module~pages-markattendance-markattendance-module",
+		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
 		"common",
 		"pages-markattendance-markattendance-module"
 	],
@@ -981,7 +1007,8 @@ var routes = [
     { path: 'viewemployees', loadChildren: './pages/viewemployees/viewemployees.module#ViewemployeesPageModule' },
     { path: 'homee', loadChildren: './pages/homee/homee.module#HomeePageModule' },
     { path: 'profileadmin', loadChildren: './pages/profileadmin/profileadmin.module#ProfileadminPageModule' },
-    { path: 'empallcheckin', loadChildren: './pages/empallcheckin/empallcheckin.module#EmpallcheckinPageModule' }
+    { path: 'empallcheckin', loadChildren: './pages/empallcheckin/empallcheckin.module#EmpallcheckinPageModule' },
+    { path: 'emp-attendane-rpt', loadChildren: './pages/emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

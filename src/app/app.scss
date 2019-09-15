@@ -9,42 +9,46 @@ $secondary_color :#324Ebe;
     border: none;
  }
 
+ ion-header.background{
+    --ion-background-color:#c6101c;
+    }
 
-.red_header {
-    background: $primary_color;
-
-    &::after{
+    .red_header {
+        --background: #c6101c;
+        --color:white;
+        --border: none;
+        
+        &::after{
         display: none
-    }
-
-    .toolbar-background {
-       // background: $primary_color !important;
-       // border: none;
-    }
-    
-
-    .toolbar-title {
+        }
+        
+        // .toolbar-background {
+        // background: none;
+        // border: none;
+        // }
+        
+        .toolbar-title {
         color: white;
-    }
-}
-.black_header {
-    background: $dark_color;
-
-    &::after{
+        }
+        }
+        .black_header {
+        --background: #212121;
+        
+        &::after{
         display: none
+        }
+        
+        // .toolbar-background {
+        // background: none;
+        // border: none;
+        // }
+        
+        .toolbar-title {
+        color: white;
+        }
     }
 
-.toolbar-background {
-    background: $dark_color;
-    border: none;
-}
-
-.toolbar-title {
-    color: white;
-}
-}
-
-._title { font-size: 2rem !important}
+._title { font-size: 4vw !important}
 
 /* margin */
 .mb_10 {
@@ -60,9 +64,9 @@ $secondary_color :#324Ebe;
 ._text_md{ font-size: 1.6rem}
 .bold{ font-weight: bold}
 .text_dark{
-    color:$dark_color !important;
+    color:#212121 !important;
     font-weight: 500;
-    font-size: 1.4rem !important;
+    font-size: 1rem !important;
 }
 
 .r_border{ border-right: 1px solid #eeeeee}
@@ -75,7 +79,7 @@ $secondary_color :#324Ebe;
     box-shadow: 1px 2px 18px 0px rgba(204, 204, 204, .5);
 
     .card_title {
-        font-size: 1.8rem;
+        font-size: 4vw;
         font-weight: 600
     }
 

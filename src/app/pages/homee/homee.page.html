@@ -1,4 +1,4 @@
-<ion-header class="red_header" text-center>
+ <!-- <ion-header class="red_header" text-center>
     <ion-toolbar text-center padding>
       <img src="assets/img/user.svg" class="user_img">
     </ion-toolbar>
@@ -6,7 +6,23 @@
       <ion-title>{{name}} </ion-title>
       <p class="_text_md _text_white"> welcome</p>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
+
+  <ion-header text-center>
+      <ion-toolbar text-center padding class="red_header">
+      <img src="assets/img/user.svg" class="user_img">
+      </ion-toolbar>
+      <ion-toolbar text-center class="red_header">
+      <ion-title>{{name}} </ion-title>
+      <p class="_text_md _text_white"> welcome</p>
+      </ion-toolbar>
+      </ion-header>
+ 
+
+<!-- 
+  <ion-header> <ion-toolbar class="new-background-color"> <ion-title>{{name}}</ion-title> </ion-toolbar> </ion-header> -->
+
+
   <ion-content>
     <div class="red_mask"></div>
     <ion-grid padding style="margin-top: 5vh">
@@ -15,30 +31,50 @@
           <div class="card_top_bar">
             <ion-row>
               <ion-col col-6>
-                <p class="text_muted"> Total <br> representatives</p>
+                <p class="text_muted" *ngIf="userDetails.user_type == 'owner'"> Total <br> representatives</p>
+                <p class="bold text_md text_dark" *ngIf="userDetails.user_type == 'employee'"> Mark<br> my attendance</p>
               </ion-col>
               <ion-col col-6 text-right>
-                <button ion-button class="btn_plane" (click)="goToViewEmployee()"> View all</button>
+                <button ion-button class="btn_plane" (click)="goToViewEmployee()" *ngIf="userDetails.user_type == 'owner'"> View all</button>
+                <ion-item>
+                    <ion-toggle *ngIf="userDetails.user_type == 'employee'" [(ngModel)]="isToggled" (ionChange)="notify(n1)"></ion-toggle>
+                </ion-item>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col col-6>
-                <h1 class="count_num"> 500</h1>
+                <h1 class="count_num" *ngIf="userDetails.user_type == 'owner'"> 500</h1>
               </ion-col>
             </ion-row>
           </div>
           <div class="card_bottom_bar" text-center padding>
             <!-- <button ion-button class="btn_blue"> Add new representative </button> -->
-            <ion-button expand="block" class="btn_blue"  (click)='goToAddEmployee()'>Add new representative</ion-button>
+            <ion-button expand="block" class="btn_blue"  (click)='goToAddEmployee()' *ngIf="userDetails.user_type == 'owner'">
+              Add new representative</ion-button>
+
+              <ion-button expand="block" class="btn_blue"  (click)='goToViewAttendance()' *ngIf="userDetails.user_type == 'owner'">
+                  View Attendance</ion-button>
+
+            <ion-row *ngIf="userDetails.user_type == 'employee'">
+                <ion-col col-6>
+                  Todays <br>Check-in  &nbsp; <span class="check_count"> {{checkins}}</span>
+                </ion-col>
+    
+                <ion-col col-6 text-right>
+                  <button class="btn_fab"  (click)="goToCheckIn()"> <ion-icon name="add"></ion-icon> </button>
+                </ion-col>
+              </ion-row>
+
+
           </div>
         </ion-card>
       </ion-row>
   
-      <ion-row>
+      <ion-row *ngIf="userDetails.user_type == 'owner'">
         <ion-card class="card_list _card_black" padding>
           <ion-row>
             <ion-col col-6>
-              <p class="_text_white"> todays total <br>attendance</p>
+              <p class="_text_white"> Today's Total <br>Attendance</p>
             </ion-col>
             <ion-col col-6 text-right>
               <p class="_text_white"> <span class="count_num"> 88</span> / 150</p>
@@ -47,11 +83,11 @@
         </ion-card>
       </ion-row>
   
-      <ion-row>
-        <ion-card class="card_list _card_muted" padding>
+      <ion-row *ngIf="userDetails.user_type == 'owner'">
+        <ion-card class="card_list _card_muted" padding >
           <ion-row>
             <ion-col col-6>
-              <p class="_text_white"> Download Check-in <br>report</p>
+              <p class="_text_white"> Today's Check-in <br>report</p>
             </ion-col>
             <ion-col col-6 text-right>
              date picker

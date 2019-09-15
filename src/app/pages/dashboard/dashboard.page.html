@@ -1,5 +1,4 @@
-
-  <!-- <ion-content class="dashboard">
+<!-- <ion-content class="dashboard">
 
 <ion-card>
     <ion-grid>
@@ -53,27 +52,39 @@
 
 
 <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="homee" (click)='tab2Selected()' *ngIf="userDetails.user_type == 'owner'">
-        <ion-icon name="home"></ion-icon>
-        <ion-label>HOME</ion-label>
-       
-      </ion-tab-button>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="homee" (click)='tab2Selected()'>
+      <ion-icon name="home"></ion-icon>
+      <ion-label>HOME</ion-label>
 
-      <ion-tab-button tab="viewemployees" *ngIf="userDetails.user_type == 'owner'">
-        <ion-icon name="representative"></ion-icon>
-        <ion-label>REPRESENTATIVE</ion-label>
-      </ion-tab-button>
+    </ion-tab-button>
 
-      <ion-tab-button tab="empallcheckin" *ngIf="userDetails.user_type == 'owner'">
-          <ion-icon name="checkins"></ion-icon>
-          <ion-label>Check-Ins</ion-label>
-        </ion-tab-button>
+    <ion-tab-button tab="viewemployees" *ngIf="userDetails.user_type == 'owner'">
+      <ion-icon name="representative"></ion-icon>
+      <ion-label>REPRESENTATIVE</ion-label>
+    </ion-tab-button>
 
-        <ion-tab-button tab="profileadmin" *ngIf="userDetails.user_type == 'owner'">
-            <ion-icon name="profile"></ion-icon>
-            <ion-label>Profile</ion-label>
-          </ion-tab-button>
+    <ion-tab-button tab="empallcheckin" *ngIf="userDetails.user_type == 'owner'">
+      <ion-icon name="checkins"></ion-icon>
+      <ion-label>CHECK-INS</ion-label>
+    </ion-tab-button>
 
-    </ion-tab-bar>
-  </ion-tabs>
+    <ion-tab-button tab="clenttype" *ngIf="userDetails.user_type == 'employee'">
+      <ion-icon name="checkins"></ion-icon>
+      <ion-label>CHECK-INS</ion-label>
+    </ion-tab-button>
+
+
+
+    <!-- <ion-tab-button tab="emp-attendane-rpt" *ngIf="userDetails.user_type == 'owner'">
+      <ion-icon name="attendance"></ion-icon>
+      <ion-label>Attendance</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="profileadmin" *ngIf="userDetails.user_type == 'owner'">
+      <ion-icon name="profile"></ion-icon>
+      <ion-label>PROFILE</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>

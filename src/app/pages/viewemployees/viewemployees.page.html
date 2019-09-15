@@ -43,8 +43,8 @@
 </ion-content> -->
 
 
-<ion-header class="red_header">
-    <ion-toolbar text-center>
+<ion-header>
+    <ion-toolbar text-center class="red_header">
     <ion-title>Representative List</ion-title>
     </ion-toolbar>
   <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>  -->
@@ -52,16 +52,15 @@
 
 <ion-content padding>
   <ion-grid>
-    <h1 class="_title text_muted mb_10"> Representative List </h1>
     <ion-row>
       <ion-card class="card_list" padding *ngFor="let album of activeCheckins">
         <div class="card_top_bar">
           <h1 class="card_title"> {{album.employee_name}}</h1>
-          <p class="text_muted"> {{album.employee_designation}}</p>
+          <p class="text_muted .m_0"> {{album.employee_designation}}</p>
         </div>
         <div class="card_bottom_bar">
-          <p class="text_dark"> Mobile Number : {{album.employee_mobile}}</p>
-          <p class="text_dark"> Location : {{album.employee_post_location}}</p>
+          <p class="text_dark .m_0" > Mobile Number : {{album.employee_mobile}}</p>
+          <p class="text_dark .m_0"> Location : {{album.employee_post_location}}</p>
         </div>
       </ion-card>
     </ion-row>
