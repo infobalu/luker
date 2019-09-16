@@ -60,9 +60,15 @@
                   Todays <br>Check-in  &nbsp; <span class="check_count"> {{checkins}}</span>
                 </ion-col>
     
-                <ion-col col-6 text-right>
+                <!-- <ion-col col-6 text-right>
                   <button class="btn_fab"  (click)="goToCheckIn()"> <ion-icon name="add"></ion-icon> </button>
-                </ion-col>
+                </ion-col> -->
+
+                <div padding>
+                  <ion-button size="small" type="submit" (click)="goToCheckIn()">Start Check-in</ion-button>
+                </div>
+
+
               </ion-row>
 
 

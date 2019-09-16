@@ -8,6 +8,7 @@ import { ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import * as moment from 'moment';
 import { File, FileEntry } from '@ionic-native/file/ngx';
 
 declare var cordova;
@@ -30,6 +31,7 @@ export class CreateCheckInPage implements OnInit {
   base64Image: any;
   image: any;
   loading: any;
+  checkinId:any;
 
 
   imgBlob: any;
@@ -45,8 +47,9 @@ export class CreateCheckInPage implements OnInit {
     public loadingController: LoadingController
   ) {
     this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    this.checkInFor = this.activatedRoute.snapshot.paramMap.get('checkInFor');
+    this.checkInFor = this.userDetails.employee_type;
     console.log('=this.checkInFor == : ' + this.checkInFor);
+    this.checkinId = localStorage.getItem('checkin_id')
 
     this.distributorForm = new FormGroup({
       distributorName: new FormControl('', Validators.compose([Validators.required])),
@@ -127,13 +130,16 @@ export class CreateCheckInPage implements OnInit {
   distributorFormSubmit(data) {
     console.log('data', data);
     console.log('form control value', this.distributorForm.value);
+
+    let time = moment().format('DD-MM-YYYY, hh:mm:ss a');
+
     let params = {
       check_in_for: this.checkInFor,
       created_by: this.userDetails._id,
       checkin_loc: this.distributorForm.value.retaileraddr,
       checkin_time: 6,
       checkout_loc: this.distributorForm.value.routename,
-      checkout_time: 7,
+      checkout_time: time,
       distributor_name: this.distributorForm.value.distributorName,
       retailer_name: this.distributorForm.value.retailerName,
       retailer_number: this.distributorForm.value.retailerNum,
@@ -146,7 +152,7 @@ export class CreateCheckInPage implements OnInit {
       luker_share: this.distributorForm.value.lukershare,
       targeted_value: this.distributorForm.value.targetval,
       targeted_share: this.distributorForm.value.lukertarget,
-      checkin_id:"5d7a6c73b7c9ae247cd6772b"
+      checkin_id:this.checkinId
     };
     console.log('params', JSON.stringify(params));
     this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
@@ -162,13 +168,15 @@ export class CreateCheckInPage implements OnInit {
   dealerFormSubmit(data) {
     console.log('data', data);
     console.log('form control value', this.dealerForm.value);
+    let time = moment().format('DD-MM-YYYY, hh:mm:ss a');
+
     let params = {
       check_in_for: this.checkInFor,
       created_by: this.userDetails._id,
       checkin_loc: this.dealerForm.value.location,
       checkin_time: this.dealerForm.value.dateofvisit,
       checkout_loc: this.dealerForm.value.location,
-      checkout_time: this.dealerForm.value.dateofvisit,
+      checkout_time: time,
       type_of_segment: this.dealerForm.value.segment,
       dealer_name: this.dealerForm.value.dealerName,
       customer_name: this.dealerForm.value.custname,
@@ -190,7 +198,7 @@ export class CreateCheckInPage implements OnInit {
       exp_pro_final: this.dealerForm.value.expectprice,
       remarks: this.dealerForm.value.remarks,
       competitor_name: this.dealerForm.value.compname,
-      checkin_id:"5d7a7121b7c9ae247cd6772e"
+      checkin_id: this.checkinId
     };
     this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
       console.log('result dealer', JSON.stringify(result));

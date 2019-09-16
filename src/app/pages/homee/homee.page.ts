@@ -163,6 +163,8 @@ export class HomeePage implements OnInit {
             console.log("mark atten");
             this.markAttendance();
           } else if (this.forCheckin == 1) {
+            this.forCheckin = 0;
+            
             console.log('====LOCATION====== : ' + this.locationName);
 
             console.log('=FOR CHECKIN==');
@@ -175,7 +177,8 @@ export class HomeePage implements OnInit {
             this.apiService.postData('/startCheckIn', params).subscribe(result => {
               console.log("=startCheckIn= :" + JSON.stringify(result));
               if (result['success'] == "1") {
-                this.router.navigateByUrl('/clenttype');
+                localStorage.setItem('checkin_id', 'checkin_id');
+               this.router.navigateByUrl('/create-check-in/');
               } else {
                 this.presentToast(result['message'], 'bottom');
               }
@@ -286,7 +289,11 @@ export class HomeePage implements OnInit {
   }
 
   goToCheckIn(){
-    this.router.navigateByUrl('/clenttype');
+    //this.router.navigateByUrl('/clenttype');
+    this.forCheckin = 1;
+    this.getGeoLocation();
+
+   
   }
 
 

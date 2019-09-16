@@ -20,7 +20,7 @@ export class EmpAttendaneRptPage implements OnInit {
 
     let time = moment().format('YYYY-MM-DD');
     
-    this.apiService.getData('/attendanceReport/' + '2019-08-31').subscribe(result => {
+    this.apiService.getData('/attendanceReport/' + time).subscribe(result => {
       this.activeCheckins = result['data'];
       console.log("== this.attendanceReport == : "+  JSON.stringify(result['data']));
       if(result['success'] == 1){

@@ -11,19 +11,25 @@
   <ion-grid>
     <ion-row>
       <ion-card class="card_list" padding *ngFor="let album of activeCheckins">
+          <ion-item *ngFor="let subitem of album.user">
         <div class="card_top_bar">
-          <h1 class="card_title"> {{album.employee_name}}</h1>
-          <p class="text_muted .m_0"> {{album.employee_designation}}</p>
+          <h1 class="card_title"> {{subitem.employee_name}}</h1>
+          <p class="text_dark .m_0" > Mobile Number : {{subitem.employee_mobile}}</p>
+    
+          <p class="text_dark .m_0"> Employee Type : {{subitem.employee_type}}</p>
         </div>
+      </ion-item>
         <div class="card_bottom_bar">
-          <p class="text_dark .m_0" > Mobile Number : {{album.employee_mobile}}</p>
+         
           <p class="text_dark .m_0"> Location : {{album.employee_post_location}}</p>
+         
 
           <p class="text_dark .m_0" > Status : {{album.status}}</p>
           <p class="text_dark .m_0" > Start Time : {{album.start_time}}</p>
           <p class="text_dark .m_0" > End Time : {{album.start_time}}</p>
           <p class="text_dark .m_0" > Location : {{album.start_location}}</p>
         </div>
+      
       </ion-card>
     </ion-row>
   </ion-grid>

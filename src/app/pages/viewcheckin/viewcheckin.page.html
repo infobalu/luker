@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar text-center padding class="red_header">
     <ion-title>View Check-ins</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,7 +10,7 @@
     <ion-item type="item-text-wrap" *ngFor="let album of activeCheckins">
       <ion-card background-color: #BEBEBE;>
         <ion-card-header>
-          <ion-img [src]="imgurl"></ion-img>
+          <ion-img src="assets/img/user.svg"></ion-img> 
           <ion-card-subtitle>Rep : {{album.dealer_name}}</ion-card-subtitle>
         </ion-card-header>
 

@@ -147,4 +147,8 @@ export class ClenttypePage implements OnInit {
 
   //
 
+  goToMyCheckin(){
+    this.router.navigateByUrl('/mycheckins');
+  }
+
 }
