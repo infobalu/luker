@@ -177,7 +177,8 @@ export class HomeePage implements OnInit {
             this.apiService.postData('/startCheckIn', params).subscribe(result => {
               console.log("=startCheckIn= :" + JSON.stringify(result));
               if (result['success'] == "1") {
-                localStorage.setItem('checkin_id', 'checkin_id');
+                console.log('=check _id= : '+result['data']._id);
+                localStorage.setItem('checkin_id', result['data']._id);
                this.router.navigateByUrl('/create-check-in/');
               } else {
                 this.presentToast(result['message'], 'bottom');

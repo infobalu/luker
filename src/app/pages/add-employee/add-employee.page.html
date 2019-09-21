@@ -1,5 +1,8 @@
- <ion-header class="black_header" text-center>
+<ion-header class="black_header" text-center>
   <ion-toolbar text-center padding>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+       </ion-buttons>
     <ion-title>New representative</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,47 +17,73 @@
               <ion-label position="floating">Employee Email (Username)*</ion-label>
               <ion-input name="username" type="text" formControlName="username"></ion-input>
             </ion-item>
-            <ion-item  class="inp_box">
+            <ion-item class="inp_box">
               <ion-label position="floating">Employee Password*</ion-label>
               <ion-input name="password" type="text" formControlName="password"></ion-input>
             </ion-item>
-            <ion-item  class="inp_box">
+            <ion-item class="inp_box">
               <ion-label position="floating">Employee Name*</ion-label>
               <ion-input name="ename" type="text" formControlName="ename"></ion-input>
             </ion-item>
-            <ion-item  class="inp_box">
+            <ion-item class="inp_box">
               <ion-label position="floating">Employee Account Email</ion-label>
               <ion-input name="accountEmail" type="text" formControlName="accountEmail"></ion-input>
             </ion-item>
-            <ion-item  class="inp_box">
+            <ion-item class="inp_box">
               <ion-label position="floating">Employee Mobile</ion-label>
               <ion-input name="mobile" type="text" formControlName="mobile"></ion-input>
             </ion-item>
-            <ion-item  class="inp_box">
+            <ion-item class="inp_box">
               <ion-label position="floating">Employee Designation</ion-label>
               <ion-input name="designation" type="text" formControlName="designation"></ion-input>
             </ion-item>
-            <ion-item  class="inp_box">
+            <ion-item class="inp_box">
               <ion-label position="floating">Employee Shift Start Time*</ion-label>
-              <ion-datetime name="startTime" formControlName="startTime" display-format="hh:mm a"></ion-datetime>
+              <ion-input name="startTime" type="text" formControlName="startTime" value="09:30 am"></ion-input>
+              <!-- <ion-datetime name="startTime" formControlName="startTime" display-format="hh:mm a"></ion-datetime> -->
             </ion-item>
-            <ion-item  class="inp_box">
+            <ion-item class="inp_box">
               <ion-label position="floating">Employee Shift End Time*</ion-label>
-              <ion-datetime name="endTime" formControlName="endTime" display-format="hh:mm a"></ion-datetime>
-            </ion-item>
-           
-            <ion-item  class="inp_box">
-                <ion-label position="floating">Employee No</ion-label>
-                <ion-input name="empno" type="text" formControlName="empno"></ion-input>
+              <ion-input name="endTime" type="text" formControlName="endTime" value="06:30 pm"></ion-input>
+              <!-- <ion-datetime name="endTime" formControlName="endTime" display-format="hh:mm a"></ion-datetime> -->
             </ion-item>
 
-            <ion-item  class="inp_box">
+            <ion-item class="inp_box">
+              <ion-label position="floating">Employee No</ion-label>
+              <ion-input name="empno" type="text" formControlName="empno"></ion-input>
+            </ion-item>
+
+            <ion-item class="inp_box">
               <ion-label position="stacked">Employee Type*</ion-label>
               <ion-select name="type" formControlName="type" okText="Ok" cancelText="Dismiss">
                 <ion-select-option value="Normal Employee">Dealer</ion-select-option>
                 <ion-select-option value="Authorized Employee">Distributor</ion-select-option>
               </ion-select>
             </ion-item>
+
+            <ion-item class="inp_box">
+              <ion-label position="floating">Posting Location</ion-label>
+              <ion-input name="location" type="text" formControlName="location"></ion-input>
+            </ion-item>
+
+            <ion-item class="inp_box">
+              <ion-label position="floating">Area</ion-label>
+              <ion-input name="employee_area" type="text" formControlName="employee_area"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>Upload Image</ion-label>
+                <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
+                <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>
+                
+                <ion-avatar>
+                  <img *ngIf="capturedPhoto" [src]="capturedPhoto"/>
+                  <!-- <div class="header" *ngIf="image" [style.background-image]="image"></div> -->
+                </ion-avatar>
+                
+              </ion-item>
+
+
           </div>
           <div padding>
             <ion-button size="large" type="submit" [disabled]="firstForm.invalid" expand="block">Add Employee
@@ -65,29 +94,3 @@
     </ion-grid>
   </form>
 </ion-content>
-
-<!-- 
-
-<ion-header class="black_header" text-center>
-    <ion-toolbar text-center padding>
-      <ion-title> New representative</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content style="padding: 0 1.6rem">
-    <ion-grid>
-      <ion-list>
-        <ion-item class="inp_box">
-          <ion-label floating>Username</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-        <ion-item class="inp_box">
-            <ion-label floating>Username</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-item>
-          <ion-item class="inp_box">
-              <ion-label floating>Username</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-      </ion-list>
-    </ion-grid>
-  </ion-content> -->

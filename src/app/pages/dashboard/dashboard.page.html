@@ -60,18 +60,19 @@
     </ion-tab-button>
 
     <ion-tab-button tab="viewemployees" *ngIf="userDetails.user_type == 'owner'">
-      <ion-icon name="representative"></ion-icon>
+      <img src="assets/img/rep.png" class="tab_img">
       <ion-label>REPRESENTATIVE</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="empallcheckin" *ngIf="userDetails.user_type == 'owner'">
-      <ion-icon name="checkins"></ion-icon>
-      <ion-label>CHECK-INS</ion-label>
+        <img src="assets/img/check.png" class="tab_img">
+      <ion-label>CHECKINS</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="clenttype" *ngIf="userDetails.user_type == 'employee'">
-      <ion-icon name="checkins"></ion-icon>
-      <ion-label>CHECK-INS</ion-label>
+       
+        <img src="assets/img/check.png" class="tab_img">
+      <ion-label>CHECKINS</ion-label>
     </ion-tab-button>
 
 
@@ -81,8 +82,13 @@
       <ion-label>Attendance</ion-label>
     </ion-tab-button> -->
 
-    <ion-tab-button tab="profileadmin" *ngIf="userDetails.user_type == 'owner'">
-      <ion-icon name="profile"></ion-icon>
+    <!-- <ion-tab-button tab="profileadmin" *ngIf="userDetails.user_type == 'owner'">
+        <img src="assets/img/profile.png" class="tab_img">
+      <ion-label>PROFILE</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="profileadmin">
+        <img src="assets/img/profile.png" class="tab_img">
       <ion-label>PROFILE</ion-label>
     </ion-tab-button>
 

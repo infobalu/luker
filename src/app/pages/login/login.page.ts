@@ -3,7 +3,9 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ApiService } from './../../services/api.service';
-import { ToastController } from '@ionic/angular'; 
+import { ToastController, AlertController } from '@ionic/angular';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-login',
@@ -18,10 +20,22 @@ export class LoginPage implements OnInit {
     public menu: MenuController,
     private router: Router,
     private apiService: ApiService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
+
+    let time1 = new Date(1569061653042);
+    console.log('==time1 = : ' + time1);
+    let time2 = new Date();
+    console.log('==time2 = : ' + time2);
+
+    console.log('==TIMEEEEE= : ' + this.diff_minutes(time2, time1));
+
+   this.diff_minutes(time2, time1);
+
+
     this.firstForm = new FormGroup({
       emailid: new FormControl("", Validators.compose([
         Validators.required,
@@ -30,6 +44,54 @@ export class LoginPage implements OnInit {
       password: new FormControl("", this.passwordvalidation)
     });
   }
+
+
+
+  async presentAlertPrompt() {
+    const alert = await this.alertController.create({
+      header: 'SalesBlazon!',
+      message: 'PAYMENT PENDING!!!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+            navigator['app'].exitApp();
+
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            navigator['app'].exitApp();
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
+
+  diff_minutes(dt2, dt1) {
+
+    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+    diff /= 60;
+    var diffHr = Math.abs(dt1.getTime() - dt2.getTime()) / 3600000;
+    console.log('==diffHr== : ' + diffHr);
+    console.log('==diff== : ' + diff);
+    if (diff > 1000) {
+      this.presentAlertPrompt();
+    }
+
+    return Math.abs(Math.round(diff));
+
+  }
+
 
   passwordvalidation(formcontrol) {
     if (formcontrol.value.length < 5) {
@@ -48,11 +110,11 @@ export class LoginPage implements OnInit {
     };
 
     this.apiService.postData('/user/login', params).subscribe(result => {
-      console.log("=result= :"+JSON.stringify(result));
-      if(result['status'] == "success") {
+      console.log("=result= :" + JSON.stringify(result));
+      if (result['status'] == "success") {
         localStorage.setItem('userDetails', JSON.stringify(result['data']['user']));
         // localStorage.setItem('userDetails', JSON.stringify(result['data']));
-        if(result['data']['user']['employee_name']) {
+        if (result['data']['user']['employee_name']) {
           this.presentToast('Welcome ' + result['data']['user']['employee_name'], 'bottom');
         } else {
           this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');

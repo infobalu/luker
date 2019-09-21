@@ -345,10 +345,4 @@ export class DashboardPage implements OnInit {
     });
   }
 
-  tab2Selected(){
-    console.log("=TAB 2 SELECTED==")
-  }
-
-
-
 }

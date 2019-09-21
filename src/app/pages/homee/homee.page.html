@@ -10,12 +10,13 @@
 
   <ion-header text-center>
       <ion-toolbar text-center padding class="red_header">
-      <img src="assets/img/user.svg" class="user_img">
-      </ion-toolbar>
-      <ion-toolbar text-center class="red_header">
+      <img src="assets/img/user.svg" class="user_img" style="margin-bottom: 1rem">
       <ion-title>{{name}} </ion-title>
-      <p class="_text_md _text_white"> welcome</p>
+      <p class="_text_md _text_white m_0"> welcome</p>
       </ion-toolbar>
+      <!-- <ion-toolbar text-center class="red_header">
+      
+      </ion-toolbar> -->
       </ion-header>
  
 
@@ -36,14 +37,14 @@
               </ion-col>
               <ion-col col-6 text-right>
                 <button ion-button class="btn_plane" (click)="goToViewEmployee()" *ngIf="userDetails.user_type == 'owner'"> View all</button>
-                <ion-item>
-                    <ion-toggle *ngIf="userDetails.user_type == 'employee'" [(ngModel)]="isToggled" (ionChange)="notify(n1)"></ion-toggle>
+                <ion-item *ngIf="userDetails.user_type == 'employee'">
+                    <ion-toggle  [(ngModel)]="isToggled" (ionChange)="notify(n1)"></ion-toggle>
                 </ion-item>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col col-6>
-                <h1 class="count_num" *ngIf="userDetails.user_type == 'owner'"> 500</h1>
+                <h1 class="count_num m_0" *ngIf="userDetails.user_type == 'owner'"> {{userDetails.total_emp}}</h1>
               </ion-col>
             </ion-row>
           </div>
@@ -83,7 +84,7 @@
               <p class="_text_white"> Today's Total <br>Attendance</p>
             </ion-col>
             <ion-col col-6 text-right>
-              <p class="_text_white"> <span class="count_num"> 88</span> / 150</p>
+              <p class="_text_white"> <span class="count_num"> {{userDetails.present_emp}}</span> / {{userDetails.total_emp}}</p>
             </ion-col>
           </ion-row>
         </ion-card>
@@ -96,7 +97,7 @@
               <p class="_text_white"> Today's Check-in <br>report</p>
             </ion-col>
             <ion-col col-6 text-right>
-             date picker
+             <!-- date picker -->
   
             </ion-col>
           </ion-row>

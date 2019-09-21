@@ -26,12 +26,6 @@ export class ApiService {
   }
 
   postApi(url: any, payload: any, header: any) {
-  //   this.cordovahttp.setHeader('':'')
-  //   payload.forEach((value,key) => {
-  //     console.log(key+" "+value)
-  //   });
-  //   return this.cordovahttp.post(url, payload, header);
-  // }
   }
 
 }

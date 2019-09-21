@@ -14,6 +14,7 @@ import { HttpConfigInterceptor } from './services/httpconfig.interceptor';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserdetilviewPage } from './pages/userdetilview/userdetilview.page';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     NativeGeocoder,
     HttpConfigInterceptor,
     NavController,
+    UserdetilviewPage,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

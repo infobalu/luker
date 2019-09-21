@@ -66,7 +66,7 @@ export class MycheckinsPage implements OnInit {
       }
       
     };
- //   this.router.navigateByUrl('/viewcheckin', pack._id);
+ //   this.router.navigateByUrl('/viewcheckin', pack._id); 
  this.router.navigate(['viewcheckin'],navigateExtars);
   }
   

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../services/api.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-empallcheckin',
@@ -26,9 +27,9 @@ export class EmpallcheckinPage implements OnInit {
     this.triggerAllCheckIns();
   }
   dealerCheckin() {
-   
+    let time = moment().format('YYYY-MM-DD');
 
-    this.apiService.getData('/getAllCheckins/' + '2019-09-12').subscribe(result => {
+    this.apiService.getData('/getAllCheckins/' + time).subscribe(result => {
       if(result['success'] == 1){
         this.activeCheckins = result['data'];
         console.log("== this.getAllCheckins == : "+  JSON.stringify(this.activeCheckins));
@@ -41,7 +42,8 @@ export class EmpallcheckinPage implements OnInit {
   }
   distributorCheckin() {
     console.log("=distributorCheckin=")
-    this.apiService.getData('/getAllCheckins/' + '2019-09-12').subscribe(result => {
+    let time = moment().format('YYYY-MM-DD');
+    this.apiService.getData('/getAllCheckins/' + time).subscribe(result => {
       if(result['success'] == 1){
         this.activeCheckins = result['data'];
         console.log("== this.getAllCheckins == : "+  JSON.stringify(this.activeCheckins));
@@ -55,7 +57,9 @@ export class EmpallcheckinPage implements OnInit {
 
   triggerAllCheckIns(){
 
-    this.apiService.getData('/getAllCheckins/' + '2019-09-12').subscribe(result => {
+    let time = moment().format('YYYY-MM-DD');
+
+    this.apiService.getData('/getAllCheckins/' +time).subscribe(result => {
       if(result['success'] == 1){
         this.activeCheckins = result['data'];
         console.log("== this.getAllCheckins == : "+  JSON.stringify(this.activeCheckins));

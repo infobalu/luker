@@ -1,0 +1,39 @@
+<ion-header text-center>
+  <ion-toolbar text-center padding class="black_header">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+       </ion-buttons>
+    <img src="assets/img/user.svg" class="user_img" style="margin-bottom: 1rem">
+    <ion-title>{{employee_name}} </ion-title>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content padding>
+  <ion-item>
+    <ion-label position="floating">{{employee_mobile}}</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">{{employee_account_email}}</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">{{employee_designation}}</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">{{employee_post_location}}</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">{{employee_area}}</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+</ion-content>
+<ion-footer padding>
+  <ion-button class="btn_red" expand="block" size="large" type="submit">Update
+  </ion-button>
+</ion-footer>

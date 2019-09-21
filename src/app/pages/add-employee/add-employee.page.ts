@@ -39,10 +39,10 @@ export class AddEmployeePage implements OnInit {
       ])),
       mobile: new FormControl(""),
       designation: new FormControl(""),
-      startTime: new FormControl("10:00 am", Validators.compose([
+      startTime: new FormControl("09:30 am", Validators.compose([
         Validators.required
       ])),
-      endTime: new FormControl("05:00 pm", Validators.compose([
+      endTime: new FormControl("06:30 pm", Validators.compose([
         Validators.required
       ])),
       // pic: new FormControl(""),
@@ -51,6 +51,12 @@ export class AddEmployeePage implements OnInit {
       // ])),
 
       empno: new FormControl("", Validators.compose([
+        Validators.required
+      ])),
+      location: new FormControl("", Validators.compose([
+        Validators.required
+      ])),
+      employee_area: new FormControl("", Validators.compose([
         Validators.required
       ])),
     });
@@ -71,8 +77,11 @@ export class AddEmployeePage implements OnInit {
       employee_type: data.value.type,
       user_type: 'employee',
       added_by: this.userDetails._id,
-      employee_post_location: 'palakkad',
-      employee_no: data.value.empno
+      employee_no: data.value.empno,
+      employee_post_location : data.value.location,
+      employee_area: data.value.employee_area,
+      employee_vertical:'test',
+
     };
 
     this.apiService.postData('/users', params).subscribe(result => {

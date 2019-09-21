@@ -17,15 +17,10 @@ const routes: Routes = [
       { path: 'profileadmin', loadChildren: '../profileadmin/profileadmin.module#ProfileadminPageModule' },
       { path: 'empallcheckin', loadChildren: '../empallcheckin/empallcheckin.module#EmpallcheckinPageModule' },
       { path: 'emp-attendane-rpt', loadChildren: '../emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' },
-      { path: 'clenttype', loadChildren: '../clenttype/clenttype.module#ClenttypePageModule' }
+      { path: 'clenttype', loadChildren: '../clenttype/clenttype.module#ClenttypePageModule' },
+      { path: '', loadChildren: '../homee/homee.module#HomeePageModule' }
     ]
-
-  },
-  {
-    path:'',
-    redirectTo:'../homee/homee.module#HomeePageModule',
-    pathMatch:'full'
-   }
+  }
 ];
 
 @NgModule({
