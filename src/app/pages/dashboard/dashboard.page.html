@@ -1,56 +1,3 @@
-<!-- <ion-content class="dashboard">
-
-<ion-card>
-    <ion-grid>
-
-      <ion-row style="border: bottom 1px solid #cccccc;">
-        <ion-col col-6>
-          <p>Checkins Left<span class='count'> {{checkins}} </span></p>
-        </ion-col>
-        <ion-col col-6 text-right>
-          <ion-toggle [(ngModel)]="isToggled" (ionChange)="notify(n1)"></ion-toggle>
-        </ion-col>
-      </ion-row>
-
-
-      <ion-row>
-        <ion-button expand="block" color="secondary" (click)="goToCheckIn()" style="width: 100%"
-          *ngIf="userDetails.user_type == 'employee'">
-          Create Check-In</ion-button>
-      </ion-row>
-
-      <ion-row>
-        <ion-button expand="block" color="secondary" *ngIf="userDetails.user_type == 'employee'"
-          (click)="goToMyCheckin()" style="width: 100%">
-          My Check-In</ion-button>
-      </ion-row>
-
-
-      <ion-row>
-        <ion-button expand="block" color="secondary" (click)="goToAddEmployee()" style="width: 100%">
-          Add Employee</ion-button>
-      </ion-row>
-
-
-
-      <ion-row>
-        <ion-button expand="block" color="secondary" (click)="goToViewEmployee()" style="width: 100%">
-          View Employees</ion-button>
-      </ion-row>
-
-
-      <ion-row>
-        <ion-button expand="block" color="secondary" (click)="goToAttendanceRpt()" style="width: 100%">
-          Attendance Report</ion-button>
-      </ion-row>
-    
-    </ion-grid>
-  </ion-card> 
-
-
-</ion-content>-->
-
-
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="homee" (click)='tab2Selected()'>
@@ -65,30 +12,18 @@
     </ion-tab-button>
 
     <ion-tab-button tab="empallcheckin" *ngIf="userDetails.user_type == 'owner'">
-        <img src="assets/img/check.png" class="tab_img">
+      <img src="assets/img/check.png" class="tab_img">
       <ion-label>CHECKINS</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="clenttype" *ngIf="userDetails.user_type == 'employee'">
-       
-        <img src="assets/img/check.png" class="tab_img">
+
+      <img src="assets/img/check.png" class="tab_img">
       <ion-label>CHECKINS</ion-label>
     </ion-tab-button>
 
-
-
-    <!-- <ion-tab-button tab="emp-attendane-rpt" *ngIf="userDetails.user_type == 'owner'">
-      <ion-icon name="attendance"></ion-icon>
-      <ion-label>Attendance</ion-label>
-    </ion-tab-button> -->
-
-    <!-- <ion-tab-button tab="profileadmin" *ngIf="userDetails.user_type == 'owner'">
-        <img src="assets/img/profile.png" class="tab_img">
-      <ion-label>PROFILE</ion-label>
-    </ion-tab-button> -->
-
     <ion-tab-button tab="profileadmin">
-        <img src="assets/img/profile.png" class="tab_img">
+      <img src="assets/img/profile.png" class="tab_img">
       <ion-label>PROFILE</ion-label>
     </ion-tab-button>
 

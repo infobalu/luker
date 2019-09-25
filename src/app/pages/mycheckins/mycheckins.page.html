@@ -1,42 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar text-center padding class="red_header">
-    <ion-title>My Check-ins</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <h3> &nbsp; &nbsp; &nbsp;Total checkin pending : {{count}}</h3>
-  <ion-list>
-    <ion-item *ngFor="let album of activeCheckins" type="item-text-wrap" (click)="selectPack(album)">
-      <ion-card background-color: #BEBEBE;>
-        <ion-card-header>
-          <ion-card-subtitle>{{album.create_date}}</ion-card-subtitle>
-        </ion-card-header>
-
-        <ion-card-content>
-          <ion-label>Rep : {{album.customer_name}}</ion-label>
-          <ion-item>
-            <ion-label>Checkin Type : {{album.check_in_for}}</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Checkin Time : {{album.checkin_time}}</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Location: {{album.checkin_loc}} </ion-label>
-          </ion-item>
-          <ion-item>
-
-            <ion-label>Checkout Time : {{album.checkout_time}}</ion-label>
-          </ion-item>
-
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
-
-</ion-content> -->
-
-
 <ion-header>
   <ion-toolbar text-center padding class="red_header">
       <ion-buttons slot="start">
@@ -47,41 +8,31 @@
 </ion-header>
 
 
-<ion-content>
-  <ion-list>
-    <ion-item type="item-text-wrap" *ngFor="let album of activeCheckins">
-      <ion-card background-color: #BEBEBE;>
-        <ion-card-header>
-          <ion-card-subtitle>{{album.create_date}}</ion-card-subtitle>
-        </ion-card-header>
-
-        <ion-card-content>
-
-          <ion-item>
-            <ion-label>Name : {{album.customer_name}}</ion-label>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Checkin Type : {{album.check_in_for}}</ion-label>
-          </ion-item>
-
-
-          <ion-item>
-            <ion-label>Checkin Time : {{album.checkin_time}}</ion-label>
-          </ion-item>
-
-
-          <ion-item>
-            <ion-label>Location: {{album.checkin_loc}}</ion-label>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Checkout Time : {{album.checkout_time}}</ion-label>
-          </ion-item>
-
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
-
-</ion-content>
+<ion-content padding>
+    <ion-grid>
+      <ion-row>
+        <ion-card class="card_list" padding *ngFor="let album of activeCheckins">
+            <!-- <ion-card class="card_list" padding *ngFor="let album of activeCheckins"> -->
+          <div class="card_top_bar" *ngFor="let subitem of album.created_by">
+            <h1 class="card_title">{{album.distributor_name}}</h1>
+            <p class="text_muted m_0">Check in location :  {{album.checkin_loc}}</p>
+            <p class="text_muted m_0">Check out location :  {{album.checkout_loc}}</p>
+          </div>
+         
+  
+          <div class="card_bottom_bar _timing">
+              <ion-row>
+                <ion-col col-6 text-center style="border-right: 1px solid #eee">
+                  <p class="text_muted"> Checkin Time <br>
+                    <span class="bold _text_high"> {{album.checkin_time}}</span></p>
+                </ion-col>
+                <ion-col col-6 text-center>
+                  <p class="text_muted"> Check out Time <br>
+                    <span class="bold _text_high"> {{album.checkout_time}}</span></p>
+                </ion-col>
+              </ion-row>
+            </div>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

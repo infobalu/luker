@@ -30,10 +30,8 @@ export class LoginPage implements OnInit {
     console.log('==time1 = : ' + time1);
     let time2 = new Date();
     console.log('==time2 = : ' + time2);
-
-    console.log('==TIMEEEEE= : ' + this.diff_minutes(time2, time1));
-
-   this.diff_minutes(time2, time1);
+    
+   this.diff_minutes(time2, time1); 
 
 
     this.firstForm = new FormGroup({
@@ -84,7 +82,7 @@ export class LoginPage implements OnInit {
     var diffHr = Math.abs(dt1.getTime() - dt2.getTime()) / 3600000;
     console.log('==diffHr== : ' + diffHr);
     console.log('==diff== : ' + diff);
-    if (diff > 1000) {
+    if (diff > 10000) {
       this.presentAlertPrompt();
     }
 

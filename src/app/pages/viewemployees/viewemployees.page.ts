@@ -20,18 +20,8 @@ export class ViewemployeesPage implements OnInit {
     public modalController: ModalController) { }
 
   ngOnInit() {
-
-    this.apiService.getData('/users').subscribe(result => {
-      this.activeCheckins = result['data'];
-    });
   }
 
-  /*async presentModal(album) {
-    const modal = await this.modalController.create({
-      component: UserdetilviewPage
-    });
-    return await modal.present();
-  }*/
 
   presentModal(album) {
     console.log('=album=== : '+JSON.stringify(album._id));
@@ -45,7 +35,12 @@ export class ViewemployeesPage implements OnInit {
 
     this.router.navigate(['userdetilview'],navigateExtars);
   }
+
+  ionViewWillEnter(){
+    console.log("==ionViewWillEnter==");
+    this.apiService.getData('/users').subscribe(result => {
+      this.activeCheckins = result['data'];
+    });
+  }
 }
 
-
-//ionic generate page pages/userdetilview

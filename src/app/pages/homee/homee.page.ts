@@ -27,6 +27,9 @@ export class HomeePage implements OnInit {
   att_id: any;
   forCheckin: number = 0;
   params: any;
+  activeCheckins: any = [];
+  total_emp: number = 0;
+  present_emp: number = 0;
 
   constructor(private router: Router, private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,
@@ -37,12 +40,14 @@ export class HomeePage implements OnInit {
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
     console.log("=this.userDetails= : " + JSON.stringify(this.userDetails));
     this.name = this.userDetails.employee_name;
-
     this.day_plan_status = this.userDetails.day_plan_status;
+    this.total_emp = this.userDetails.total_emp;
     
     console.log("=this.user_type= : " + this.userDetails.user_type);
 
     console.log("=day_plan_status= : " + this.day_plan_status);
+
+    console.log("=total_emp= : " + this.total_emp);
 
     this.checkins = this.userDetails.checkins;
     this.att_id = this.userDetails.att_id;
@@ -269,6 +274,7 @@ export class HomeePage implements OnInit {
 
                 if (result['success'] == "1") {
                   this.presentToast(result['message'], 'bottom');
+                  this.day_plan_status = '1';
                   // this.router.navigateByUrl('/dashboard');
                 } else {
                   this.presentToast(result['message'], 'middle');
@@ -293,9 +299,36 @@ export class HomeePage implements OnInit {
     //this.router.navigateByUrl('/clenttype');
     this.forCheckin = 1;
     this.getGeoLocation();
-
-   
   }
+  
+  ionViewWillEnter(){
+    console.log("==ionViewWillEnter==");
+    this.triggerHomeApi();
+  }
+  
+  triggerHomeApi(){
+    let params = {
+      userId: this.userDetails._id
+    };
+    
 
+    this.apiService.postData('/dashboard', params).subscribe(result => {
+      console.log("=result= :" + JSON.stringify(result));
 
+      if(result['success'] == 1){
+        if(this.userDetails.user_type == 'owner'){
+          this.total_emp = result['data']['user'].total_emp;
+          this.present_emp = result['data']['user'].present_emp;
+          
+        }else if(this.userDetails.user_type == 'employee'){
+        
+          this.checkins = result['data']['user'].checkins;
+          console.log("= this.checkins= :" +  this.checkins);
+        }
+      }   
+    }, error => {
+      alert(JSON.stringify(error));
+    });
+
+  }
 }

@@ -10,7 +10,6 @@ import { DatePipe } from '@angular/common';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as moment from 'moment';
 import { File, FileEntry } from '@ionic-native/file/ngx';
-import { ConstantPool } from '@angular/compiler';
 
 declare var cordova;
 
@@ -19,6 +18,7 @@ declare var cordova;
   templateUrl: './create-check-in.page.html',
   styleUrls: ['./create-check-in.page.scss'],
 })
+
 export class CreateCheckInPage implements OnInit {
 
   distributorForm: any;
@@ -31,8 +31,8 @@ export class CreateCheckInPage implements OnInit {
   capturedPhoto: any;
   base64Image: any;
   image: any;
-  loading: any;
   checkinId:any;
+  loading:any;
 
 
   imgBlob: any;
@@ -132,13 +132,7 @@ export class CreateCheckInPage implements OnInit {
   }
 
   distributorFormSubmit(data) {
-    console.log('data', data);
-    console.log('form control value', this.distributorForm.value);
-
     let time = moment().format('DD-MM-YYYY, hh:mm:ss a');
-
-    
-
     let params = {
       check_in_for: this.checkInFor,
       created_by: this.userDetails._id,
@@ -164,12 +158,16 @@ export class CreateCheckInPage implements OnInit {
       location:this.distributorForm.value.routename
     };
     console.log('params', JSON.stringify(params));
+    this.presentLoading();
     this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
       console.log('result distributor', JSON.stringify(result));
       const finaldatas = result;
-      if (finaldatas.message === 'Chek in created!') {
-        this.uploadImages(finaldatas.data._id);
+      if (finaldatas.success == 1) {
+        
+        this.uploadImages(this.checkinId);
+        this.dismissLoading();
         this.presentToast('checked out successfully', 'bottom');
+        this.router.navigateByUrl('/dashboard');
       }
     });
   }
@@ -212,12 +210,15 @@ export class CreateCheckInPage implements OnInit {
       longitude:this.longitude,
       location:this.distributorForm.value.routename
     };
+    this.presentLoading();
     this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
       console.log('result dealer', JSON.stringify(result));
       const finaldatas = result;
-      if (finaldatas.message === 'Check out successfully!') {
-        this.uploadImages(finaldatas.data._id);
+      if (finaldatas.success == 1) {
+        this.dismissLoading();
+        this.uploadImages(this.checkinId);
         this.presentToast('Check out successfully', 'bottom');
+        this.router.navigateByUrl('/dashboard');
       }
     });
   }
@@ -272,15 +273,9 @@ export class CreateCheckInPage implements OnInit {
 
   uploadImages(path: any) {
     let _self = this;
-    console.log("==path=NEW= : " + path);
-    //this.presentLoading('Loading...');
-
-
     cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', { },
-      {}, this.base64Image, 'image', function (response) {
+      {'checkin_id': path}, this.base64Image, 'image', function (response) {
         console.log('response', JSON.stringify(response));
-        //_self.dismissLoading();
-       // _self.presentToast('checked in successfully', 'bottom');
         _self.router.navigateByUrl('/dashboard');
       }, function (response) {
         console.error(response.error);
@@ -347,15 +342,16 @@ export class CreateCheckInPage implements OnInit {
 
   }
 
-  async presentLoading(message) {
-    this.loading = await this.loadingController.create({
-      message: message
-    });
-    await this.loading.present();
-
+  async dismissLoading() {
+    this.loadingController.dismiss();
+    console.log('Loading dismissed!');
   }
 
-  async dismissLoading() {
-    await this.loading.onDidDismiss();
+
+  async presentLoading() {
+     this.loading = await this.loadingController.create({
+      message: 'Please Wait...',
+    });
+    await this.loading.present();
   }
 }
