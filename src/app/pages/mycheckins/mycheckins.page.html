@@ -7,19 +7,18 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content padding>
     <ion-grid>
       <ion-row>
-        <ion-card class="card_list" padding *ngFor="let album of activeCheckins">
-            <!-- <ion-card class="card_list" padding *ngFor="let album of activeCheckins"> -->
+        <ion-card class="card_list" padding *ngFor="let album of activeCheckins" (click)="selectPack(album)">
+            <!-- <ion-card class="card_list" padding *ngFor="let album of activeCheckins"> --> 
           <div class="card_top_bar" *ngFor="let subitem of album.created_by">
-            <h1 class="card_title">{{album.distributor_name}}</h1>
+            <h1 class="card_title" *ngIf="check_in_for==dealer">{{album.dealer_name}}</h1>
+            <h1 class="card_title" *ngIf="check_in_for==distributor">{{album.distributor_name}}</h1>
             <p class="text_muted m_0">Check in location :  {{album.checkin_loc}}</p>
             <p class="text_muted m_0">Check out location :  {{album.checkout_loc}}</p>
           </div>
-         
-  
+        
           <div class="card_bottom_bar _timing">
               <ion-row>
                 <ion-col col-6 text-center style="border-right: 1px solid #eee">

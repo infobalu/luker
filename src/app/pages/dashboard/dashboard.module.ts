@@ -18,7 +18,8 @@ const routes: Routes = [
       { path: 'empallcheckin', loadChildren: '../empallcheckin/empallcheckin.module#EmpallcheckinPageModule' },
       { path: 'emp-attendane-rpt', loadChildren: '../emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' },
       { path: 'clenttype', loadChildren: '../clenttype/clenttype.module#ClenttypePageModule' },
-      { path: '', loadChildren: '../homee/homee.module#HomeePageModule' }
+      { path: 'mycheckins', loadChildren: '../mycheckins/mycheckins.module#MycheckinsPageModule' },
+      { path: '', loadChildren: '../homee/homee.module#HomeePageModule' } 
     ]
   }
 ];

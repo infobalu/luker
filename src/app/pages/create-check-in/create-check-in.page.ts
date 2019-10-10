@@ -10,6 +10,8 @@ import { DatePipe } from '@angular/common';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as moment from 'moment';
 import { File, FileEntry } from '@ionic-native/file/ngx';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
+
 
 declare var cordova;
 
@@ -33,6 +35,8 @@ export class CreateCheckInPage implements OnInit {
   image: any;
   checkinId:any;
   loading:any;
+  project_finalized_dt: any;
+
 
 
   imgBlob: any;
@@ -45,14 +49,14 @@ export class CreateCheckInPage implements OnInit {
     private file: File,
     private router: Router,
     public toastController: ToastController,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private datePicker: DatePicker
   ) {
     this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    this.checkInFor = this.userDetails.employee_type;
-    console.log('=this.checkInFor == : ' + this.checkInFor);
     this.checkinId = localStorage.getItem('checkin_id')
-
-    console.log('=checkinId== :'+this.checkinId);
+    this.checkInFor = this.userDetails.employee_type;
+    console.log("==this.checkInFor== : "+this.checkInFor);
+    
 
 
     this.distributorForm = new FormGroup({
@@ -98,6 +102,7 @@ export class CreateCheckInPage implements OnInit {
       projectvalue: new FormControl('', Validators.compose([Validators.required])),
 
     });
+    console.log('=checkinId== :'+this.checkinId);
 
   }
 
@@ -270,7 +275,7 @@ export class CreateCheckInPage implements OnInit {
     }
   }
 
-
+ 
   uploadImages(path: any) {
     let _self = this;
     cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', { },
@@ -329,15 +334,17 @@ export class CreateCheckInPage implements OnInit {
           this.locationName = "Unable to fetch geolocation";
         }
 
+     
+
         this.distributorForm.controls.location.setValue(this.locationName);
         this.dealerForm.controls.location.setValue(this.locationName);
 
         this.distributorForm.controls.retaileraddr.setValue(this.locationName);
+
+        console.log("===locationName==: "+this.locationName);
       })
       .catch((error: any) => {
-        this.locationName = "Unable to fetch geolocation";
-        this.distributorForm.controls.location.setValue(this.locationName);
-        this.dealerForm.controls.location.setValue(this.locationName);
+        console.log("===locationName errrr==: "+error);
       });
 
   }
@@ -353,5 +360,16 @@ export class CreateCheckInPage implements OnInit {
       message: 'Please Wait...',
     });
     await this.loading.present();
+  }
+
+  showDatePicker(){
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => {console.log('Got date: ', date), this.project_finalized_dt = date, console.log('project_finalized_dt: ', this.project_finalized_dt)} ,
+      err => console.log('Error occurred while getting date: ', err)
+    );
   }
 }

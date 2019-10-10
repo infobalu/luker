@@ -47,16 +47,11 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log("==HAIIIII=");
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
     this.attendance = JSON.parse(localStorage.getItem("attendance"));
     //this.day_plan_status = this.userDetails.day_plan_status;
     this.day_plan_status = this.userDetails.day_plan_status;
-    console.log("=this.userDetails= : " + JSON.stringify(this.userDetails));
-
-    console.log("=this.user_type= : " + this.userDetails.user_type);
-
-    console.log("=this.attendance= : " + JSON.stringify(this.attendance));
+    
     this.checkins = this.userDetails.checkins;
     this.att_id = this.userDetails.att_id;
 

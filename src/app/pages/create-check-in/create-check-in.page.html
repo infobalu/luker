@@ -28,58 +28,58 @@
               <ion-input name="retailerNum" type="tel" formControlName="retailerNum"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label position="floating">Address</ion-label>
-                <ion-input name="retaileraddr" type="text" formControlName="retaileraddr" readonly></ion-input>
+              <ion-label position="floating">Address</ion-label>
+              <ion-input name="retaileraddr" type="text" formControlName="retaileraddr" readonly></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label position="floating">Route name</ion-label>
-                <ion-input name="routename" type="text" formControlName="routename"></ion-input>
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating">Top Selling Brands</ion-label>
-                <ion-input name="topbrand" type="text" formControlName="topbrand"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating">Secondary sales vertical</ion-label>
-                <ion-input name="secsales" type="text" formControlName="secsales"></ion-input>
+              <ion-label position="floating">Route name</ion-label>
+              <ion-input name="routename" type="text" formControlName="routename"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Luker order of day</ion-label>
-                <ion-input name="lukerorder" type="text" formControlName="lukerorder"></ion-input>
+              <ion-label position="floating">Top Selling Brands</ion-label>
+              <ion-input name="topbrand" type="text" formControlName="topbrand"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label position="floating">Luker secondary</ion-label>
-                <ion-input name="lukersec" type="text" formControlName="lukersec"></ion-input>
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating">Luker counter share</ion-label>
-                <ion-input name="lukershare" type="text" formControlName="lukershare"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating">Luker Targeted value</ion-label>
-                <ion-input name="targetval" type="text" formControlName="targetval"></ion-input>
+              <ion-label position="floating">Secondary sales vertical</ion-label>
+              <ion-input name="secsales" type="text" formControlName="secsales"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Luker Targeted share</ion-label>
-                <ion-input name="lukertarget" type="text" formControlName="lukertarget"></ion-input>
+              <ion-label position="floating">Luker order of day</ion-label>
+              <ion-input name="lukerorder" type="text" formControlName="lukerorder"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Luker secondary</ion-label>
+              <ion-input name="lukersec" type="text" formControlName="lukersec"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label stacked>Upload Image</ion-label>
-                <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
-                <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>
-                
-                <ion-avatar>
+              <ion-label position="floating">Luker counter share</ion-label>
+              <ion-input name="lukershare" type="text" formControlName="lukershare"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Luker Targeted value</ion-label>
+              <ion-input name="targetval" type="text" formControlName="targetval"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Luker Targeted share</ion-label>
+              <ion-input name="lukertarget" type="text" formControlName="lukertarget"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked>Upload Image</ion-label>
+              <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
+              <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>
+
+              <!-- <ion-avatar>
                   <img *ngIf="capturedPhoto" [src]="capturedPhoto"/>
-                  <!-- <div class="header" *ngIf="image" [style.background-image]="image"></div> -->
-                </ion-avatar>
-                
-              </ion-item>
-            
+                 
+                </ion-avatar> -->
+
+            </ion-item>
+
           </div>
           <div padding>
             <ion-button size="large" type="submit" [disabled]="distributorForm.invalid" expand="block">Check Out
@@ -164,7 +164,7 @@
               <ion-label position="floating">Consultant contact number</ion-label>
               <ion-input name="consultantnum" type="tel" formControlName="consultantnum"></ion-input>
             </ion-item>
-            
+
 
             <ion-item>
               <ion-label position="floating">Architect name</ion-label>
@@ -203,14 +203,16 @@
 
             <ion-item>
               <ion-label position="floating">Expected project finalization</ion-label>
-              <ion-input name="expectprice" type="text" formControlName="expectprice"></ion-input>
+              <ion-input name="expectprice" type="text" formControlName="expectprice" [(ngModel)]="project_finalized_dt"
+                (click)="showDatePicker()">
+              </ion-input> 
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Check In Location</ion-label>
               <ion-input name="location" type="text" formControlName="location" readonly></ion-input>
             </ion-item>
-            
+
             <ion-item>
               <ion-textarea placeholder="Remarks ..." formControlName="remarks"></ion-textarea>
             </ion-item>
@@ -229,11 +231,11 @@
               <ion-label stacked>Upload Image</ion-label>
               <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
               <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>
-              
+
               <!-- <ion-avatar>
                 <img *ngIf="base64Image" [src]="base64Image"/>
               </ion-avatar> -->
-              
+
             </ion-item>
 
           </div>

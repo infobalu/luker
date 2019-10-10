@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ToastController, AlertController,LoadingController } from '@ionic/angular';
 import { ApiService } from './../../services/api.service';
 import * as moment from 'moment';
 
@@ -30,10 +30,13 @@ export class HomeePage implements OnInit {
   activeCheckins: any = [];
   total_emp: number = 0;
   present_emp: number = 0;
+  loading:any;
+
 
   constructor(private router: Router, private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,
     public toastController: ToastController, private apiService: ApiService,
+    public loadingController: LoadingController,
     public alertController: AlertController) { }
 
   ngOnInit() {
@@ -85,6 +88,7 @@ export class HomeePage implements OnInit {
   }
 
   getGeoLocation() {
+    this.presentLoading();
     this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((resp) => {
       this.whereInTheEarth(resp.coords.latitude, resp.coords.longitude);
       this.latitude = resp.coords.latitude;
@@ -136,7 +140,7 @@ export class HomeePage implements OnInit {
 
           console.log('==this.userDetails ID === : ' + this.userDetails._id);
 
-
+this.dismissLoading();
 
           if (!this.isToggled && this.forCheckin == 0) {
 
@@ -200,8 +204,10 @@ export class HomeePage implements OnInit {
       })
       .catch((error: any) => {
         this.locationName = "Unable to fetch geolocation";
+        console.log("=ERROR== : "+error);
         this.isToggled = true;
         this.n1 = 0;
+        this.dismissLoading();
         this.presentToast('Please check the location settings Or :' + error, 'bottom');
       });
 
@@ -331,4 +337,18 @@ export class HomeePage implements OnInit {
     });
 
   }
+
+  async dismissLoading() {
+    this.loadingController.dismiss();
+    console.log('Loading dismissed!');
+  }
+
+
+  async presentLoading() {
+     this.loading = await this.loadingController.create({
+      message: 'Please Wait...',
+    });
+    await this.loading.present();
+  }
+
 }

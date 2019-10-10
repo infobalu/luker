@@ -58,7 +58,7 @@ var EmpallcheckinPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Default Segment -->\n<ion-segment (ionChange)=\"segmentChanged($event)\">\n\n  <ion-segment-button value=\"today\" (click)='todaysCheckin()' checked>\n    <ion-label>Today</ion-label>\n  </ion-segment-button>\n\n  <ion-segment-button value=\"dealer\" (click)='dealerCheckin()'>\n    <ion-label>Dealer</ion-label>\n  </ion-segment-button>\n  <ion-segment-button value=\"distributor\" (click)='distributorCheckin()'>\n    <ion-label>Distributor</ion-label>\n  </ion-segment-button>\n</ion-segment>\n\n\n<ion-header>\n    <ion-toolbar text-center  class=\"red_header\">\n        <ion-title>Check-ins</ion-title>\n    </ion-toolbar>\n  <!-- <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>  -->\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\">\n        <div class=\"card_top_bar\">\n          <h1 class=\"card_title\">Sumesh</h1>\n          <p class=\"text_muted\"> {{album.dealer_name}}</p>\n        </div>\n        <div class=\"card_bottom_bar\">\n          <p class=\"text_dark\"> Mobile Number : {{album.dealer_name}}</p>\n          <p class=\"text_dark\"> Location : {{album.dealer_name}}</p>\n        </div>\n      </ion-card>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
+module.exports = "<!-- Default Segment -->\n<ion-segment (ionChange)=\"segmentChanged($event)\">\n\n  <ion-segment-button value=\"today\" (click)='todaysCheckin()' checked>\n    <ion-label>Today</ion-label>\n  </ion-segment-button>\n\n  <ion-segment-button value=\"dealer\" (click)='dealerCheckin()'>\n    <ion-label>Dealer</ion-label>\n  </ion-segment-button>\n  <ion-segment-button value=\"distributor\" (click)='distributorCheckin()'>\n    <ion-label>Distributor</ion-label>\n  </ion-segment-button>\n</ion-segment>\n\n\n<ion-header>\n    <ion-toolbar text-center  class=\"red_header\">\n        <ion-title>Check-ins</ion-title>\n    </ion-toolbar>\n  <!-- <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>  -->\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\">\n          <!-- <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\"> -->\n        <div class=\"card_top_bar\" *ngFor=\"let subitem of album.created_by\">\n          <h1 class=\"card_title\">{{subitem.employee_name}}</h1>\n          <p class=\"text_muted m_0\">Location :  {{album.checkin_loc}}</p>\n        </div>\n        <!-- <div class=\"card_bottom_bar\">\n          <p class=\"text_dark\"> Mobile Number : {{album.dealer_name}}</p>\n          <p class=\"text_dark\"> Location : {{album.dealer_name}}</p>\n        </div> -->\n\n        <div class=\"card_bottom_bar _timing\">\n            <ion-row>\n              <ion-col col-6 text-center style=\"border-right: 1px solid #eee\">\n                <p class=\"text_muted\"> Checkin Time <br>\n                  <span class=\"bold _text_high\"> {{album.checkin_time}}</span></p>\n              </ion-col>\n              <ion-col col-6 text-center>\n                <p class=\"text_muted\"> Check out Time <br>\n                  <span class=\"bold _text_high\"> {{album.checkout_time}}</span></p>\n              </ion-col>\n            </ion-row>\n          </div>\n      </ion-card>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
 
 /***/ }),
 
@@ -86,6 +86,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -108,7 +111,8 @@ var EmpallcheckinPage = /** @class */ (function () {
     };
     EmpallcheckinPage.prototype.dealerCheckin = function () {
         var _this = this;
-        this.apiService.getData('/getAllCheckins/' + '2019-09-12').subscribe(function (result) {
+        var time = moment__WEBPACK_IMPORTED_MODULE_3__().format('YYYY-MM-DD');
+        this.apiService.getData('/getAllCheckins/' + time).subscribe(function (result) {
             if (result['success'] == 1) {
                 _this.activeCheckins = result['data'];
                 console.log("== this.getAllCheckins == : " + JSON.stringify(_this.activeCheckins));
@@ -120,17 +124,19 @@ var EmpallcheckinPage = /** @class */ (function () {
     EmpallcheckinPage.prototype.distributorCheckin = function () {
         var _this = this;
         console.log("=distributorCheckin=");
-        this.apiService.getData('/getAllCheckins/' + '2019-09-12').subscribe(function (result) {
+        var time = moment__WEBPACK_IMPORTED_MODULE_3__().format('YYYY-MM-DD');
+        this.apiService.getData('/getAllCheckins/' + time).subscribe(function (result) {
             if (result['success'] == 1) {
                 _this.activeCheckins = result['data'];
                 console.log("== this.getAllCheckins == : " + JSON.stringify(_this.activeCheckins));
-                _this.activeCheckins = _this.activeCheckins.filter(function (d) { return d.check_in_for == 'dist'; });
+                _this.activeCheckins = _this.activeCheckins.filter(function (d) { return d.check_in_for == 'distributor'; });
             }
         });
     };
     EmpallcheckinPage.prototype.triggerAllCheckIns = function () {
         var _this = this;
-        this.apiService.getData('/getAllCheckins/' + '2019-09-12').subscribe(function (result) {
+        var time = moment__WEBPACK_IMPORTED_MODULE_3__().format('YYYY-MM-DD');
+        this.apiService.getData('/getAllCheckins/' + time).subscribe(function (result) {
             if (result['success'] == 1) {
                 _this.activeCheckins = result['data'];
                 console.log("== this.getAllCheckins == : " + JSON.stringify(_this.activeCheckins));
@@ -146,62 +152,6 @@ var EmpallcheckinPage = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"]])
     ], EmpallcheckinPage);
     return EmpallcheckinPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/api.service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/services/api.service.ts ***!
-  \*****************************************/
-/*! exports provided: ApiService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/http/ngx */ "./node_modules/@ionic-native/http/ngx/index.js");
-
-
-
-
-
-var ApiService = /** @class */ (function () {
-    function ApiService(http, cordovahttp) {
-        this.http = http;
-        this.cordovahttp = cordovahttp;
-        this.baseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].service_URL;
-    }
-    ApiService.prototype.getData = function (url) {
-        console.log('=URL = : ' + this.baseURL + url);
-        return this.http.get(this.baseURL + url);
-    };
-    ApiService.prototype.postData = function (url, params) {
-        console.log('=URL = : ' + this.baseURL + url);
-        console.log('=params = : ' + JSON.stringify(params));
-        return this.http.post(this.baseURL + url, params);
-    };
-    ApiService.prototype.postApi = function (url, payload, header) {
-        //   this.cordovahttp.setHeader('':'')
-        //   payload.forEach((value,key) => {
-        //     console.log(key+" "+value)
-        //   });
-        //   return this.cordovahttp.post(url, payload, header);
-        // }
-    };
-    ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__["HTTP"]])
-    ], ApiService);
-    return ApiService;
 }());
 
 

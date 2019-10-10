@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'empallcheckin', loadChildren: './pages/empallcheckin/empallcheckin.module#EmpallcheckinPageModule' },
   { path: 'emp-attendane-rpt', loadChildren: './pages/emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' },
   { path: 'checkindetail', loadChildren: './pages/checkindetail/checkindetail.module#CheckindetailPageModule' },
-  { path: 'userdetilview', loadChildren: './pages/userdetilview/userdetilview.module#UserdetilviewPageModule' }
+  { path: 'userdetilview', loadChildren: './pages/userdetilview/userdetilview.module#UserdetilviewPageModule' },
+  { path: 'checkindetilview', loadChildren: './pages/checkindetilview/checkindetilview.module#CheckindetilviewPageModule' }
 
 ];
 

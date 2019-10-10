@@ -58,7 +58,7 @@ var ProfileadminPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header  text-center>\n  <ion-toolbar text-center padding class=\"red_header\">\n    <img src=\"assets/img/user.svg\" class=\"user_img\">\n  </ion-toolbar>\n  <ion-toolbar text-center>\n    <ion-title>{{name}} </ion-title>\n    <p class=\"_text_md _text_white\"> {{email}}</p>\n  </ion-toolbar>\n</ion-header>\n<ion-content padding>\n  <ion-grid>\n      <ion-list>\n          <ion-item (click)='Logout()'>\n            <ion-icon name=\"log-out\" item-start></ion-icon>\n              Logout\n          </ion-item>\n        </ion-list>\n  </ion-grid>\n</ion-content>"
+module.exports = "<ion-header  text-center>\n  <ion-toolbar text-center padding class=\"red_header\">\n    <img src=\"assets/img/user.svg\" class=\"user_img\">\n  </ion-toolbar>\n  <ion-toolbar text-center class=\"red_header\">\n    <ion-title>{{name}} </ion-title>\n    <p class=\"_text_md _text_white\"> {{email}}</p>\n  </ion-toolbar>\n</ion-header>\n<ion-content padding>\n  <ion-grid>\n      <ion-list>\n          <ion-item (click)='Logout()'>\n            <ion-icon name=\"log-out\" item-start></ion-icon>\n              Logout\n          </ion-item>\n        </ion-list>\n  </ion-grid>\n</ion-content>"
 
 /***/ }),
 

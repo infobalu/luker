@@ -58,7 +58,7 @@ var MycheckinsPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title>My Check-ins</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <h3> &nbsp; &nbsp; &nbsp;Total checkin pending : {{count}}</h3>\n  <ion-list>\n    <ion-item *ngFor=\"let album of activeCheckins\" type=\"item-text-wrap\" (click)=\"selectPack(album)\">\n      <ion-card background-color: #BEBEBE;>\n        <ion-card-header>\n          <ion-card-subtitle>{{album.create_date}}</ion-card-subtitle>\n        </ion-card-header>\n\n        <ion-card-content>\n          <ion-label>Rep : {{album.customer_name}}</ion-label>\n          <ion-item>\n            <ion-label>Checkin Type : {{album.check_in_for}}</ion-label>\n          </ion-item>\n          <ion-item>\n            <ion-label>Checkin Time : {{album.checkin_time}}</ion-label>\n          </ion-item>\n          <ion-item>\n            <ion-label>Location: {{album.checkin_loc}} </ion-label>\n          </ion-item>\n          <ion-item>\n\n            <ion-label>Checkout Time : {{album.checkout_time}}</ion-label>\n          </ion-item>\n\n        </ion-card-content>\n      </ion-card>\n    </ion-item>\n  </ion-list>\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar text-center padding class=\"red_header\">\n      <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n       </ion-buttons>\n    <ion-title>View Check-ins</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-grid>\n      <ion-row>\n        <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\" (click)=\"selectPack(album)\">\n            <!-- <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\"> --> \n          <div class=\"card_top_bar\" *ngFor=\"let subitem of album.created_by\">\n            <h1 class=\"card_title\" *ngIf=\"check_in_for==dealer\">{{album.dealer_name}}</h1>\n            <h1 class=\"card_title\" *ngIf=\"check_in_for==distributor\">{{album.distributor_name}}</h1>\n            <p class=\"text_muted m_0\">Check in location :  {{album.checkin_loc}}</p>\n            <p class=\"text_muted m_0\">Check out location :  {{album.checkout_loc}}</p>\n          </div>\n        \n          <div class=\"card_bottom_bar _timing\">\n              <ion-row>\n                <ion-col col-6 text-center style=\"border-right: 1px solid #eee\">\n                  <p class=\"text_muted\"> Checkin Time <br>\n                    <span class=\"bold _text_high\"> {{album.checkin_time}}</span></p>\n                </ion-col>\n                <ion-col col-6 text-center>\n                  <p class=\"text_muted\"> Check out Time <br>\n                    <span class=\"bold _text_high\"> {{album.checkout_time}}</span></p>\n                </ion-col>\n              </ion-row>\n            </div>\n        </ion-card>\n      </ion-row>\n    </ion-grid>\n  </ion-content>"
 
 /***/ }),
 
@@ -136,14 +136,12 @@ var MycheckinsPage = /** @class */ (function () {
         });
     };
     MycheckinsPage.prototype.selectPack = function (pack) {
-        console.log("=THIS IS CARD == : " + pack._id);
         var navigateExtars = {
             queryParams: {
-                _id: JSON.stringify(pack._id)
+                _id: JSON.stringify(pack)
             }
         };
-        //   this.router.navigateByUrl('/viewcheckin', pack._id);
-        this.router.navigate(['viewcheckin'], navigateExtars);
+        this.router.navigate(['checkindetail'], navigateExtars);
     };
     MycheckinsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -157,62 +155,6 @@ var MycheckinsPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"]])
     ], MycheckinsPage);
     return MycheckinsPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/api.service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/services/api.service.ts ***!
-  \*****************************************/
-/*! exports provided: ApiService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/http/ngx */ "./node_modules/@ionic-native/http/ngx/index.js");
-
-
-
-
-
-var ApiService = /** @class */ (function () {
-    function ApiService(http, cordovahttp) {
-        this.http = http;
-        this.cordovahttp = cordovahttp;
-        this.baseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].service_URL;
-    }
-    ApiService.prototype.getData = function (url) {
-        console.log('=URL = : ' + this.baseURL + url);
-        return this.http.get(this.baseURL + url);
-    };
-    ApiService.prototype.postData = function (url, params) {
-        console.log('=URL = : ' + this.baseURL + url);
-        console.log('=params = : ' + JSON.stringify(params));
-        return this.http.post(this.baseURL + url, params);
-    };
-    ApiService.prototype.postApi = function (url, payload, header) {
-        //   this.cordovahttp.setHeader('':'')
-        //   payload.forEach((value,key) => {
-        //     console.log(key+" "+value)
-        //   });
-        //   return this.cordovahttp.post(url, payload, header);
-        // }
-    };
-    ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__["HTTP"]])
-    ], ApiService);
-    return ApiService;
 }());
 
 

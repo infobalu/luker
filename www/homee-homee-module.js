@@ -58,7 +58,7 @@ var HomeePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = " <!-- <ion-header class=\"red_header\" text-center>\n    <ion-toolbar text-center padding>\n      <img src=\"assets/img/user.svg\" class=\"user_img\">\n    </ion-toolbar>\n    <ion-toolbar text-center>\n      <ion-title>{{name}} </ion-title>\n      <p class=\"_text_md _text_white\"> welcome</p>\n    </ion-toolbar>\n  </ion-header> -->\n\n  <ion-header text-center>\n      <ion-toolbar text-center padding class=\"red_header\">\n      <img src=\"assets/img/user.svg\" class=\"user_img\">\n      </ion-toolbar>\n      <ion-toolbar text-center class=\"red_header\">\n      <ion-title>{{name}} </ion-title>\n      <p class=\"_text_md _text_white\"> welcome</p>\n      </ion-toolbar>\n      </ion-header>\n \n\n<!-- \n  <ion-header> <ion-toolbar class=\"new-background-color\"> <ion-title>{{name}}</ion-title> </ion-toolbar> </ion-header> -->\n\n\n  <ion-content>\n    <div class=\"red_mask\"></div>\n    <ion-grid padding style=\"margin-top: 5vh\">\n      <ion-row>\n        <ion-card class=\"card_list\" padding>\n          <div class=\"card_top_bar\">\n            <ion-row>\n              <ion-col col-6>\n                <p class=\"text_muted\" *ngIf=\"userDetails.user_type == 'owner'\"> Total <br> representatives</p>\n                <p class=\"bold text_md text_dark\" *ngIf=\"userDetails.user_type == 'employee'\"> Mark<br> my attendance</p>\n              </ion-col>\n              <ion-col col-6 text-right>\n                <button ion-button class=\"btn_plane\" (click)=\"goToViewEmployee()\" *ngIf=\"userDetails.user_type == 'owner'\"> View all</button>\n                <ion-item>\n                    <ion-toggle *ngIf=\"userDetails.user_type == 'employee'\" [(ngModel)]=\"isToggled\" (ionChange)=\"notify(n1)\"></ion-toggle>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row>\n              <ion-col col-6>\n                <h1 class=\"count_num\" *ngIf=\"userDetails.user_type == 'owner'\"> 500</h1>\n              </ion-col>\n            </ion-row>\n          </div>\n          <div class=\"card_bottom_bar\" text-center padding>\n            <!-- <button ion-button class=\"btn_blue\"> Add new representative </button> -->\n            <ion-button expand=\"block\" class=\"btn_blue\"  (click)='goToAddEmployee()' *ngIf=\"userDetails.user_type == 'owner'\">\n              Add new representative</ion-button>\n\n              <ion-button expand=\"block\" class=\"btn_blue\"  (click)='goToViewAttendance()' *ngIf=\"userDetails.user_type == 'owner'\">\n                  View Attendance</ion-button>\n\n            <ion-row *ngIf=\"userDetails.user_type == 'employee'\">\n                <ion-col col-6>\n                  Todays <br>Check-in  &nbsp; <span class=\"check_count\"> {{checkins}}</span>\n                </ion-col>\n    \n                <ion-col col-6 text-right>\n                  <button class=\"btn_fab\"  (click)=\"goToCheckIn()\"> <ion-icon name=\"add\"></ion-icon> </button>\n                </ion-col>\n              </ion-row>\n\n\n          </div>\n        </ion-card>\n      </ion-row>\n  \n      <ion-row *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-card class=\"card_list _card_black\" padding>\n          <ion-row>\n            <ion-col col-6>\n              <p class=\"_text_white\"> Today's Total <br>Attendance</p>\n            </ion-col>\n            <ion-col col-6 text-right>\n              <p class=\"_text_white\"> <span class=\"count_num\"> 88</span> / 150</p>\n            </ion-col>\n          </ion-row>\n        </ion-card>\n      </ion-row>\n  \n      <ion-row *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-card class=\"card_list _card_muted\" padding >\n          <ion-row>\n            <ion-col col-6>\n              <p class=\"_text_white\"> Today's Check-in <br>report</p>\n            </ion-col>\n            <ion-col col-6 text-right>\n             date picker\n  \n            </ion-col>\n          </ion-row>\n        </ion-card>\n      </ion-row>\n    </ion-grid>\n  </ion-content>"
+module.exports = "  <ion-header text-center>\n      <ion-toolbar text-center padding class=\"red_header\">\n      <img src=\"assets/img/user.svg\" class=\"user_img\" style=\"margin-bottom: 1rem\">\n      <ion-title>{{name}} </ion-title>\n      <p class=\"_text_md _text_white m_0\"> Welcome</p>\n      </ion-toolbar>\n      <!-- <ion-toolbar text-center class=\"red_header\">\n      \n      </ion-toolbar> -->\n      </ion-header>\n \n\n<!-- \n  <ion-header> <ion-toolbar class=\"new-background-color\"> <ion-title>{{name}}</ion-title> </ion-toolbar> </ion-header> -->\n\n\n  <ion-content>\n    <div class=\"red_mask\"></div>\n    <ion-grid padding style=\"margin-top: 5vh\">\n      <ion-row>\n        <ion-card class=\"card_list\" padding>\n          <div class=\"card_top_bar\">\n            <ion-row>\n              <ion-col col-6>\n                <p class=\"text_muted\" *ngIf=\"userDetails.user_type == 'owner'\"> Total <br> representatives</p>\n                <p class=\"bold text_md text_dark\" *ngIf=\"userDetails.user_type == 'employee'\"> Mark<br> my attendance</p>\n              </ion-col>\n              <ion-col col-6 text-right>\n                <button ion-button class=\"btn_plane\" (click)=\"goToViewEmployee()\" *ngIf=\"userDetails.user_type == 'owner'\"> View all</button>\n                <ion-item *ngIf=\"userDetails.user_type == 'employee'\">\n                    <ion-toggle  [(ngModel)]=\"isToggled\" (ionChange)=\"notify(n1)\"></ion-toggle>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row>\n              <ion-col col-6>\n                <h1 class=\"count_num m_0\" *ngIf=\"userDetails.user_type == 'owner'\"> {{total_emp}}</h1>\n              </ion-col>\n            </ion-row>\n          </div>\n          <div class=\"card_bottom_bar\" text-center padding>\n            <!-- <button ion-button class=\"btn_blue\"> Add new representative </button> -->\n            <ion-button expand=\"block\" class=\"btn_blue\"  (click)='goToAddEmployee()' *ngIf=\"userDetails.user_type == 'owner'\">\n              Add new representative</ion-button>\n\n              <ion-button expand=\"block\" class=\"btn_blue\"  (click)='goToViewAttendance()' *ngIf=\"userDetails.user_type == 'owner'\">\n                  View Attendance</ion-button>\n\n            <ion-row *ngIf=\"userDetails.user_type == 'employee'\">\n                <ion-col col-6>\n                  Check-in <br> Left &nbsp; <span class=\"check_count\"> {{checkins}}</span>\n                </ion-col>\n    \n                <!-- <ion-col col-6 text-right>\n                  <button class=\"btn_fab\"  (click)=\"goToCheckIn()\"> <ion-icon name=\"add\"></ion-icon> </button>\n                </ion-col> -->\n\n                <div padding>\n                  <ion-button size=\"small\" type=\"submit\" (click)=\"goToCheckIn()\"  [disabled]=\"day_plan_status == 0\">Start Check-in</ion-button>\n                </div>\n\n\n              </ion-row>\n\n\n          </div>\n        </ion-card>\n      </ion-row>\n  \n      <ion-row *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-card class=\"card_list _card_black\" padding>\n          <ion-row>\n            <ion-col col-6>\n              <p class=\"_text_white\"> Today's Total <br>Attendance</p>\n            </ion-col>\n            <ion-col col-6 text-right>\n              <p class=\"_text_white\"> <span class=\"count_num\"> {{present_emp}}</span> / {{total_emp}}</p>\n            </ion-col>\n          </ion-row>\n        </ion-card>\n      </ion-row>\n  \n      <ion-row *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-card class=\"card_list _card_muted\" padding >\n          <ion-row>\n            <ion-col col-6>\n              <p class=\"_text_white\"> Today's Check-in <br>report</p>\n            </ion-col>\n            <ion-col col-6 text-right>\n             <!-- date picker -->\n  \n            </ion-col>\n          </ion-row>\n        </ion-card>\n      </ion-row>\n    </ion-grid>\n  </ion-content>"
 
 /***/ }),
 
@@ -111,14 +111,19 @@ var HomeePage = /** @class */ (function () {
         this.n1 = 1;
         this.checkins = 0;
         this.forCheckin = 0;
+        this.activeCheckins = [];
+        this.total_emp = 0;
+        this.present_emp = 0;
     }
     HomeePage.prototype.ngOnInit = function () {
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         console.log("=this.userDetails= : " + JSON.stringify(this.userDetails));
         this.name = this.userDetails.employee_name;
         this.day_plan_status = this.userDetails.day_plan_status;
+        this.total_emp = this.userDetails.total_emp;
         console.log("=this.user_type= : " + this.userDetails.user_type);
         console.log("=day_plan_status= : " + this.day_plan_status);
+        console.log("=total_emp= : " + this.total_emp);
         this.checkins = this.userDetails.checkins;
         this.att_id = this.userDetails.att_id;
         if (this.day_plan_status == '1') {
@@ -229,6 +234,7 @@ var HomeePage = /** @class */ (function () {
                     _this.markAttendance();
                 }
                 else if (_this.forCheckin == 1) {
+                    _this.forCheckin = 0;
                     console.log('====LOCATION====== : ' + _this.locationName);
                     console.log('=FOR CHECKIN==');
                     var params = {
@@ -239,7 +245,9 @@ var HomeePage = /** @class */ (function () {
                     _this.apiService.postData('/startCheckIn', params).subscribe(function (result) {
                         console.log("=startCheckIn= :" + JSON.stringify(result));
                         if (result['success'] == "1") {
-                            _this.router.navigateByUrl('/clenttype');
+                            console.log('=check _id= : ' + result['data']._id);
+                            localStorage.setItem('checkin_id', result['data']._id);
+                            _this.router.navigateByUrl('/create-check-in/');
                         }
                         else {
                             _this.presentToast(result['message'], 'bottom');
@@ -256,6 +264,7 @@ var HomeePage = /** @class */ (function () {
         })
             .catch(function (error) {
             _this.locationName = "Unable to fetch geolocation";
+            console.log("=ERROR== : " + error);
             _this.isToggled = true;
             _this.n1 = 0;
             _this.presentToast('Please check the location settings Or :' + error, 'bottom');
@@ -331,6 +340,7 @@ var HomeePage = /** @class */ (function () {
                                                 console.log("=attendance result NEW= :" + JSON.stringify(localStorage.getItem('attendance')));
                                                 if (result['success'] == "1") {
                                                     _this.presentToast(result['message'], 'bottom');
+                                                    _this.day_plan_status = '1';
                                                     // this.router.navigateByUrl('/dashboard');
                                                 }
                                                 else {
@@ -357,7 +367,34 @@ var HomeePage = /** @class */ (function () {
         });
     };
     HomeePage.prototype.goToCheckIn = function () {
-        this.router.navigateByUrl('/clenttype');
+        //this.router.navigateByUrl('/clenttype');
+        this.forCheckin = 1;
+        this.getGeoLocation();
+    };
+    HomeePage.prototype.ionViewWillEnter = function () {
+        console.log("==ionViewWillEnter==");
+        this.triggerHomeApi();
+    };
+    HomeePage.prototype.triggerHomeApi = function () {
+        var _this = this;
+        var params = {
+            userId: this.userDetails._id
+        };
+        this.apiService.postData('/dashboard', params).subscribe(function (result) {
+            console.log("=result= :" + JSON.stringify(result));
+            if (result['success'] == 1) {
+                if (_this.userDetails.user_type == 'owner') {
+                    _this.total_emp = result['data']['user'].total_emp;
+                    _this.present_emp = result['data']['user'].present_emp;
+                }
+                else if (_this.userDetails.user_type == 'employee') {
+                    _this.checkins = result['data']['user'].checkins;
+                    console.log("= this.checkins= :" + _this.checkins);
+                }
+            }
+        }, function (error) {
+            alert(JSON.stringify(error));
+        });
     };
     HomeePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

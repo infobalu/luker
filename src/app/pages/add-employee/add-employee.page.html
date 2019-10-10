@@ -1,9 +1,16 @@
 <ion-header class="black_header" text-center>
-  <ion-toolbar text-center padding>
+  <!-- <ion-toolbar text-center padding>
       <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
        </ion-buttons>
+    <ion-title>New representative</ion-title> -->
+
+    <ion-toolbar text-center class="red_header">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+         </ion-buttons>
     <ion-title>New representative</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -71,7 +78,7 @@
               <ion-input name="employee_area" type="text" formControlName="employee_area"></ion-input>
             </ion-item>
 
-            <ion-item>
+            <ion-item hidden>
                 <ion-label stacked>Upload Image</ion-label>
                 <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
                 <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>

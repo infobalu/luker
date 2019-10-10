@@ -14,9 +14,10 @@
     <ion-tab-button tab="empallcheckin" *ngIf="userDetails.user_type == 'owner'">
       <img src="assets/img/check.png" class="tab_img">
       <ion-label>CHECKINS</ion-label>
-    </ion-tab-button>
+    </ion-tab-button> 
 
-    <ion-tab-button tab="clenttype" *ngIf="userDetails.user_type == 'employee'">
+    <!-- <ion-tab-button tab="clenttype" *ngIf="userDetails.user_type == 'employee'"> -->
+        <ion-tab-button tab="mycheckins" *ngIf="userDetails.user_type == 'employee'">
 
       <img src="assets/img/check.png" class="tab_img">
       <ion-label>CHECKINS</ion-label>

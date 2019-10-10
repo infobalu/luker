@@ -26,12 +26,12 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
 
-    let time1 = new Date(1569061653042);
+    let time1 = new Date(1570453660052);
     console.log('==time1 = : ' + time1);
     let time2 = new Date();
     console.log('==time2 = : ' + time2);
     
-   this.diff_minutes(time2, time1); 
+     this.diff_minutes(time2, time1); 
 
 
     this.firstForm = new FormGroup({
@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
       header: 'SalesBlazon!',
-      message: 'PAYMENT PENDING!!!',
+      message: 'ERRRRRRROR!!!',
       buttons: [
         {
           text: 'Cancel',

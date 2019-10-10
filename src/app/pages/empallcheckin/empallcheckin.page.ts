@@ -47,7 +47,7 @@ export class EmpallcheckinPage implements OnInit {
       if(result['success'] == 1){
         this.activeCheckins = result['data'];
         console.log("== this.getAllCheckins == : "+  JSON.stringify(this.activeCheckins));
-        this.activeCheckins =  this.activeCheckins.filter(d => d.check_in_for == 'dist');
+        this.activeCheckins =  this.activeCheckins.filter(d => d.check_in_for == 'distributor');
       }
     });
 

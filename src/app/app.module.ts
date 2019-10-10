@@ -15,6 +15,9 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserdetilviewPage } from './pages/userdetilview/userdetilview.page';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
+import { Network } from '@ionic-native/network/ngx';
+
 
 
 @NgModule({
@@ -37,6 +40,8 @@ import { UserdetilviewPage } from './pages/userdetilview/userdetilview.page';
     HttpConfigInterceptor,
     NavController,
     UserdetilviewPage,
+    DatePicker,
+    Network,
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
