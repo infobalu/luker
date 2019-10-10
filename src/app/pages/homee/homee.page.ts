@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { ToastController, AlertController,LoadingController } from '@ionic/angular';
+import { ToastController, AlertController, LoadingController } from '@ionic/angular';
 import { ApiService } from './../../services/api.service';
 import * as moment from 'moment';
 
@@ -30,7 +30,8 @@ export class HomeePage implements OnInit {
   activeCheckins: any = [];
   total_emp: number = 0;
   present_emp: number = 0;
-  loading:any;
+  loading: any;
+  internetstatus: any;
 
 
   constructor(private router: Router, private geolocation: Geolocation,
@@ -45,15 +46,12 @@ export class HomeePage implements OnInit {
     this.name = this.userDetails.employee_name;
     this.day_plan_status = this.userDetails.day_plan_status;
     this.total_emp = this.userDetails.total_emp;
-    
-    console.log("=this.user_type= : " + this.userDetails.user_type);
-
-    console.log("=day_plan_status= : " + this.day_plan_status);
-
-    console.log("=total_emp= : " + this.total_emp);
 
     this.checkins = this.userDetails.checkins;
     this.att_id = this.userDetails.att_id;
+
+    this.internetstatus = localStorage.getItem("internet");
+    console.log("= this.internetstatus == : " + this.internetstatus);
 
     if (this.day_plan_status == '1') {
       this.isToggled = true;
@@ -76,15 +74,19 @@ export class HomeePage implements OnInit {
   }
 
   notify(val) {
-    console.log("==notify called= : " + val);
-    if (this.isToggled && this.n1 == 1) {
-      console.log("Toggled: " + this.isToggled);
-      this.getGeoLocation();
-    } else if (this.n1 == 1) {
-      console.log("Toggled: " + this.isToggled);
-      this.getGeoLocation();
+    if (this.internetstatus == '1') {
+      console.log("==notify called= : " + val);
+      if (this.isToggled && this.n1 == 1) {
+        console.log("Toggled: " + this.isToggled);
+        this.getGeoLocation();
+      } else if (this.n1 == 1) {
+        console.log("Toggled: " + this.isToggled);
+        this.getGeoLocation();
+      }
+      this.n1 = 1;
+    } else {
+      alert('Please check your internet connection');
     }
-    this.n1 = 1;
   }
 
   getGeoLocation() {
@@ -140,7 +142,7 @@ export class HomeePage implements OnInit {
 
           console.log('==this.userDetails ID === : ' + this.userDetails._id);
 
-this.dismissLoading();
+          this.dismissLoading();
 
           if (!this.isToggled && this.forCheckin == 0) {
 
@@ -173,7 +175,7 @@ this.dismissLoading();
             this.markAttendance();
           } else if (this.forCheckin == 1) {
             this.forCheckin = 0;
-            
+
             console.log('====LOCATION====== : ' + this.locationName);
 
             console.log('=FOR CHECKIN==');
@@ -186,9 +188,9 @@ this.dismissLoading();
             this.apiService.postData('/startCheckIn', params).subscribe(result => {
               console.log("=startCheckIn= :" + JSON.stringify(result));
               if (result['success'] == "1") {
-                console.log('=check _id= : '+result['data']._id);
+                console.log('=check _id= : ' + result['data']._id);
                 localStorage.setItem('checkin_id', result['data']._id);
-               this.router.navigateByUrl('/create-check-in/');
+                this.router.navigateByUrl('/create-check-in/');
               } else {
                 this.presentToast(result['message'], 'bottom');
               }
@@ -204,7 +206,7 @@ this.dismissLoading();
       })
       .catch((error: any) => {
         this.locationName = "Unable to fetch geolocation";
-        console.log("=ERROR== : "+error);
+        console.log("=ERROR== : " + error);
         this.isToggled = true;
         this.n1 = 0;
         this.dismissLoading();
@@ -301,40 +303,50 @@ this.dismissLoading();
     await alert.present();
   }
 
-  goToCheckIn(){
+  goToCheckIn() {
     //this.router.navigateByUrl('/clenttype');
-    this.forCheckin = 1;
-    this.getGeoLocation();
+    if (this.internetstatus == '1') {
+      this.forCheckin = 1;
+      this.getGeoLocation();
+    }
+    else {
+      alert('Please check your internet connection');
+    }
+
   }
-  
-  ionViewWillEnter(){
+
+  ionViewWillEnter() {
     console.log("==ionViewWillEnter==");
     this.triggerHomeApi();
   }
-  
-  triggerHomeApi(){
+
+  triggerHomeApi() {
     let params = {
       userId: this.userDetails._id
     };
-    
 
-    this.apiService.postData('/dashboard', params).subscribe(result => {
-      console.log("=result= :" + JSON.stringify(result));
+    if (this.internetstatus == '1') {
+      this.apiService.postData('/dashboard', params).subscribe(result => {
+        console.log("=result= :" + JSON.stringify(result));
 
-      if(result['success'] == 1){
-        if(this.userDetails.user_type == 'owner'){
-          this.total_emp = result['data']['user'].total_emp;
-          this.present_emp = result['data']['user'].present_emp;
-          
-        }else if(this.userDetails.user_type == 'employee'){
-        
-          this.checkins = result['data']['user'].checkins;
-          console.log("= this.checkins= :" +  this.checkins);
+        if (result['success'] == 1) {
+          if (this.userDetails.user_type == 'owner') {
+            this.total_emp = result['data']['user'].total_emp;
+            this.present_emp = result['data']['user'].present_emp;
+
+          } else if (this.userDetails.user_type == 'employee') {
+
+            this.checkins = result['data']['user'].checkins;
+            console.log("= this.checkins= :" + this.checkins);
+          }
         }
-      }   
-    }, error => {
-      alert(JSON.stringify(error));
-    });
+      }, error => {
+        alert(JSON.stringify(error));
+      });
+
+    } else {
+      alert('Please check your internet connection');
+    }
 
   }
 
@@ -345,7 +357,7 @@ this.dismissLoading();
 
 
   async presentLoading() {
-     this.loading = await this.loadingController.create({
+    this.loading = await this.loadingController.create({
       message: 'Please Wait...',
     });
     await this.loading.present();

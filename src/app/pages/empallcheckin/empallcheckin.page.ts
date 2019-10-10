@@ -11,6 +11,7 @@ export class EmpallcheckinPage implements OnInit {
   activeCheckins: any = [];
   activeCheckinsDealer: any = [];
   activeCheckinsDist: any = [];
+  internetstatus: any;
 
   constructor( private apiService: ApiService) { }
 
@@ -24,7 +25,12 @@ export class EmpallcheckinPage implements OnInit {
 
   todaysCheckin() {
     console.log("=TODAY=")
-    this.triggerAllCheckIns();
+    this.internetstatus = localStorage.getItem("internet");
+    if (this.internetstatus == '1') {
+      this.triggerAllCheckIns();
+    } else {
+      alert('Please check your internet connection');
+    }
   }
   dealerCheckin() {
     let time = moment().format('YYYY-MM-DD');

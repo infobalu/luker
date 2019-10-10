@@ -9,6 +9,7 @@ import * as moment from 'moment';
 })
 export class EmpAttendaneRptPage implements OnInit {
   activeCheckins: any = [];
+  internetstatus: any;
 
   constructor(private apiService: ApiService) { }
 
@@ -16,17 +17,23 @@ export class EmpAttendaneRptPage implements OnInit {
     this.goToAttendanceRpt();
   }
 
-  goToAttendanceRpt(){
+  goToAttendanceRpt() {
 
     let time = moment().format('YYYY-MM-DD');
-    
-    this.apiService.getData('/attendanceReport/' + time).subscribe(result => {
-      this.activeCheckins = result['data'];
-      console.log("== this.attendanceReport == : "+  JSON.stringify(result['data']));
-      if(result['success'] == 1){
-        
-      }
-    });
+
+    this.internetstatus = localStorage.getItem("internet");
+    if (this.internetstatus == '1') {
+
+      this.apiService.getData('/attendanceReport/' + time).subscribe(result => {
+        this.activeCheckins = result['data'];
+        console.log("== this.attendanceReport == : " + JSON.stringify(result['data']));
+        if (result['success'] == 1) {
+
+        }
+      });
+    } else {
+      alert('Please check your internet connection');
+    }
   }
 
 

@@ -13,6 +13,7 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class ViewemployeesPage implements OnInit {
   activeCheckins: any = [];
+  internetstatus: any;
 
   constructor(private apiService: ApiService,
     public toastController: ToastController,
@@ -38,9 +39,14 @@ export class ViewemployeesPage implements OnInit {
 
   ionViewWillEnter(){
     console.log("==ionViewWillEnter==");
-    this.apiService.getData('/users').subscribe(result => {
-      this.activeCheckins = result['data'];
-    });
+    this.internetstatus = localStorage.getItem("internet");
+    if (this.internetstatus == '1') {
+      this.apiService.getData('/users').subscribe(result => {
+        this.activeCheckins = result['data'];
+      });
+    }else {
+      alert('Please check your internet connection');
+    }
   }
 }
 

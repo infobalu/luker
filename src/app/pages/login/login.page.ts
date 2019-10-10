@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ApiService } from './../../services/api.service';
 import { ToastController, AlertController } from '@ionic/angular';
 import * as moment from 'moment';
+import { Network } from '@ionic-native/network/ngx';
 
 
 @Component({
@@ -15,14 +16,17 @@ import * as moment from 'moment';
 export class LoginPage implements OnInit {
 
   firstForm: any;
+  internetstatus: any;
 
   constructor(
     public menu: MenuController,
     private router: Router,
     private apiService: ApiService,
     public toastController: ToastController,
-    public alertController: AlertController
-  ) { }
+    public alertController: AlertController,
+    private network: Network) {
+
+  }
 
   ngOnInit() {
 
@@ -30,8 +34,8 @@ export class LoginPage implements OnInit {
     console.log('==time1 = : ' + time1);
     let time2 = new Date();
     console.log('==time2 = : ' + time2);
-    
-     this.diff_minutes(time2, time1); 
+
+    this.diff_minutes(time2, time1);
 
 
     this.firstForm = new FormGroup({
@@ -85,11 +89,8 @@ export class LoginPage implements OnInit {
     if (diff > 10000) {
       this.presentAlertPrompt();
     }
-
     return Math.abs(Math.round(diff));
-
   }
-
 
   passwordvalidation(formcontrol) {
     if (formcontrol.value.length < 5) {
@@ -102,31 +103,38 @@ export class LoginPage implements OnInit {
   }
 
   login(data) {
+
     let params = {
       email: data.value.emailid,
       password: data.value.password
     };
 
-    this.apiService.postData('/user/login', params).subscribe(result => {
-      console.log("=result= :" + JSON.stringify(result));
-      if (result['status'] == "success") {
-        localStorage.setItem('userDetails', JSON.stringify(result['data']['user']));
-        // localStorage.setItem('userDetails', JSON.stringify(result['data']));
-        if (result['data']['user']['employee_name']) {
-          this.presentToast('Welcome ' + result['data']['user']['employee_name'], 'bottom');
-        } else {
-          this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
-        }
-        console.log("dash=======11111");
-        this.router.navigateByUrl('/dashboard');
-        console.log("dash=======2222222222");
+    this.internetstatus = localStorage.getItem("internet");
+    console.log("= this.internetstatus == : "+ this.internetstatus);
 
-      } else {
-        this.presentToast('Username or password is incorrect', 'middle');
-      }
-    }, error => {
-      alert(JSON.stringify(error));
-    });
+    if(this.internetstatus == '1'){
+      this.apiService.postData('/user/login', params).subscribe(result => {
+        console.log("=result= :" + JSON.stringify(result));
+        if (result['status'] == "success") {
+          localStorage.setItem('userDetails', JSON.stringify(result['data']['user']));
+          // localStorage.setItem('userDetails', JSON.stringify(result['data']));
+          if (result['data']['user']['employee_name']) {
+            this.presentToast('Welcome ' + result['data']['user']['employee_name'], 'bottom');
+          } else {
+            this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
+          }
+          this.router.navigateByUrl('/dashboard');
+        } else {
+          this.presentToast('Username or password is incorrect', 'middle');
+        }
+      }, error => {
+        alert(JSON.stringify(error));
+      });
+    }else{
+      alert('Please check your internet connection');
+    }
+
+    
   }
 
   async presentToast(msg, position) {

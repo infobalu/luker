@@ -20,7 +20,8 @@ export class AddEmployeePage implements OnInit {
   base64Image: any;
   userDetails: any;
   capturedPhoto: any;
-  loading:any;
+  loading: any;
+  internetstatus: any;
 
   constructor(
     private apiService: ApiService,
@@ -70,7 +71,7 @@ export class AddEmployeePage implements OnInit {
       employee_area: new FormControl("", Validators.compose([
         Validators.required
       ])),
-      type: new FormControl("",Validators.compose([
+      type: new FormControl("", Validators.compose([
         Validators.required
       ])),
     });
@@ -92,21 +93,27 @@ export class AddEmployeePage implements OnInit {
       user_type: 'employee',
       added_by: this.userDetails._id,
       employee_no: data.value.empno,
-      employee_post_location : data.value.location,
+      employee_post_location: data.value.location,
       employee_area: data.value.employee_area,
-      employee_vertical:'test',
+      employee_vertical: 'test',
 
     };
 
-    this.apiService.postData('/users', params).subscribe(result => {
+    this.internetstatus = localStorage.getItem("internet");
+    if (this.internetstatus == '1') {
 
-      console.log('==result= : ' + JSON.stringify(result));
+      this.apiService.postData('/users', params).subscribe(result => {
 
-      this.presentToast("Employee added successfully", "bottom");
-      this.router.navigateByUrl('/dashboard');
-    }, error => {
-      alert(JSON.stringify(error));
-    });
+        console.log('==result= : ' + JSON.stringify(result));
+
+        this.presentToast("Employee added successfully", "bottom");
+        this.router.navigateByUrl('/dashboard');
+      }, error => {
+        alert(JSON.stringify(error));
+      });
+    } else {
+      alert('Please check your internet connection');
+    }
   }
 
   async presentToast(msg, position) {
@@ -120,8 +127,8 @@ export class AddEmployeePage implements OnInit {
 
   uploadImages(path: any) {
     let _self = this;
-    cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', { },
-      {'checkin_id': path}, this.base64Image, 'image', function (response) {
+    cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', {},
+      { 'checkin_id': path }, this.base64Image, 'image', function (response) {
         console.log('response', JSON.stringify(response));
         _self.router.navigateByUrl('/dashboard');
       }, function (response) {
@@ -158,7 +165,7 @@ export class AddEmployeePage implements OnInit {
 
 
   async presentLoading() {
-     this.loading = await this.loadingController.create({
+    this.loading = await this.loadingController.create({
       message: 'Please Wait...',
     });
     await this.loading.present();

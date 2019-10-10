@@ -33,9 +33,10 @@ export class CreateCheckInPage implements OnInit {
   capturedPhoto: any;
   base64Image: any;
   image: any;
-  checkinId:any;
-  loading:any;
+  checkinId: any;
+  loading: any;
   project_finalized_dt: any;
+  internetstatus: any;
 
 
 
@@ -55,8 +56,8 @@ export class CreateCheckInPage implements OnInit {
     this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
     this.checkinId = localStorage.getItem('checkin_id')
     this.checkInFor = this.userDetails.employee_type;
-    console.log("==this.checkInFor== : "+this.checkInFor);
-    
+    console.log("==this.checkInFor== : " + this.checkInFor);
+
 
 
     this.distributorForm = new FormGroup({
@@ -102,7 +103,7 @@ export class CreateCheckInPage implements OnInit {
       projectvalue: new FormControl('', Validators.compose([Validators.required])),
 
     });
-    console.log('=checkinId== :'+this.checkinId);
+    console.log('=checkinId== :' + this.checkinId);
 
   }
 
@@ -157,24 +158,31 @@ export class CreateCheckInPage implements OnInit {
       luker_share: this.distributorForm.value.lukershare,
       targeted_value: this.distributorForm.value.targetval,
       targeted_share: this.distributorForm.value.lukertarget,
-      checkin_id:this.checkinId,
-      latitude:this.latitude,
-      longitude:this.longitude,
-      location:this.distributorForm.value.routename
+      checkin_id: this.checkinId,
+      latitude: this.latitude,
+      longitude: this.longitude,
+      location: this.distributorForm.value.routename
     };
     console.log('params', JSON.stringify(params));
     this.presentLoading();
-    this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
-      console.log('result distributor', JSON.stringify(result));
-      const finaldatas = result;
-      if (finaldatas.success == 1) {
-        
-        this.uploadImages(this.checkinId);
-        this.dismissLoading();
-        this.presentToast('checked out successfully', 'bottom');
-        this.router.navigateByUrl('/dashboard');
-      }
-    });
+
+    this.internetstatus = localStorage.getItem("internet");
+    if (this.internetstatus == '1') {
+
+      this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
+        console.log('result distributor', JSON.stringify(result));
+        const finaldatas = result;
+        if (finaldatas.success == 1) {
+
+          this.uploadImages(this.checkinId);
+          this.dismissLoading();
+          this.presentToast('checked out successfully', 'bottom');
+          this.router.navigateByUrl('/dashboard');
+        }
+      });
+    } else {
+      alert('Please check your internet connection');
+    }
   }
 
   dealerFormSubmit(data) {
@@ -211,21 +219,26 @@ export class CreateCheckInPage implements OnInit {
       remarks: this.dealerForm.value.remarks,
       competitor_name: this.dealerForm.value.compname,
       checkin_id: this.checkinId,
-      latitude:this.latitude,
-      longitude:this.longitude,
-      location:this.distributorForm.value.routename
+      latitude: this.latitude,
+      longitude: this.longitude,
+      location: this.distributorForm.value.routename
     };
     this.presentLoading();
-    this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
-      console.log('result dealer', JSON.stringify(result));
-      const finaldatas = result;
-      if (finaldatas.success == 1) {
-        this.dismissLoading();
-        this.uploadImages(this.checkinId);
-        this.presentToast('Check out successfully', 'bottom');
-        this.router.navigateByUrl('/dashboard');
-      }
-    });
+    this.internetstatus = localStorage.getItem("internet");
+    if (this.internetstatus == '1') {
+      this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
+        console.log('result dealer', JSON.stringify(result));
+        const finaldatas = result;
+        if (finaldatas.success == 1) {
+          this.dismissLoading();
+          this.uploadImages(this.checkinId);
+          this.presentToast('Check out successfully', 'bottom');
+          this.router.navigateByUrl('/dashboard');
+        }
+      });
+    } else {
+      alert('Please check your internet connection');
+    }
   }
 
   makeFileIntoBlob(filePath) {
@@ -275,11 +288,11 @@ export class CreateCheckInPage implements OnInit {
     }
   }
 
- 
+
   uploadImages(path: any) {
     let _self = this;
-    cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', { },
-      {'checkin_id': path}, this.base64Image, 'image', function (response) {
+    cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', {},
+      { 'checkin_id': path }, this.base64Image, 'image', function (response) {
         console.log('response', JSON.stringify(response));
         _self.router.navigateByUrl('/dashboard');
       }, function (response) {
@@ -334,17 +347,17 @@ export class CreateCheckInPage implements OnInit {
           this.locationName = "Unable to fetch geolocation";
         }
 
-     
+
 
         this.distributorForm.controls.location.setValue(this.locationName);
         this.dealerForm.controls.location.setValue(this.locationName);
 
         this.distributorForm.controls.retaileraddr.setValue(this.locationName);
 
-        console.log("===locationName==: "+this.locationName);
+        console.log("===locationName==: " + this.locationName);
       })
       .catch((error: any) => {
-        console.log("===locationName errrr==: "+error);
+        console.log("===locationName errrr==: " + error);
       });
 
   }
@@ -356,19 +369,19 @@ export class CreateCheckInPage implements OnInit {
 
 
   async presentLoading() {
-     this.loading = await this.loadingController.create({
+    this.loading = await this.loadingController.create({
       message: 'Please Wait...',
     });
     await this.loading.present();
   }
 
-  showDatePicker(){
+  showDatePicker() {
     this.datePicker.show({
       date: new Date(),
       mode: 'date',
       androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
     }).then(
-      date => {console.log('Got date: ', date), this.project_finalized_dt = date, console.log('project_finalized_dt: ', this.project_finalized_dt)} ,
+      date => { console.log('Got date: ', date), this.project_finalized_dt = date, console.log('project_finalized_dt: ', this.project_finalized_dt) },
       err => console.log('Error occurred while getting date: ', err)
     );
   }
