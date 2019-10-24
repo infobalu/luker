@@ -38,7 +38,7 @@ export class ViewcheckinPage implements OnInit {
   ionViewWillEnter(){
     console.log("==ionViewWillEnter==");
     this.internetstatus = localStorage.getItem("internet");
-    if (this.internetstatus == '1') {
+    if (navigator.onLine) {
     this.triggerMyCheckIns();
     }else {
       alert('Please check your internet connection');

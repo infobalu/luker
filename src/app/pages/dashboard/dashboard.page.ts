@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { MenuController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ApiService } from './../../services/api.service';
@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { ToastController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +31,8 @@ export class DashboardPage implements OnInit {
   checkins: number = 0;
   att_id:any;
   forCheckin: number = 0;
+  backButtonSubscription: any;
+
 
   constructor(
     public menu: MenuController,
@@ -38,7 +41,8 @@ export class DashboardPage implements OnInit {
     public alertController: AlertController,
     private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private platform: Platform
   ) { }
 
   ionViewWillEnter() {
@@ -339,5 +343,44 @@ export class DashboardPage implements OnInit {
 
     });
   }
+
+  // ngAfterViewInit() {
+  //   this.platform.backButton.subscribe();
+  //   console.log("=this.router.url == : " + this.router.url);
+   
+    
+  //   this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+  //     this.presentAlertPromptExit();
+  //   });
+  // }
+
+  async presentAlertPromptExit() {
+    const alert = await this.alertController.create({
+      header: 'Exit',
+      message: 'Are you sure want to quit?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          
+
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            navigator['app'].exitApp();
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 
 }

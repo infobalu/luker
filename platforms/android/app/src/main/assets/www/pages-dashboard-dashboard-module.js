@@ -34,13 +34,10 @@ var routes = [
             { path: 'profileadmin', loadChildren: '../profileadmin/profileadmin.module#ProfileadminPageModule' },
             { path: 'empallcheckin', loadChildren: '../empallcheckin/empallcheckin.module#EmpallcheckinPageModule' },
             { path: 'emp-attendane-rpt', loadChildren: '../emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' },
-            { path: 'clenttype', loadChildren: '../clenttype/clenttype.module#ClenttypePageModule' }
+            { path: 'clenttype', loadChildren: '../clenttype/clenttype.module#ClenttypePageModule' },
+            { path: 'mycheckins', loadChildren: '../mycheckins/mycheckins.module#MycheckinsPageModule' },
+            { path: '', loadChildren: '../homee/homee.module#HomeePageModule' }
         ]
-    },
-    {
-        path: '',
-        redirectTo: '../homee/homee.module#HomeePageModule',
-        pathMatch: 'full'
     }
 ];
 var DashboardPageModule = /** @class */ (function () {
@@ -71,7 +68,7 @@ var DashboardPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ion-content class=\"dashboard\">\n\n<ion-card>\n    <ion-grid>\n\n      <ion-row style=\"border: bottom 1px solid #cccccc;\">\n        <ion-col col-6>\n          <p>Checkins Left<span class='count'> {{checkins}} </span></p>\n        </ion-col>\n        <ion-col col-6 text-right>\n          <ion-toggle [(ngModel)]=\"isToggled\" (ionChange)=\"notify(n1)\"></ion-toggle>\n        </ion-col>\n      </ion-row>\n\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToCheckIn()\" style=\"width: 100%\"\n          *ngIf=\"userDetails.user_type == 'employee'\">\n          Create Check-In</ion-button>\n      </ion-row>\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" *ngIf=\"userDetails.user_type == 'employee'\"\n          (click)=\"goToMyCheckin()\" style=\"width: 100%\">\n          My Check-In</ion-button>\n      </ion-row>\n\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToAddEmployee()\" style=\"width: 100%\">\n          Add Employee</ion-button>\n      </ion-row>\n\n\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToViewEmployee()\" style=\"width: 100%\">\n          View Employees</ion-button>\n      </ion-row>\n\n\n      <ion-row>\n        <ion-button expand=\"block\" color=\"secondary\" (click)=\"goToAttendanceRpt()\" style=\"width: 100%\">\n          Attendance Report</ion-button>\n      </ion-row>\n    \n    </ion-grid>\n  </ion-card> \n\n\n</ion-content>-->\n\n\n<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"homee\" (click)='tab2Selected()'>\n      <ion-icon name=\"home\"></ion-icon>\n      <ion-label>HOME</ion-label>\n\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"viewemployees\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <ion-icon name=\"representative\"></ion-icon>\n      <ion-label>REPRESENTATIVE</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"empallcheckin\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <ion-icon name=\"checkins\"></ion-icon>\n      <ion-label>CHECK-INS</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"clenttype\" *ngIf=\"userDetails.user_type == 'employee'\">\n      <ion-icon name=\"checkins\"></ion-icon>\n      <ion-label>CHECK-INS</ion-label>\n    </ion-tab-button>\n\n\n\n    <!-- <ion-tab-button tab=\"emp-attendane-rpt\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <ion-icon name=\"attendance\"></ion-icon>\n      <ion-label>Attendance</ion-label>\n    </ion-tab-button> -->\n\n    <ion-tab-button tab=\"profileadmin\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <ion-icon name=\"profile\"></ion-icon>\n      <ion-label>PROFILE</ion-label>\n    </ion-tab-button>\n\n  </ion-tab-bar>\n</ion-tabs>"
+module.exports = "<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"homee\" (click)='tab2Selected()'>\n      <ion-icon name=\"home\"></ion-icon>\n      <ion-label>HOME</ion-label>\n\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"viewemployees\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <img src=\"assets/img/rep.png\" class=\"tab_img\">\n      <ion-label>REPRESENTATIVE</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"empallcheckin\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <img src=\"assets/img/check.png\" class=\"tab_img\">\n      <ion-label>CHECKINS</ion-label>\n    </ion-tab-button> \n\n    <!-- <ion-tab-button tab=\"clenttype\" *ngIf=\"userDetails.user_type == 'employee'\"> -->\n        <ion-tab-button tab=\"mycheckins\" *ngIf=\"userDetails.user_type == 'employee'\">\n\n      <img src=\"assets/img/check.png\" class=\"tab_img\">\n      <ion-label>CHECKINS</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"profileadmin\">\n      <img src=\"assets/img/profile.png\" class=\"tab_img\">\n      <ion-label>PROFILE</ion-label>\n    </ion-tab-button>\n\n  </ion-tab-bar>\n</ion-tabs>"
 
 /***/ }),
 
@@ -82,7 +79,7 @@ module.exports = "<!-- <ion-content class=\"dashboard\">\n\n<ion-card>\n    <ion
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".dashboard ion-button {\n  padding-left: 25px;\n  padding-right: 25px;\n  margin-top: 25px; }\n\n.dashboard .active-check-ins {\n  margin: 15px;\n  margin-top: 45px; }\n\n.dashboard .active-check-ins ion-row {\n    border: 1px solid black; }\n\n.dashboard .active-check-ins ion-col {\n    max-width: 33%;\n    min-width: 33%; }\n\n.dashboard .active-check-ins .head {\n    text-align: center;\n    font-size: 20px; }\n\n.dashboard .active-check-ins .head ion-col {\n      max-width: 100%; }\n\n.dashboard .active-check-ins ion-button {\n    padding-left: 10px;\n    padding-right: 10px;\n    height: 25px;\n    margin-top: 0px;\n    padding: 0px;\n    width: 96px;\n    font-size: 12px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3N1bWVzaGIvRGVza3RvcC9zYW1wbGUvZ3VydS9zcmMvYXBwL3BhZ2VzL2Rhc2hib2FyZC9kYXNoYm9hcmQucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBRVEsa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixnQkFBZ0IsRUFBQTs7QUFKeEI7RUFRUSxZQUFZO0VBQ1osZ0JBQWdCLEVBQUE7O0FBVHhCO0lBWVksdUJBQXVCLEVBQUE7O0FBWm5DO0lBZVksY0FBYztJQUNkLGNBQWMsRUFBQTs7QUFoQjFCO0lBb0JZLGtCQUFrQjtJQUNsQixlQUFlLEVBQUE7O0FBckIzQjtNQXVCZ0IsZUFBZSxFQUFBOztBQXZCL0I7SUE0Qlksa0JBQWtCO0lBQ2xCLG1CQUFtQjtJQUNuQixZQUFZO0lBQ1osZUFBZTtJQUNmLFlBQVk7SUFDWixXQUFXO0lBQ1gsZUFBZSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvZGFzaGJvYXJkL2Rhc2hib2FyZC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZGFzaGJvYXJkIHtcbiAgICBpb24tYnV0dG9uIHtcbiAgICAgICAgcGFkZGluZy1sZWZ0OiAyNXB4O1xuICAgICAgICBwYWRkaW5nLXJpZ2h0OiAyNXB4O1xuICAgICAgICBtYXJnaW4tdG9wOiAyNXB4O1xuICAgIH1cblxuICAgIC5hY3RpdmUtY2hlY2staW5zIHtcbiAgICAgICAgbWFyZ2luOiAxNXB4O1xuICAgICAgICBtYXJnaW4tdG9wOiA0NXB4O1xuXG4gICAgICAgIGlvbi1yb3cge1xuICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgICAgIH1cbiAgICAgICAgaW9uLWNvbCB7XG4gICAgICAgICAgICBtYXgtd2lkdGg6IDMzJTtcbiAgICAgICAgICAgIG1pbi13aWR0aDogMzMlO1xuICAgICAgICB9XG5cbiAgICAgICAgLmhlYWQge1xuICAgICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICAgICAgZm9udC1zaXplOiAyMHB4O1xuICAgICAgICAgICAgaW9uLWNvbCB7XG4gICAgICAgICAgICAgICAgbWF4LXdpZHRoOiAxMDAlO1xuICAgICAgICAgICAgfVxuICAgICAgICB9XG5cbiAgICAgICAgaW9uLWJ1dHRvbiB7XG4gICAgICAgICAgICBwYWRkaW5nLWxlZnQ6IDEwcHg7XG4gICAgICAgICAgICBwYWRkaW5nLXJpZ2h0OiAxMHB4O1xuICAgICAgICAgICAgaGVpZ2h0OiAyNXB4O1xuICAgICAgICAgICAgbWFyZ2luLXRvcDogMHB4O1xuICAgICAgICAgICAgcGFkZGluZzogMHB4O1xuICAgICAgICAgICAgd2lkdGg6IDk2cHg7XG4gICAgICAgICAgICBmb250LXNpemU6IDEycHg7XG4gICAgICAgIH1cbiAgICB9XG59Il19 */"
+module.exports = ".dashboard ion-button {\n  padding-left: 25px;\n  padding-right: 25px;\n  margin-top: 25px; }\n\n.dashboard .active-check-ins {\n  margin: 15px;\n  margin-top: 45px; }\n\n.dashboard .active-check-ins ion-row {\n    border: 1px solid black; }\n\n.dashboard .active-check-ins ion-col {\n    max-width: 33%;\n    min-width: 33%; }\n\n.dashboard .active-check-ins .head {\n    text-align: center;\n    font-size: 20px; }\n\n.dashboard .active-check-ins .head ion-col {\n      max-width: 100%; }\n\n.dashboard .active-check-ins ion-button {\n    padding-left: 10px;\n    padding-right: 10px;\n    height: 25px;\n    margin-top: 0px;\n    padding: 0px;\n    width: 96px;\n    font-size: 12px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3N1bWVzaGIvRGVza3RvcC9zYW1wbGUvZ3VydS9zcmMvYXBwL3BhZ2VzL2Rhc2hib2FyZC9kYXNoYm9hcmQucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBRVEsa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixnQkFBZ0IsRUFBQTs7QUFKeEI7RUFPUSxZQUFZO0VBQ1osZ0JBQWdCLEVBQUE7O0FBUnhCO0lBV1ksdUJBQXVCLEVBQUE7O0FBWG5DO0lBY1ksY0FBYztJQUNkLGNBQWMsRUFBQTs7QUFmMUI7SUFtQlksa0JBQWtCO0lBQ2xCLGVBQWUsRUFBQTs7QUFwQjNCO01Bc0JnQixlQUFlLEVBQUE7O0FBdEIvQjtJQTJCWSxrQkFBa0I7SUFDbEIsbUJBQW1CO0lBQ25CLFlBQVk7SUFDWixlQUFlO0lBQ2YsWUFBWTtJQUNaLFdBQVc7SUFDWCxlQUFlLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9kYXNoYm9hcmQvZGFzaGJvYXJkLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kYXNoYm9hcmQge1xuICAgIGlvbi1idXR0b24ge1xuICAgICAgICBwYWRkaW5nLWxlZnQ6IDI1cHg7XG4gICAgICAgIHBhZGRpbmctcmlnaHQ6IDI1cHg7XG4gICAgICAgIG1hcmdpbi10b3A6IDI1cHg7XG4gICAgfSAgIFxuICAgIC5hY3RpdmUtY2hlY2staW5zIHtcbiAgICAgICAgbWFyZ2luOiAxNXB4O1xuICAgICAgICBtYXJnaW4tdG9wOiA0NXB4O1xuXG4gICAgICAgIGlvbi1yb3cge1xuICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgICAgIH1cbiAgICAgICAgaW9uLWNvbCB7XG4gICAgICAgICAgICBtYXgtd2lkdGg6IDMzJTtcbiAgICAgICAgICAgIG1pbi13aWR0aDogMzMlO1xuICAgICAgICB9XG5cbiAgICAgICAgLmhlYWQge1xuICAgICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICAgICAgZm9udC1zaXplOiAyMHB4O1xuICAgICAgICAgICAgaW9uLWNvbCB7XG4gICAgICAgICAgICAgICAgbWF4LXdpZHRoOiAxMDAlO1xuICAgICAgICAgICAgfVxuICAgICAgICB9XG5cbiAgICAgICAgaW9uLWJ1dHRvbiB7XG4gICAgICAgICAgICBwYWRkaW5nLWxlZnQ6IDEwcHg7XG4gICAgICAgICAgICBwYWRkaW5nLXJpZ2h0OiAxMHB4O1xuICAgICAgICAgICAgaGVpZ2h0OiAyNXB4O1xuICAgICAgICAgICAgbWFyZ2luLXRvcDogMHB4O1xuICAgICAgICAgICAgcGFkZGluZzogMHB4O1xuICAgICAgICAgICAgd2lkdGg6IDk2cHg7XG4gICAgICAgICAgICBmb250LXNpemU6IDEycHg7XG4gICAgICAgIH1cbiAgICB9XG5cbiAgXG59Il19 */"
 
 /***/ }),
 
@@ -114,8 +111,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var DashboardPage = /** @class */ (function () {
-    function DashboardPage(menu, apiService, router, alertController, geolocation, nativeGeocoder, toastController) {
+    function DashboardPage(menu, apiService, router, alertController, geolocation, nativeGeocoder, toastController, platform) {
         this.menu = menu;
         this.apiService = apiService;
         this.router = router;
@@ -123,6 +121,7 @@ var DashboardPage = /** @class */ (function () {
         this.geolocation = geolocation;
         this.nativeGeocoder = nativeGeocoder;
         this.toastController = toastController;
+        this.platform = platform;
         this.activeCheckins = [];
         this.n1 = 1;
         this.checkins = 0;
@@ -133,14 +132,10 @@ var DashboardPage = /** @class */ (function () {
         // this.getActiveCheckins();
     };
     DashboardPage.prototype.ngOnInit = function () {
-        console.log("==HAIIIII=");
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.attendance = JSON.parse(localStorage.getItem("attendance"));
         //this.day_plan_status = this.userDetails.day_plan_status;
         this.day_plan_status = this.userDetails.day_plan_status;
-        console.log("=this.userDetails= : " + JSON.stringify(this.userDetails));
-        console.log("=this.user_type= : " + this.userDetails.user_type);
-        console.log("=this.attendance= : " + JSON.stringify(this.attendance));
         this.checkins = this.userDetails.checkins;
         this.att_id = this.userDetails.att_id;
         if (this.day_plan_status == '1') {
@@ -410,8 +405,47 @@ var DashboardPage = /** @class */ (function () {
             }
         });
     };
-    DashboardPage.prototype.tab2Selected = function () {
-        console.log("=TAB 2 SELECTED==");
+    // ngAfterViewInit() {
+    //   this.platform.backButton.subscribe();
+    //   console.log("=this.router.url == : " + this.router.url);
+    //   this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+    //     this.presentAlertPromptExit();
+    //   });
+    // }
+    DashboardPage.prototype.presentAlertPromptExit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Exit',
+                            message: 'Are you sure want to quit?',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function (blah) {
+                                        console.log('Confirm Cancel: blah');
+                                    }
+                                }, {
+                                    text: 'Okay',
+                                    handler: function () {
+                                        console.log('Confirm Okay');
+                                        navigator['app'].exitApp();
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     DashboardPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -425,7 +459,8 @@ var DashboardPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
             _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__["Geolocation"],
             _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_7__["NativeGeocoder"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"]])
     ], DashboardPage);
     return DashboardPage;
 }());

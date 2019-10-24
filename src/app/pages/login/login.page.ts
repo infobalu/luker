@@ -26,6 +26,18 @@ export class LoginPage implements OnInit {
     public alertController: AlertController,
     private network: Network) {
 
+      this.network.onDisconnect().subscribe(() => {
+        console.log('NO INTERNET login')
+  
+        localStorage.setItem('internet', "0");
+      });
+  
+      this.network.onConnect().subscribe(() => {
+        console.log(' INTERNET login')
+        localStorage.setItem('internet', "1");
+      });
+
+
   }
 
   ngOnInit() {
@@ -35,8 +47,7 @@ export class LoginPage implements OnInit {
     let time2 = new Date();
     console.log('==time2 = : ' + time2);
 
-    this.diff_minutes(time2, time1);
-
+    //this.diff_minutes(time2, time1);
 
     this.firstForm = new FormGroup({
       emailid: new FormControl("", Validators.compose([
@@ -109,20 +120,19 @@ export class LoginPage implements OnInit {
       password: data.value.password
     };
 
-    this.internetstatus = localStorage.getItem("internet");
-    console.log("= this.internetstatus == : "+ this.internetstatus);
+    // this.internetstatus = localStorage.getItem("internet");
+    // console.log("= this.internetstatus == : "+ this.internetstatus);
 
-    if(this.internetstatus == '1'){
+    if (navigator.onLine) {
       this.apiService.postData('/user/login', params).subscribe(result => {
         console.log("=result= :" + JSON.stringify(result));
         if (result['status'] == "success") {
           localStorage.setItem('userDetails', JSON.stringify(result['data']['user']));
-          // localStorage.setItem('userDetails', JSON.stringify(result['data']));
-          if (result['data']['user']['employee_name']) {
+         /* if (result['data']['user']['employee_name']) {
             this.presentToast('Welcome ' + result['data']['user']['employee_name'], 'bottom');
           } else {
             this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
-          }
+          }*/
           this.router.navigateByUrl('/dashboard');
         } else {
           this.presentToast('Username or password is incorrect', 'middle');

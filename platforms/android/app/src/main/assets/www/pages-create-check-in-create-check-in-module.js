@@ -59,7 +59,7 @@ var CreateCheckInPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-menu-button autoHide=\"false\"></ion-menu-button>\n    </ion-buttons>\n    <ion-title>{{checkInFor}}&nbsp;Check In</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form *ngIf=\"checkInFor == 'distributor'\" class=\"add-employee-form\" [formGroup]=\"distributorForm\"\n    (ngSubmit)=\"distributorFormSubmit(distributorForm)\">\n    <ion-grid>\n      <ion-row justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div padding>\n\n            <ion-item>\n              <ion-label position=\"floating\">Distributor Name</ion-label>\n              <ion-input name=\"distributorName\" type=\"text\" formControlName=\"distributorName\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Retailer Name</ion-label>\n              <ion-input name=\"retailerName\" type=\"text\" formControlName=\"retailerName\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Retailer Number</ion-label>\n              <ion-input name=\"retailerNum\" type=\"tel\" formControlName=\"retailerNum\"></ion-input>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Address</ion-label>\n                <ion-input name=\"retaileraddr\" type=\"text\" formControlName=\"retaileraddr\" readonly></ion-input>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Route name</ion-label>\n                <ion-input name=\"routename\" type=\"text\" formControlName=\"routename\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n                <ion-label position=\"floating\">Top Selling Brands</ion-label>\n                <ion-input name=\"topbrand\" type=\"text\" formControlName=\"topbrand\"></ion-input>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Secondary sales vertical</ion-label>\n                <ion-input name=\"secsales\" type=\"text\" formControlName=\"secsales\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n                <ion-label position=\"floating\">Luker order of day</ion-label>\n                <ion-input name=\"lukerorder\" type=\"text\" formControlName=\"lukerorder\"></ion-input>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Luker secondary</ion-label>\n                <ion-input name=\"lukersec\" type=\"text\" formControlName=\"lukersec\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n                <ion-label position=\"floating\">Luker counter share</ion-label>\n                <ion-input name=\"lukershare\" type=\"text\" formControlName=\"lukershare\"></ion-input>\n            </ion-item>\n            <ion-item>\n                <ion-label position=\"floating\">Luker Targeted value</ion-label>\n                <ion-input name=\"targetval\" type=\"text\" formControlName=\"targetval\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n                <ion-label position=\"floating\">Luker Targeted share</ion-label>\n                <ion-input name=\"lukertarget\" type=\"text\" formControlName=\"lukertarget\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n                <ion-label stacked>Upload Image</ion-label>\n                <!-- <ion-input type=\"file\" accept=\"image/*\" (change)=\"changeListener($event)\"></ion-input> -->\n                <ion-button (click)=\"uploadFromCamera()\" shape=\"round\" fill=\"outline\">+ Click to upload image</ion-button>\n                \n                <ion-avatar>\n                  <img *ngIf=\"capturedPhoto\" [src]=\"capturedPhoto\"/>\n                  <!-- <div class=\"header\" *ngIf=\"image\" [style.background-image]=\"image\"></div> -->\n                </ion-avatar>\n                \n              </ion-item>\n            \n          </div>\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"distributorForm.invalid\" expand=\"block\">Add Check In\n            </ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n\n  <form *ngIf=\"checkInFor == 'dealer'\" class=\"add-employee-form\" [formGroup]=\"dealerForm\"\n    (ngSubmit)=\"dealerFormSubmit(dealerForm)\">\n    <ion-grid>\n      <ion-row justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div padding>\n            <ion-item>\n              <ion-label position=\"floating\">Dealer Name</ion-label>\n              <ion-input name=\"dealerName\" type=\"text\" formControlName=\"dealerName\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label>Date of Visit</ion-label>\n              <ion-input name=\"dateofvisit\" type=\"date\" formControlName=\"dateofvisit\" disabled=\"true\"></ion-input>\n              <!-- <ion-datetime displayFormat=\"MM DD YY\" formControlName=\"dateofvisit\"></ion-datetime> -->\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Name of Project</ion-label>\n              <ion-input name=\"projectname\" type=\"text\" formControlName=\"projectname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label>Type or Segment</ion-label>\n              <ion-select interface=\"popover\" formControlName=\"segment\">\n                <ion-select-option value=\"project\">Project</ion-select-option>\n                <ion-select-option value=\"directcustomer\">Direct Customer</ion-select-option>\n                <ion-select-option value=\"consultant\">Consultant</ion-select-option>\n                <ion-select-option value=\"builder\">Builder</ion-select-option>\n                <ion-select-option value=\"architect\">Architect</ion-select-option>\n                <ion-select-option value=\"electrician\">Electrician</ion-select-option>\n                <ion-select-option value=\"others\">Others</ion-select-option>\n              </ion-select>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Name of the customer</ion-label>\n              <ion-input name=\"custname\" type=\"text\" formControlName=\"custname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Mobile Number</ion-label>\n              <ion-input name=\"mobileNumber\" type=\"tel\" formControlName=\"mobileNumber\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Decision maker name</ion-label>\n              <ion-input name=\"decmakername\" type=\"text\" formControlName=\"decmakername\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Decision maker contact number</ion-label>\n              <ion-input name=\"decmakernum\" type=\"tel\" formControlName=\"decmakernum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Contractor name</ion-label>\n              <ion-input name=\"contractorname\" type=\"text\" formControlName=\"contractorname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Contractor contact number</ion-label>\n              <ion-input name=\"contractornum\" type=\"tel\" formControlName=\"contractornum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Consultant name</ion-label>\n              <ion-input name=\"consultantname\" type=\"text\" formControlName=\"consultantname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Consultant contact number</ion-label>\n              <ion-input name=\"consultantnum\" type=\"tel\" formControlName=\"consultantnum\"></ion-input>\n            </ion-item>\n            \n\n            <ion-item>\n              <ion-label position=\"floating\">Architect name</ion-label>\n              <ion-input name=\"architectname\" type=\"text\" formControlName=\"architectname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Architect contact number</ion-label>\n              <ion-input name=\"architectnum\" type=\"tel\" formControlName=\"architectnum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Electrician name</ion-label>\n              <ion-input name=\"electricianname\" type=\"text\" formControlName=\"electricianname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Electrician contact number</ion-label>\n              <ion-input name=\"electriciannum\" type=\"tel\" formControlName=\"electriciannum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Builder name</ion-label>\n              <ion-input name=\"buildername\" type=\"text\" formControlName=\"buildername\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Builder contact number</ion-label>\n              <ion-input name=\"buildernum\" type=\"tel\" formControlName=\"buildernum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Stage of construction</ion-label>\n              <ion-input name=\"stageconstruction\" type=\"text\" formControlName=\"stageconstruction\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Expected project finalization</ion-label>\n              <ion-input name=\"expectprice\" type=\"text\" formControlName=\"expectprice\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Check In Location</ion-label>\n              <ion-input name=\"location\" type=\"text\" formControlName=\"location\" readonly></ion-input>\n            </ion-item>\n            \n            <ion-item>\n              <ion-textarea placeholder=\"Remarks ...\" formControlName=\"remarks\"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Competitor Name</ion-label>\n              <ion-input name=\"compname\" type=\"text\" formControlName=\"compname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Project value</ion-label>\n              <ion-input name=\"projectvalue\" type=\"text\" formControlName=\"projectvalue\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label stacked>Upload Image</ion-label>\n              <!-- <ion-input type=\"file\" accept=\"image/*\" (change)=\"changeListener($event)\"></ion-input> -->\n              <ion-button (click)=\"uploadFromCamera()\" shape=\"round\" fill=\"outline\">+ Click to upload image</ion-button>\n              \n              <ion-avatar>\n                <img *ngIf=\"base64Image\" [src]=\"base64Image\"/>\n                <!-- <div class=\"header\" *ngIf=\"image\" [style.background-image]=\"image\"></div> -->\n              </ion-avatar>\n              \n            </ion-item>\n\n          </div>\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"dealerForm.invalid\" expand=\"block\">Add Check In\n            </ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar text-center class=\"red_header\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>{{checkInFor}}&nbsp;Check In</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <form *ngIf=\"checkInFor == 'Distributor'\" class=\"add-employee-form\" [formGroup]=\"distributorForm\"\n    (ngSubmit)=\"distributorFormSubmit(distributorForm)\">\n    <ion-grid>\n      <ion-row justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div padding>\n \n            <ion-item>\n              <ion-label position=\"floating\">Distributor Name</ion-label>\n              <ion-input name=\"distributorName\" type=\"text\" formControlName=\"distributorName\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Retailer Name</ion-label>\n              <ion-input name=\"retailerName\" type=\"text\" formControlName=\"retailerName\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Retailer Number</ion-label>\n              <ion-input name=\"retailerNum\" type=\"tel\" formControlName=\"retailerNum\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Address</ion-label>\n              <ion-input name=\"retaileraddr\" type=\"text\" formControlName=\"retaileraddr\" readonly></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Route name</ion-label>\n              <ion-input name=\"routename\" type=\"text\" formControlName=\"routename\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Top Selling Brands</ion-label>\n              <ion-input name=\"topbrand\" type=\"text\" formControlName=\"topbrand\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Secondary sales vertical</ion-label>\n              <ion-input name=\"secsales\" type=\"text\" formControlName=\"secsales\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Luker order of day</ion-label>\n              <ion-input name=\"lukerorder\" type=\"text\" formControlName=\"lukerorder\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Luker secondary</ion-label>\n              <ion-input name=\"lukersec\" type=\"text\" formControlName=\"lukersec\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Luker counter share</ion-label>\n              <ion-input name=\"lukershare\" type=\"text\" formControlName=\"lukershare\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-label position=\"floating\">Luker Targeted value</ion-label>\n              <ion-input name=\"targetval\" type=\"text\" formControlName=\"targetval\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Luker Targeted share</ion-label>\n              <ion-input name=\"lukertarget\" type=\"text\" formControlName=\"lukertarget\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label stacked>Upload Image</ion-label>\n              <!-- <ion-input type=\"file\" accept=\"image/*\" (change)=\"changeListener($event)\"></ion-input> -->\n              <ion-button (click)=\"uploadFromCamera()\" shape=\"round\" fill=\"outline\">+ Click to upload image</ion-button>\n\n              <!-- <ion-avatar>\n                  <img *ngIf=\"capturedPhoto\" [src]=\"capturedPhoto\"/>\n                 \n                </ion-avatar> -->\n\n            </ion-item>\n\n          </div>\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"distributorForm.invalid\" expand=\"block\">Check Out\n            </ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n\n  <form *ngIf=\"checkInFor == 'Dealer'\" class=\"add-employee-form\" [formGroup]=\"dealerForm\"\n    (ngSubmit)=\"dealerFormSubmit(dealerForm)\">\n    <ion-grid>\n      <ion-row justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div padding>\n            <ion-item>\n              <ion-label position=\"floating\">Dealer Name</ion-label>\n              <ion-input name=\"dealerName\" type=\"text\" formControlName=\"dealerName\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label>Date of Visit</ion-label>\n              <ion-input name=\"dateofvisit\" type=\"date\" formControlName=\"dateofvisit\" disabled=\"true\"></ion-input>\n              <!-- <ion-datetime displayFormat=\"MM DD YY\" formControlName=\"dateofvisit\"></ion-datetime> -->\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Name of Project</ion-label>\n              <ion-input name=\"projectname\" type=\"text\" formControlName=\"projectname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label>Type or Segment</ion-label>\n              <ion-select interface=\"popover\" formControlName=\"segment\">\n                <ion-select-option value=\"project\">Project</ion-select-option>\n                <ion-select-option value=\"directcustomer\">Direct Customer</ion-select-option>\n                <ion-select-option value=\"consultant\">Consultant</ion-select-option>\n                <ion-select-option value=\"builder\">Builder</ion-select-option>\n                <ion-select-option value=\"architect\">Architect</ion-select-option>\n                <ion-select-option value=\"electrician\">Electrician</ion-select-option>\n                <ion-select-option value=\"others\">Others</ion-select-option>\n              </ion-select>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Name of the customer</ion-label>\n              <ion-input name=\"custname\" type=\"text\" formControlName=\"custname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Mobile Number</ion-label>\n              <ion-input name=\"mobileNumber\" type=\"tel\" formControlName=\"mobileNumber\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Decision maker name</ion-label>\n              <ion-input name=\"decmakername\" type=\"text\" formControlName=\"decmakername\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Decision maker contact number</ion-label>\n              <ion-input name=\"decmakernum\" type=\"tel\" formControlName=\"decmakernum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Contractor name</ion-label>\n              <ion-input name=\"contractorname\" type=\"text\" formControlName=\"contractorname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Contractor contact number</ion-label>\n              <ion-input name=\"contractornum\" type=\"tel\" formControlName=\"contractornum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Consultant name</ion-label>\n              <ion-input name=\"consultantname\" type=\"text\" formControlName=\"consultantname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Consultant contact number</ion-label>\n              <ion-input name=\"consultantnum\" type=\"tel\" formControlName=\"consultantnum\"></ion-input>\n            </ion-item>\n\n\n            <ion-item>\n              <ion-label position=\"floating\">Architect name</ion-label>\n              <ion-input name=\"architectname\" type=\"text\" formControlName=\"architectname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Architect contact number</ion-label>\n              <ion-input name=\"architectnum\" type=\"tel\" formControlName=\"architectnum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Electrician name</ion-label>\n              <ion-input name=\"electricianname\" type=\"text\" formControlName=\"electricianname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Electrician contact number</ion-label>\n              <ion-input name=\"electriciannum\" type=\"tel\" formControlName=\"electriciannum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Builder name</ion-label>\n              <ion-input name=\"buildername\" type=\"text\" formControlName=\"buildername\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Builder contact number</ion-label>\n              <ion-input name=\"buildernum\" type=\"tel\" formControlName=\"buildernum\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Stage of construction</ion-label>\n              <ion-input name=\"stageconstruction\" type=\"text\" formControlName=\"stageconstruction\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Expected project finalization</ion-label>\n              <ion-input name=\"expectprice\" type=\"text\" formControlName=\"expectprice\" [(ngModel)]=\"project_finalized_dt\"\n                (click)=\"showDatePicker()\">\n              </ion-input> \n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Check In Location</ion-label>\n              <ion-input name=\"location\" type=\"text\" formControlName=\"location\" readonly></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-textarea placeholder=\"Remarks ...\" formControlName=\"remarks\"></ion-textarea>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Competitor Name</ion-label>\n              <ion-input name=\"compname\" type=\"text\" formControlName=\"compname\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label position=\"floating\">Project value</ion-label>\n              <ion-input name=\"projectvalue\" type=\"text\" formControlName=\"projectvalue\"></ion-input>\n            </ion-item>\n\n            <ion-item>\n              <ion-label stacked>Upload Image</ion-label>\n              <!-- <ion-input type=\"file\" accept=\"image/*\" (change)=\"changeListener($event)\"></ion-input> -->\n              <ion-button (click)=\"uploadFromCamera()\" shape=\"round\" fill=\"outline\">+ Click to upload image</ion-button>\n\n              <!-- <ion-avatar>\n                <img *ngIf=\"base64Image\" [src]=\"base64Image\"/>\n              </ion-avatar> -->\n\n            </ion-item>\n\n          </div>\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"dealerForm.invalid\" expand=\"block\">Check Out\n            </ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
 
 /***/ }),
 
@@ -94,7 +94,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
-/* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
+/* harmony import */ var _ionic_native_date_picker_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/date-picker/ngx */ "./node_modules/@ionic-native/date-picker/ngx/index.js");
+
+
 
 
 
@@ -108,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CreateCheckInPage = /** @class */ (function () {
-    function CreateCheckInPage(geolocation, nativeGeocoder, activatedRoute, apiService, camera, file, router, toastController, loadingController) {
+    function CreateCheckInPage(geolocation, nativeGeocoder, activatedRoute, apiService, camera, file, router, toastController, loadingController, datePicker) {
         this.geolocation = geolocation;
         this.nativeGeocoder = nativeGeocoder;
         this.activatedRoute = activatedRoute;
@@ -118,9 +123,11 @@ var CreateCheckInPage = /** @class */ (function () {
         this.router = router;
         this.toastController = toastController;
         this.loadingController = loadingController;
+        this.datePicker = datePicker;
         this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
-        this.checkInFor = this.activatedRoute.snapshot.paramMap.get('checkInFor');
-        console.log('=this.checkInFor == : ' + this.checkInFor);
+        this.checkinId = localStorage.getItem('checkin_id');
+        this.checkInFor = this.userDetails.employee_type;
+        console.log("==this.checkInFor== : " + this.checkInFor);
         this.distributorForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             distributorName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])),
             retailerName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])),
@@ -162,13 +169,14 @@ var CreateCheckInPage = /** @class */ (function () {
             compname: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])),
             projectvalue: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])),
         });
+        console.log('=checkinId== :' + this.checkinId);
     }
     CreateCheckInPage.prototype.ngOnInit = function () {
         var dp = new _angular_common__WEBPACK_IMPORTED_MODULE_8__["DatePipe"](navigator.language);
         var p = 'y-MM-dd'; // YYYY-MM-DD
         var dtr = dp.transform(new Date(), p);
         console.log('date', dtr);
-        if (this.checkInFor === 'dealer') {
+        if (this.checkInFor === 'Dealer') {
             // this.dealerForm.dateofvisit.patchValue(dtr);
             var val = 'dateofvisit';
             this.dealerForm.controls[val].patchValue(dtr);
@@ -192,15 +200,14 @@ var CreateCheckInPage = /** @class */ (function () {
     };
     CreateCheckInPage.prototype.distributorFormSubmit = function (data) {
         var _this = this;
-        console.log('data', data);
-        console.log('form control value', this.distributorForm.value);
+        var time = moment__WEBPACK_IMPORTED_MODULE_10__().format('DD-MM-YYYY, hh:mm:ss a');
         var params = {
             check_in_for: this.checkInFor,
             created_by: this.userDetails._id,
             checkin_loc: this.distributorForm.value.retaileraddr,
             checkin_time: 6,
-            checkout_loc: this.distributorForm.value.routename,
-            checkout_time: 7,
+            checkout_loc: this.distributorForm.value.retaileraddr,
+            checkout_time: time,
             distributor_name: this.distributorForm.value.distributorName,
             retailer_name: this.distributorForm.value.retailerName,
             retailer_number: this.distributorForm.value.retailerNum,
@@ -213,29 +220,42 @@ var CreateCheckInPage = /** @class */ (function () {
             luker_share: this.distributorForm.value.lukershare,
             targeted_value: this.distributorForm.value.targetval,
             targeted_share: this.distributorForm.value.lukertarget,
-            checkin_id: "5d7a6c73b7c9ae247cd6772b"
+            checkin_id: this.checkinId,
+            latitude: this.latitude,
+            longitude: this.longitude,
+            location: this.distributorForm.value.routename
         };
         console.log('params', JSON.stringify(params));
-        this.apiService.postData('/createCheckIn', params).subscribe(function (result) {
-            console.log('result distributor', JSON.stringify(result));
-            var finaldatas = result;
-            if (finaldatas.message === 'Chek in created!') {
-                _this.uploadImages(finaldatas.data._id);
-                _this.presentToast('checked in successfully', 'bottom');
-            }
-        });
+        this.presentLoading();
+        // this.internetstatus = localStorage.getItem("internet");
+        if (navigator.onLine) {
+            this.apiService.postData('/createCheckIn', params).subscribe(function (result) {
+                console.log('result distributor', JSON.stringify(result));
+                var finaldatas = result;
+                if (finaldatas.success == 1) {
+                    _this.uploadImages(_this.checkinId);
+                    _this.dismissLoading();
+                    _this.presentToast('checked out successfully', 'bottom');
+                    _this.router.navigateByUrl('/dashboard');
+                }
+            });
+        }
+        else {
+            alert('Please check your internet connection');
+        }
     };
     CreateCheckInPage.prototype.dealerFormSubmit = function (data) {
         var _this = this;
         console.log('data', data);
         console.log('form control value', this.dealerForm.value);
+        var time = moment__WEBPACK_IMPORTED_MODULE_10__().format('DD-MM-YYYY, hh:mm:ss a');
         var params = {
             check_in_for: this.checkInFor,
             created_by: this.userDetails._id,
             checkin_loc: this.dealerForm.value.location,
             checkin_time: this.dealerForm.value.dateofvisit,
             checkout_loc: this.dealerForm.value.location,
-            checkout_time: this.dealerForm.value.dateofvisit,
+            checkout_time: time,
             type_of_segment: this.dealerForm.value.segment,
             dealer_name: this.dealerForm.value.dealerName,
             customer_name: this.dealerForm.value.custname,
@@ -256,16 +276,28 @@ var CreateCheckInPage = /** @class */ (function () {
             exp_pro_final: this.dealerForm.value.expectprice,
             remarks: this.dealerForm.value.remarks,
             competitor_name: this.dealerForm.value.compname,
-            checkin_id: "5d7a7121b7c9ae247cd6772e"
+            checkin_id: this.checkinId,
+            latitude: this.latitude,
+            longitude: this.longitude,
+            location: this.distributorForm.value.routename
         };
-        this.apiService.postData('/createCheckIn', params).subscribe(function (result) {
-            console.log('result dealer', JSON.stringify(result));
-            var finaldatas = result;
-            if (finaldatas.message === 'Check out successfully!') {
-                _this.uploadImages(finaldatas.data._id);
-                _this.presentToast('checked in successfully', 'bottom');
-            }
-        });
+        this.presentLoading();
+        //this.internetstatus = localStorage.getItem("internet");
+        if (navigator.onLine) {
+            this.apiService.postData('/createCheckIn', params).subscribe(function (result) {
+                console.log('result dealer', JSON.stringify(result));
+                var finaldatas = result;
+                if (finaldatas.success == 1) {
+                    _this.dismissLoading();
+                    _this.uploadImages(_this.checkinId);
+                    _this.presentToast('Check out successfully', 'bottom');
+                    _this.router.navigateByUrl('/dashboard');
+                }
+            });
+        }
+        else {
+            alert('Please check your internet connection');
+        }
     };
     CreateCheckInPage.prototype.makeFileIntoBlob = function (filePath) {
         var _this = this;
@@ -331,12 +363,8 @@ var CreateCheckInPage = /** @class */ (function () {
     };
     CreateCheckInPage.prototype.uploadImages = function (path) {
         var _self = this;
-        console.log("==path=NEW= : " + path);
-        this.presentLoading('Loading...');
-        cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', { checkin_id: path }, {}, this.base64Image, 'image', function (response) {
+        cordova.plugin.http.uploadFile('https://dev.salesblazon.co:8080/uploadImage', {}, { 'checkin_id': path }, this.base64Image, 'image', function (response) {
             console.log('response', JSON.stringify(response));
-            _self.dismissLoading();
-            _self.presentToast('checked in successfully', 'bottom');
             _self.router.navigateByUrl('/dashboard');
         }, function (response) {
             console.error(response.error);
@@ -402,14 +430,22 @@ var CreateCheckInPage = /** @class */ (function () {
             _this.distributorForm.controls.location.setValue(_this.locationName);
             _this.dealerForm.controls.location.setValue(_this.locationName);
             _this.distributorForm.controls.retaileraddr.setValue(_this.locationName);
+            console.log("===locationName==: " + _this.locationName);
         })
             .catch(function (error) {
-            _this.locationName = "Unable to fetch geolocation";
-            _this.distributorForm.controls.location.setValue(_this.locationName);
-            _this.dealerForm.controls.location.setValue(_this.locationName);
+            console.log("===locationName errrr==: " + error);
         });
     };
-    CreateCheckInPage.prototype.presentLoading = function (message) {
+    CreateCheckInPage.prototype.dismissLoading = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.loadingController.dismiss();
+                console.log('Loading dismissed!');
+                return [2 /*return*/];
+            });
+        });
+    };
+    CreateCheckInPage.prototype.presentLoading = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var _a;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
@@ -417,7 +453,7 @@ var CreateCheckInPage = /** @class */ (function () {
                     case 0:
                         _a = this;
                         return [4 /*yield*/, this.loadingController.create({
-                                message: message
+                                message: 'Please Wait...',
                             })];
                     case 1:
                         _a.loading = _b.sent();
@@ -429,17 +465,17 @@ var CreateCheckInPage = /** @class */ (function () {
             });
         });
     };
-    CreateCheckInPage.prototype.dismissLoading = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loading.onDidDismiss()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
+    CreateCheckInPage.prototype.showDatePicker = function () {
+        var _this = this;
+        this.datePicker.show({
+            date: new Date(),
+            mode: 'date',
+            androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+        }).then(function (date) {
+            console.log('Got date: ', date),
+                _this.project_finalized_dt = moment__WEBPACK_IMPORTED_MODULE_10__(date).format("DD/MM/YYYY"),
+                console.log('project_finalized_dt: ', _this.project_finalized_dt);
+        }, function (err) { return console.log('Error occurred while getting date: ', err); });
     };
     CreateCheckInPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -452,68 +488,13 @@ var CreateCheckInPage = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
             _services_api_service__WEBPACK_IMPORTED_MODULE_6__["ApiService"],
             _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_9__["Camera"],
-            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_10__["File"],
+            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_11__["File"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"],
+            _ionic_native_date_picker_ngx__WEBPACK_IMPORTED_MODULE_12__["DatePicker"]])
     ], CreateCheckInPage);
     return CreateCheckInPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/api.service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/services/api.service.ts ***!
-  \*****************************************/
-/*! exports provided: ApiService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/http/ngx */ "./node_modules/@ionic-native/http/ngx/index.js");
-
-
-
-
-
-var ApiService = /** @class */ (function () {
-    function ApiService(http, cordovahttp) {
-        this.http = http;
-        this.cordovahttp = cordovahttp;
-        this.baseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].service_URL;
-    }
-    ApiService.prototype.getData = function (url) {
-        console.log('=URL = : ' + this.baseURL + url);
-        return this.http.get(this.baseURL + url);
-    };
-    ApiService.prototype.postData = function (url, params) {
-        console.log('=URL = : ' + this.baseURL + url);
-        console.log('=params = : ' + JSON.stringify(params));
-        return this.http.post(this.baseURL + url, params);
-    };
-    ApiService.prototype.postApi = function (url, payload, header) {
-        //   this.cordovahttp.setHeader('':'')
-        //   payload.forEach((value,key) => {
-        //     console.log(key+" "+value)
-        //   });
-        //   return this.cordovahttp.post(url, payload, header);
-        // }
-    };
-    ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__["HTTP"]])
-    ], ApiService);
-    return ApiService;
 }());
 
 

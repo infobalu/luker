@@ -21,8 +21,8 @@ export class EmpAttendaneRptPage implements OnInit {
 
     let time = moment().format('YYYY-MM-DD');
 
-    this.internetstatus = localStorage.getItem("internet");
-    if (this.internetstatus == '1') {
+   // this.internetstatus = localStorage.getItem("internet");
+   if (navigator.onLine) {
 
       this.apiService.getData('/attendanceReport/' + time).subscribe(result => {
         this.activeCheckins = result['data'];

@@ -99,8 +99,10 @@ export class AddEmployeePage implements OnInit {
 
     };
 
+    console.log("=params== : " + JSON.stringify(params));
+
     this.internetstatus = localStorage.getItem("internet");
-    if (this.internetstatus == '1') {
+    if (navigator.onLine) {
 
       this.apiService.postData('/users', params).subscribe(result => {
 

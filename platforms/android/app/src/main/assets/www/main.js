@@ -835,26 +835,29 @@ module.exports = webpackAsyncContext;
 var map = {
 	"../clenttype/clenttype.module": [
 		"./src/app/pages/clenttype/clenttype.module.ts",
-		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
-		"common",
 		"clenttype-clenttype-module"
 	],
 	"../emp-attendane-rpt/emp-attendane-rpt.module": [
 		"./src/app/pages/emp-attendane-rpt/emp-attendane-rpt.module.ts",
-		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"emp-attendane-rpt-emp-attendane-rpt-module"
 	],
 	"../empallcheckin/empallcheckin.module": [
 		"./src/app/pages/empallcheckin/empallcheckin.module.ts",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"empallcheckin-empallcheckin-module"
 	],
 	"../homee/homee.module": [
 		"./src/app/pages/homee/homee.module.ts",
-		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"homee-homee-module"
+	],
+	"../mycheckins/mycheckins.module": [
+		"./src/app/pages/mycheckins/mycheckins.module.ts",
+		"mycheckins-mycheckins-module"
 	],
 	"../profileadmin/profileadmin.module": [
 		"./src/app/pages/profileadmin/profileadmin.module.ts",
@@ -862,22 +865,27 @@ var map = {
 	],
 	"../viewemployees/viewemployees.module": [
 		"./src/app/pages/viewemployees/viewemployees.module.ts",
-		"common",
 		"viewemployees-viewemployees-module"
 	],
 	"./pages/add-employee/add-employee.module": [
 		"./src/app/pages/add-employee/add-employee.module.ts",
-		"common",
 		"pages-add-employee-add-employee-module"
+	],
+	"./pages/checkindetail/checkindetail.module": [
+		"./src/app/pages/checkindetail/checkindetail.module.ts",
+		"pages-checkindetail-checkindetail-module"
+	],
+	"./pages/checkindetilview/checkindetilview.module": [
+		"./src/app/pages/checkindetilview/checkindetilview.module.ts",
+		"pages-checkindetilview-checkindetilview-module"
 	],
 	"./pages/clenttype/clenttype.module": [
 		"./src/app/pages/clenttype/clenttype.module.ts",
-		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
-		"common",
 		"clenttype-clenttype-module"
 	],
 	"./pages/create-check-in/create-check-in.module": [
 		"./src/app/pages/create-check-in/create-check-in.module.ts",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"pages-create-check-in-create-check-in-module"
 	],
@@ -887,18 +895,19 @@ var map = {
 	],
 	"./pages/dashboard/dashboard.module": [
 		"./src/app/pages/dashboard/dashboard.module.ts",
-		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"pages-dashboard-dashboard-module"
 	],
 	"./pages/emp-attendane-rpt/emp-attendane-rpt.module": [
 		"./src/app/pages/emp-attendane-rpt/emp-attendane-rpt.module.ts",
-		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"emp-attendane-rpt-emp-attendane-rpt-module"
 	],
 	"./pages/empallcheckin/empallcheckin.module": [
 		"./src/app/pages/empallcheckin/empallcheckin.module.ts",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"empallcheckin-empallcheckin-module"
 	],
@@ -908,7 +917,7 @@ var map = {
 	],
 	"./pages/homee/homee.module": [
 		"./src/app/pages/homee/homee.module.ts",
-		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"homee-homee-module"
 	],
@@ -918,19 +927,17 @@ var map = {
 	],
 	"./pages/login/login.module": [
 		"./src/app/pages/login/login.module.ts",
-		"common",
 		"pages-login-login-module"
 	],
 	"./pages/markattendance/markattendance.module": [
 		"./src/app/pages/markattendance/markattendance.module.ts",
-		"default~clenttype-clenttype-module~emp-attendane-rpt-emp-attendane-rpt-module~homee-homee-module~pag~d8d36331",
+		"default~emp-attendane-rpt-emp-attendane-rpt-module~empallcheckin-empallcheckin-module~homee-homee-mo~c90cf25b",
 		"common",
 		"pages-markattendance-markattendance-module"
 	],
 	"./pages/mycheckins/mycheckins.module": [
 		"./src/app/pages/mycheckins/mycheckins.module.ts",
-		"common",
-		"pages-mycheckins-mycheckins-module"
+		"mycheckins-mycheckins-module"
 	],
 	"./pages/profileadmin/profileadmin.module": [
 		"./src/app/pages/profileadmin/profileadmin.module.ts",
@@ -938,17 +945,18 @@ var map = {
 	],
 	"./pages/signup/signup.module": [
 		"./src/app/pages/signup/signup.module.ts",
-		"common",
 		"pages-signup-signup-module"
+	],
+	"./pages/userdetilview/userdetilview.module": [
+		"./src/app/pages/userdetilview/userdetilview.module.ts",
+		"pages-userdetilview-userdetilview-module"
 	],
 	"./pages/viewcheckin/viewcheckin.module": [
 		"./src/app/pages/viewcheckin/viewcheckin.module.ts",
-		"common",
 		"pages-viewcheckin-viewcheckin-module"
 	],
 	"./pages/viewemployees/viewemployees.module": [
 		"./src/app/pages/viewemployees/viewemployees.module.ts",
-		"common",
 		"viewemployees-viewemployees-module"
 	]
 };
@@ -1008,7 +1016,10 @@ var routes = [
     { path: 'homee', loadChildren: './pages/homee/homee.module#HomeePageModule' },
     { path: 'profileadmin', loadChildren: './pages/profileadmin/profileadmin.module#ProfileadminPageModule' },
     { path: 'empallcheckin', loadChildren: './pages/empallcheckin/empallcheckin.module#EmpallcheckinPageModule' },
-    { path: 'emp-attendane-rpt', loadChildren: './pages/emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' }
+    { path: 'emp-attendane-rpt', loadChildren: './pages/emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' },
+    { path: 'checkindetail', loadChildren: './pages/checkindetail/checkindetail.module#CheckindetailPageModule' },
+    { path: 'userdetilview', loadChildren: './pages/userdetilview/userdetilview.module#UserdetilviewPageModule' },
+    { path: 'checkindetilview', loadChildren: './pages/checkindetilview/checkindetilview.module#CheckindetilviewPageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1061,12 +1072,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, router) {
+    function AppComponent(platform, splashScreen, statusBar, router, toastController) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.router = router;
+        this.toastController = toastController;
+        // set up hardware back button event.
+        this.lastTimeBackPress = 0;
+        this.timePeriodToExit = 2000;
         this.appPages = [
             {
                 title: 'Home',
@@ -1075,6 +1091,7 @@ var AppComponent = /** @class */ (function () {
             }
         ];
         this.initializeApp();
+        this.backButtonEvent();
     }
     AppComponent.prototype.initializeApp = function () {
         var _this = this;
@@ -1087,6 +1104,55 @@ var AppComponent = /** @class */ (function () {
         localStorage.clear();
         this.router.navigateByUrl('/login');
     };
+    // active hardware back button
+    AppComponent.prototype.backButtonEvent = function () {
+        var _this = this;
+        this.platform.backButton.subscribe(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.routerOutlets.forEach(function (outlet) {
+                    console.log("==this.router.url= : " + _this.router.url);
+                    if (outlet && outlet.canGoBack()) {
+                        outlet.pop();
+                        console.log("==INNN IFFFFFFF= : ");
+                    }
+                    else if (_this.router.url === '/dashboard/homee') {
+                        if (new Date().getTime() - _this.lastTimeBackPress < _this.timePeriodToExit) {
+                            // this.platform.exitApp(); // Exit from app
+                            navigator['app'].exitApp(); // work in ionic 4
+                        }
+                        else {
+                            _this.presentToast('Press back again to exit App', 'bottom');
+                            _this.lastTimeBackPress = new Date().getTime();
+                        }
+                    }
+                });
+                return [2 /*return*/];
+            });
+        }); });
+    };
+    AppComponent.prototype.presentToast = function (msg, position) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastController.create({
+                            message: msg,
+                            position: position,
+                            duration: 2000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])(_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonRouterOutlet"]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["QueryList"])
+    ], AppComponent.prototype, "routerOutlets", void 0);
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-root',
@@ -1095,7 +1161,8 @@ var AppComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__["StatusBar"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -1130,6 +1197,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
 /* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _pages_userdetilview_userdetilview_page__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./pages/userdetilview/userdetilview.page */ "./src/app/pages/userdetilview/userdetilview.page.ts");
+/* harmony import */ var _ionic_native_date_picker_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/date-picker/ngx */ "./node_modules/@ionic-native/date-picker/ngx/index.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+
+
+
 
 
 
@@ -1169,6 +1242,9 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_8__["NativeGeocoder"],
                 _services_httpconfig_interceptor__WEBPACK_IMPORTED_MODULE_12__["HttpConfigInterceptor"],
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"],
+                _pages_userdetilview_userdetilview_page__WEBPACK_IMPORTED_MODULE_16__["UserdetilviewPage"],
+                _ionic_native_date_picker_ngx__WEBPACK_IMPORTED_MODULE_17__["DatePicker"],
+                _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_18__["Network"],
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HTTP_INTERCEPTORS"], useClass: _services_httpconfig_interceptor__WEBPACK_IMPORTED_MODULE_12__["HttpConfigInterceptor"], multi: true },
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
             ],
@@ -1176,6 +1252,137 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/userdetilview/userdetilview.page.html":
+/*!*************************************************************!*\
+  !*** ./src/app/pages/userdetilview/userdetilview.page.html ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header text-center>\n  <ion-toolbar text-center padding class=\"black_header\">\n      <ion-buttons slot=\"start\">\n          <ion-back-button></ion-back-button>\n       </ion-buttons>\n    <img src=\"assets/img/user.svg\" class=\"user_img\" style=\"margin-bottom: 1rem\">\n    <ion-title>{{employee_name}} </ion-title>\n  </ion-toolbar>\n\n</ion-header>\n<ion-content padding>\n  <ion-item>\n    <ion-label position=\"floating\">{{employee_mobile}}</ion-label>\n    <ion-input></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">{{employee_account_email}}</ion-label>\n    <ion-input></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">{{employee_designation}}</ion-label>\n    <ion-input></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label position=\"floating\">{{employee_post_location}}</ion-label>\n    <ion-input></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label position=\"floating\">{{employee_area}}</ion-label>\n    <ion-input></ion-input>\n  </ion-item>\n\n</ion-content>\n<ion-footer padding>\n  <ion-button class=\"btn_red\" expand=\"block\" size=\"large\" type=\"submit\">Update\n  </ion-button>\n</ion-footer>"
+
+/***/ }),
+
+/***/ "./src/app/pages/userdetilview/userdetilview.page.scss":
+/*!*************************************************************!*\
+  !*** ./src/app/pages/userdetilview/userdetilview.page.scss ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3VzZXJkZXRpbHZpZXcvdXNlcmRldGlsdmlldy5wYWdlLnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/pages/userdetilview/userdetilview.page.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/pages/userdetilview/userdetilview.page.ts ***!
+  \***********************************************************/
+/*! exports provided: UserdetilviewPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserdetilviewPage", function() { return UserdetilviewPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+var UserdetilviewPage = /** @class */ (function () {
+    function UserdetilviewPage(apiService, activatedRoute) {
+        this.apiService = apiService;
+        this.activatedRoute = activatedRoute;
+        this.activeCheckins = [];
+    }
+    UserdetilviewPage.prototype.ngOnInit = function () {
+        this.getEmployeeDetail();
+    };
+    UserdetilviewPage.prototype.getEmployeeDetail = function () {
+        var _this = this;
+        this.userid = this.activatedRoute.queryParams.subscribe(function (params) {
+            _this.userid = JSON.parse(params._id);
+            console.log('=this.userid == : ' + _this.userid);
+            _this.apiService.getData('/userDetails/' + _this.userid).subscribe(function (result) {
+                _this.activeCheckins = result['data'];
+                console.log('=this.userDetails == : ' + JSON.stringify(_this.activeCheckins));
+                _this.employee_name = _this.activeCheckins.employee_name;
+                _this.employee_mobile = _this.activeCheckins.employee_mobile;
+                _this.employee_account_email = _this.activeCheckins.employee_account_email;
+                _this.employee_designation = _this.activeCheckins.employee_designation;
+                _this.employee_post_location = _this.activeCheckins.employee_post_location;
+                _this.employee_area = _this.activeCheckins.employee_area;
+            });
+        });
+    };
+    UserdetilviewPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-userdetilview',
+            template: __webpack_require__(/*! ./userdetilview.page.html */ "./src/app/pages/userdetilview/userdetilview.page.html"),
+            styles: [__webpack_require__(/*! ./userdetilview.page.scss */ "./src/app/pages/userdetilview/userdetilview.page.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
+    ], UserdetilviewPage);
+    return UserdetilviewPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/api.service.ts":
+/*!*****************************************!*\
+  !*** ./src/app/services/api.service.ts ***!
+  \*****************************************/
+/*! exports provided: ApiService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/http/ngx */ "./node_modules/@ionic-native/http/ngx/index.js");
+
+
+
+
+
+var ApiService = /** @class */ (function () {
+    function ApiService(http, cordovahttp) {
+        this.http = http;
+        this.cordovahttp = cordovahttp;
+        this.baseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].service_URL;
+    }
+    ApiService.prototype.getData = function (url) {
+        console.log('=URL = : ' + this.baseURL + url);
+        return this.http.get(this.baseURL + url);
+    };
+    ApiService.prototype.postData = function (url, params) {
+        console.log('=URL = : ' + this.baseURL + url);
+        console.log('=params = : ' + JSON.stringify(params));
+        return this.http.post(this.baseURL + url, params);
+    };
+    ApiService.prototype.postApi = function (url, payload, header) {
+    };
+    ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__["HTTP"]])
+    ], ApiService);
+    return ApiService;
 }());
 
 
@@ -1244,12 +1451,13 @@ var HttpConfigInterceptor = /** @class */ (function () {
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
   \*****************************************/
-/*! exports provided: environment */
+/*! exports provided: environment, environment2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment2", function() { return environment2; });
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -1266,6 +1474,17 @@ var environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+var environment2 = {
+    production: false,
+    firebase: {
+        apiKey: "YOUR_apiKey",
+        authDomain: "YOUR_authDomain",
+        databaseURL: "YOUR_databaseURL",
+        projectId: "YOUR_projectId",
+        storageBucket: "YOUR_storageBucket",
+        messagingSenderId: "YOUR_messagingSenderId"
+    }
+};
 
 
 /***/ }),

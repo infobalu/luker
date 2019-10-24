@@ -58,7 +58,7 @@ var HomeePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <ion-header text-center>\n      <ion-toolbar text-center padding class=\"red_header\">\n      <img src=\"assets/img/user.svg\" class=\"user_img\" style=\"margin-bottom: 1rem\">\n      <ion-title>{{name}} </ion-title>\n      <p class=\"_text_md _text_white m_0\"> Welcome</p>\n      </ion-toolbar>\n      <!-- <ion-toolbar text-center class=\"red_header\">\n      \n      </ion-toolbar> -->\n      </ion-header>\n \n\n<!-- \n  <ion-header> <ion-toolbar class=\"new-background-color\"> <ion-title>{{name}}</ion-title> </ion-toolbar> </ion-header> -->\n\n\n  <ion-content>\n    <div class=\"red_mask\"></div>\n    <ion-grid padding style=\"margin-top: 5vh\">\n      <ion-row>\n        <ion-card class=\"card_list\" padding>\n          <div class=\"card_top_bar\">\n            <ion-row>\n              <ion-col col-6>\n                <p class=\"text_muted\" *ngIf=\"userDetails.user_type == 'owner'\"> Total <br> representatives</p>\n                <p class=\"bold text_md text_dark\" *ngIf=\"userDetails.user_type == 'employee'\"> Mark<br> my attendance</p>\n              </ion-col>\n              <ion-col col-6 text-right>\n                <button ion-button class=\"btn_plane\" (click)=\"goToViewEmployee()\" *ngIf=\"userDetails.user_type == 'owner'\"> View all</button>\n                <ion-item *ngIf=\"userDetails.user_type == 'employee'\">\n                    <ion-toggle  [(ngModel)]=\"isToggled\" (ionChange)=\"notify(n1)\"></ion-toggle>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row>\n              <ion-col col-6>\n                <h1 class=\"count_num m_0\" *ngIf=\"userDetails.user_type == 'owner'\"> {{total_emp}}</h1>\n              </ion-col>\n            </ion-row>\n          </div>\n          <div class=\"card_bottom_bar\" text-center padding>\n            <!-- <button ion-button class=\"btn_blue\"> Add new representative </button> -->\n            <ion-button expand=\"block\" class=\"btn_blue\"  (click)='goToAddEmployee()' *ngIf=\"userDetails.user_type == 'owner'\">\n              Add new representative</ion-button>\n\n              <ion-button expand=\"block\" class=\"btn_blue\"  (click)='goToViewAttendance()' *ngIf=\"userDetails.user_type == 'owner'\">\n                  View Attendance</ion-button>\n\n            <ion-row *ngIf=\"userDetails.user_type == 'employee'\">\n                <ion-col col-6>\n                  Check-in <br> Left &nbsp; <span class=\"check_count\"> {{checkins}}</span>\n                </ion-col>\n    \n                <!-- <ion-col col-6 text-right>\n                  <button class=\"btn_fab\"  (click)=\"goToCheckIn()\"> <ion-icon name=\"add\"></ion-icon> </button>\n                </ion-col> -->\n\n                <div padding>\n                  <ion-button size=\"small\" type=\"submit\" (click)=\"goToCheckIn()\"  [disabled]=\"day_plan_status == 0\">Start Check-in</ion-button>\n                </div>\n\n\n              </ion-row>\n\n\n          </div>\n        </ion-card>\n      </ion-row>\n  \n      <ion-row *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-card class=\"card_list _card_black\" padding>\n          <ion-row>\n            <ion-col col-6>\n              <p class=\"_text_white\"> Today's Total <br>Attendance</p>\n            </ion-col>\n            <ion-col col-6 text-right>\n              <p class=\"_text_white\"> <span class=\"count_num\"> {{present_emp}}</span> / {{total_emp}}</p>\n            </ion-col>\n          </ion-row>\n        </ion-card>\n      </ion-row>\n  \n      <ion-row *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-card class=\"card_list _card_muted\" padding >\n          <ion-row>\n            <ion-col col-6>\n              <p class=\"_text_white\"> Today's Check-in <br>report</p>\n            </ion-col>\n            <ion-col col-6 text-right>\n             <!-- date picker -->\n  \n            </ion-col>\n          </ion-row>\n        </ion-card>\n      </ion-row>\n    </ion-grid>\n  </ion-content>"
+module.exports = "  <ion-header text-center>\n      <ion-toolbar text-center padding class=\"red_header\">\n      <img src=\"assets/img/user.svg\" class=\"user_img\" style=\"margin-bottom: 1rem\">\n      <ion-title>{{name}} </ion-title>\n      <p class=\"_text_md _text_white m_0\"> Welcome</p>\n      </ion-toolbar>\n      <!-- <ion-toolbar text-center class=\"red_header\">\n      \n      </ion-toolbar> -->\n      </ion-header>\n \n\n<!-- \n  <ion-header> <ion-toolbar class=\"new-background-color\"> <ion-title>{{name}}</ion-title> </ion-toolbar> </ion-header> -->\n\n\n  <ion-content>\n    <div class=\"red_mask\"></div>\n    \n      <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\n        <ion-refresher-content></ion-refresher-content>\n      </ion-refresher>\n    \n    \n    <ion-grid padding style=\"margin-top: 5vh\">\n      <ion-row>\n        <ion-card class=\"card_list\" padding>\n          <div class=\"card_top_bar\">\n            <ion-row>\n              <ion-col col-6>\n                <p class=\"text_muted\" *ngIf=\"userDetails.user_type == 'owner'\"> Total <br> representatives</p>\n                <p class=\"bold text_md text_dark\" *ngIf=\"userDetails.user_type == 'employee'\"> Mark<br> my attendance</p>\n              </ion-col>\n              <ion-col col-6 text-right>\n                <button ion-button class=\"btn_plane\" (click)=\"goToViewEmployee()\" *ngIf=\"userDetails.user_type == 'owner'\"> View all</button>\n                <ion-item *ngIf=\"userDetails.user_type == 'employee'\">\n                    <ion-toggle  [(ngModel)]=\"isToggled\" (ionChange)=\"notify(n1)\"></ion-toggle>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row>\n              <ion-col col-6>\n                <h1 class=\"count_num m_0\" *ngIf=\"userDetails.user_type == 'owner'\"> {{total_emp}}</h1>\n              </ion-col>\n            </ion-row>\n          </div>\n          <div class=\"card_bottom_bar\" text-center padding>\n            <!-- <button ion-button class=\"btn_blue\"> Add new representative </button> -->\n            <ion-button expand=\"block\" class=\"btn_blue\"  (click)='goToAddEmployee()' *ngIf=\"userDetails.user_type == 'owner'\">\n              Add new representative</ion-button>\n\n              <ion-button expand=\"block\" class=\"btn_blue\"  (click)='goToViewAttendance()' *ngIf=\"userDetails.user_type == 'owner'\">\n                  View Attendance</ion-button>\n\n            <ion-row *ngIf=\"userDetails.user_type == 'employee'\">\n                <ion-col col-6>\n                  Check-in <br> Left &nbsp; <span class=\"check_count\"> {{checkins}}</span>\n                </ion-col>\n    \n                <!-- <ion-col col-6 text-right>\n                  <button class=\"btn_fab\"  (click)=\"goToCheckIn()\"> <ion-icon name=\"add\"></ion-icon> </button>\n                </ion-col> -->\n\n                <div padding>\n                  <ion-button size=\"small\" type=\"submit\" (click)=\"goToCheckIn()\"  [disabled]=\"day_plan_status == 0\">Start Check-in</ion-button>\n                </div>\n\n\n              </ion-row>\n\n\n          </div>\n        </ion-card>\n      </ion-row>\n  \n      <ion-row *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-card class=\"card_list _card_black\" padding>\n          <ion-row>\n            <ion-col col-6>\n              <p class=\"_text_white\"> Today's Total <br>Attendance</p>\n            </ion-col>\n            <ion-col col-6 text-right>\n              <p class=\"_text_white\"> <span class=\"count_num\"> {{present_emp}}</span> / {{total_emp}}</p>\n            </ion-col>\n          </ion-row>\n        </ion-card>\n      </ion-row>\n  \n      <ion-row *ngIf=\"userDetails.user_type == 'owner'\">\n        <ion-card class=\"card_list _card_muted\" padding >\n          <ion-row>\n            <ion-col col-6>\n              <p class=\"_text_white\"> Today's Check-in <br>report</p>\n            </ion-col>\n            <ion-col col-6 text-right>\n             <!-- date picker -->\n  \n            </ion-col>\n          </ion-row>\n        </ion-card>\n      </ion-row>\n    </ion-grid>\n  </ion-content>"
 
 /***/ }),
 
@@ -84,14 +84,15 @@ module.exports = "ion-toolbar.background {\n  background: red; }\n\n.new-backgro
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeePage", function() { return HomeePage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ "./node_modules/@ionic-native/geolocation/ngx/index.js");
-/* harmony import */ var _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/native-geocoder/ngx */ "./node_modules/@ionic-native/native-geocoder/ngx/index.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../services/api.service */ "./src/app/services/api.service.ts");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ "./node_modules/@ionic-native/geolocation/ngx/index.js");
+/* harmony import */ var _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/native-geocoder/ngx */ "./node_modules/@ionic-native/native-geocoder/ngx/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
 
 
 
@@ -101,13 +102,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HomeePage = /** @class */ (function () {
-    function HomeePage(router, geolocation, nativeGeocoder, toastController, apiService, alertController) {
+    function HomeePage(router, geolocation, nativeGeocoder, toastController, apiService, loadingController, alertController, platform) {
         this.router = router;
         this.geolocation = geolocation;
         this.nativeGeocoder = nativeGeocoder;
         this.toastController = toastController;
         this.apiService = apiService;
+        this.loadingController = loadingController;
         this.alertController = alertController;
+        this.platform = platform;
         this.n1 = 1;
         this.checkins = 0;
         this.forCheckin = 0;
@@ -121,11 +124,10 @@ var HomeePage = /** @class */ (function () {
         this.name = this.userDetails.employee_name;
         this.day_plan_status = this.userDetails.day_plan_status;
         this.total_emp = this.userDetails.total_emp;
-        console.log("=this.user_type= : " + this.userDetails.user_type);
-        console.log("=day_plan_status= : " + this.day_plan_status);
-        console.log("=total_emp= : " + this.total_emp);
         this.checkins = this.userDetails.checkins;
         this.att_id = this.userDetails.att_id;
+        this.internetstatus = localStorage.getItem("internet");
+        console.log("= this.internetstatus == : " + this.internetstatus);
         if (this.day_plan_status == '1') {
             this.isToggled = true;
             this.n1 = 1;
@@ -145,19 +147,25 @@ var HomeePage = /** @class */ (function () {
         this.router.navigateByUrl('/emp-attendane-rpt');
     };
     HomeePage.prototype.notify = function (val) {
-        console.log("==notify called= : " + val);
-        if (this.isToggled && this.n1 == 1) {
-            console.log("Toggled: " + this.isToggled);
-            this.getGeoLocation();
+        if (navigator.onLine) {
+            console.log("==notify called= : " + val);
+            if (this.isToggled && this.n1 == 1) {
+                console.log("Toggled: " + this.isToggled);
+                this.getGeoLocation();
+            }
+            else if (this.n1 == 1) {
+                console.log("Toggled: " + this.isToggled);
+                this.getGeoLocation();
+            }
+            this.n1 = 1;
         }
-        else if (this.n1 == 1) {
-            console.log("Toggled: " + this.isToggled);
-            this.getGeoLocation();
+        else {
+            alert('Please check your internet connection');
         }
-        this.n1 = 1;
     };
     HomeePage.prototype.getGeoLocation = function () {
         var _this = this;
+        this.presentLoading();
         this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then(function (resp) {
             _this.whereInTheEarth(resp.coords.latitude, resp.coords.longitude);
             _this.latitude = resp.coords.latitude;
@@ -201,8 +209,9 @@ var HomeePage = /** @class */ (function () {
                     _this.locationName = _this.locationName + result[0]['countryName'] + ",";
                 }
                 console.log("= this.locationName final= : " + _this.locationName);
-                var time = moment__WEBPACK_IMPORTED_MODULE_7__().format('DD-MM-YYYY, hh:mm:ss a'); // August 31st 2019, 9:52:34 pm
+                var time = moment__WEBPACK_IMPORTED_MODULE_6__().format('DD-MM-YYYY, hh:mm:ss a'); // August 31st 2019, 9:52:34 pm
                 console.log('==this.userDetails ID === : ' + _this.userDetails._id);
+                _this.dismissLoading();
                 if (!_this.isToggled && _this.forCheckin == 0) {
                     _this.params = {
                         end_time: time,
@@ -213,13 +222,13 @@ var HomeePage = /** @class */ (function () {
                     _this.apiService.postData('/endAttendance', _this.params).subscribe(function (result) {
                         console.log("=result= :" + JSON.stringify(result));
                         if (result['success'] == "1") {
-                            _this.presentToast(result['message'], 'middle');
+                            _this.presentToast(result['message'], 'bottom');
                             // this.router.navigateByUrl('/login');
                             _this.isToggled = false;
                             _this.n1 = 0;
                         }
                         else {
-                            _this.presentToast('Something went wrong, Please try again..', 'middle');
+                            _this.presentToast('Something went wrong, Please try again..', 'bottom');
                             _this.isToggled = true;
                             _this.n1 = 0;
                         }
@@ -239,7 +248,7 @@ var HomeePage = /** @class */ (function () {
                     console.log('=FOR CHECKIN==');
                     var params = {
                         created_by: _this.userDetails._id,
-                        checkin_time: moment__WEBPACK_IMPORTED_MODULE_7__().format('DD-MM-YYYY, hh:mm:ss a'),
+                        checkin_time: moment__WEBPACK_IMPORTED_MODULE_6__().format('DD-MM-YYYY, hh:mm:ss a'),
                         checkin_loc: _this.locationName,
                     };
                     _this.apiService.postData('/startCheckIn', params).subscribe(function (result) {
@@ -267,6 +276,7 @@ var HomeePage = /** @class */ (function () {
             console.log("=ERROR== : " + error);
             _this.isToggled = true;
             _this.n1 = 0;
+            _this.dismissLoading();
             _this.presentToast('Please check the location settings Or :' + error, 'bottom');
         });
     };
@@ -319,14 +329,14 @@ var HomeePage = /** @class */ (function () {
                                     text: 'Ok',
                                     handler: function (data) {
                                         if (data.dayplan == "") {
-                                            _this.presentToast("dayplan is required", 'bottom');
+                                            _this.presentToast("Day plan is required", 'bottom');
                                             _this.isToggled = false;
                                             _this.n1 = 0;
                                         }
                                         else {
                                             console.log(data.dayplan);
                                             _this.dayplan = data.dayplan;
-                                            var time = moment__WEBPACK_IMPORTED_MODULE_7__().format('DD-MM-YYYY, hh:mm:ss a'); // August 31st 2019, 9:52:34 pm
+                                            var time = moment__WEBPACK_IMPORTED_MODULE_6__().format('DD-MM-YYYY, hh:mm:ss a'); // August 31st 2019, 9:52:34 pm
                                             var params = {
                                                 user: _this.userDetails._id,
                                                 status: 'present',
@@ -342,9 +352,12 @@ var HomeePage = /** @class */ (function () {
                                                     _this.presentToast(result['message'], 'bottom');
                                                     _this.day_plan_status = '1';
                                                     // this.router.navigateByUrl('/dashboard');
+                                                    _this.presentToast(result['message'], 'bottom');
                                                 }
                                                 else {
-                                                    _this.presentToast(result['message'], 'middle');
+                                                    _this.presentToast(result['message'], 'bottom');
+                                                    _this.isToggled = false;
+                                                    _this.n1 = 0;
                                                 }
                                             }, function (error) {
                                                 console.log("=ERRRRRRRRR== : " + error);
@@ -368,8 +381,13 @@ var HomeePage = /** @class */ (function () {
     };
     HomeePage.prototype.goToCheckIn = function () {
         //this.router.navigateByUrl('/clenttype');
-        this.forCheckin = 1;
-        this.getGeoLocation();
+        if (navigator.onLine) {
+            this.forCheckin = 1;
+            this.getGeoLocation();
+        }
+        else {
+            alert('Please check your internet connection');
+        }
     };
     HomeePage.prototype.ionViewWillEnter = function () {
         console.log("==ionViewWillEnter==");
@@ -380,32 +398,81 @@ var HomeePage = /** @class */ (function () {
         var params = {
             userId: this.userDetails._id
         };
-        this.apiService.postData('/dashboard', params).subscribe(function (result) {
-            console.log("=result= :" + JSON.stringify(result));
-            if (result['success'] == 1) {
-                if (_this.userDetails.user_type == 'owner') {
-                    _this.total_emp = result['data']['user'].total_emp;
-                    _this.present_emp = result['data']['user'].present_emp;
+        if (navigator.onLine) {
+            this.apiService.postData('/dashboard', params).subscribe(function (result) {
+                console.log("=result= :" + JSON.stringify(result));
+                if (result['success'] == 1) {
+                    if (_this.userDetails.user_type == 'owner') {
+                        _this.total_emp = result['data']['user'].total_emp;
+                        _this.present_emp = result['data']['user'].present_emp;
+                    }
+                    else if (_this.userDetails.user_type == 'employee') {
+                        _this.checkins = result['data']['user'].checkins;
+                        console.log("= this.checkins= :" + _this.checkins);
+                        console.log("=day_plan_status= : " + _this.day_plan_status);
+                        if (_this.day_plan_status == '1') {
+                            _this.isToggled = true;
+                            _this.n1 = 1;
+                        }
+                        else {
+                            _this.isToggled = false;
+                            _this.n1 = 1;
+                        }
+                    }
                 }
-                else if (_this.userDetails.user_type == 'employee') {
-                    _this.checkins = result['data']['user'].checkins;
-                    console.log("= this.checkins= :" + _this.checkins);
-                }
-            }
-        }, function (error) {
-            alert(JSON.stringify(error));
+            }, function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
+        else {
+            alert('Please check your internet connection');
+        }
+    };
+    HomeePage.prototype.dismissLoading = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.loadingController.dismiss();
+                console.log('Loading dismissed!');
+                return [2 /*return*/];
+            });
         });
     };
+    HomeePage.prototype.presentLoading = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _a;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.loadingController.create({
+                                message: 'Please Wait...',
+                            })];
+                    case 1:
+                        _a.loading = _b.sent();
+                        return [4 /*yield*/, this.loading.present()];
+                    case 2:
+                        _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    HomeePage.prototype.doRefresh = function (event) {
+        this.triggerHomeApi();
+        event.target.complete();
+    };
     HomeePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_7__["Component"])({
             selector: 'app-homee',
             template: __webpack_require__(/*! ./homee.page.html */ "./src/app/pages/homee/homee.page.html"),
             styles: [__webpack_require__(/*! ./homee.page.scss */ "./src/app/pages/homee/homee.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_3__["Geolocation"],
-            _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_4__["NativeGeocoder"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"], _services_api_service__WEBPACK_IMPORTED_MODULE_6__["ApiService"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_2__["Geolocation"],
+            _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_3__["NativeGeocoder"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"], _services_api_service__WEBPACK_IMPORTED_MODULE_5__["ApiService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"]])
     ], HomeePage);
     return HomeePage;
 }());

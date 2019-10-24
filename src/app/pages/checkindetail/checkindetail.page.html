@@ -17,17 +17,17 @@
           <img [src]="imgurl" class="user_img"  style="height: 100px; width: 100px; border-radius: 100px">
           <h1 class="card_title"> {{customer_name}}</h1>
           <p class="text_dark m_0">  {{employee_designation}}</p>
-          <p class="text_dark m_0" *ngIf="check_in_for==dealer">{{dealer_name}} </p>
-          <p class="text_dark m_0" *ngIf="check_in_for==distributor">{{distributor_name }}</p>
+          <p class="text_dark m_0" *ngIf="check_in_for==Dealer">{{dealer_name}} </p>
+          <p class="text_dark m_0" *ngIf="check_in_for==Distributor">{{distributor_name }}</p>
         </div>
         <div class="card_bottom_bar _timing">
           <ion-row>
             <ion-col col-6 text-center style="border-right: 1px solid #eee">
-              <p class="text_muted"> Checkin Time <br>
+              <p class="text_muted"> Check In Time <br>
                 <span class="bold _text_high"> {{checkin_time}}</span></p>
             </ion-col>
             <ion-col col-6 text-center>
-              <p class="text_muted"> Checkin Time <br>
+              <p class="text_muted"> Check Out Time <br>
                 <span class="bold _text_high"> {{checkout_time}}</span></p>
             </ion-col>
           </ion-row>
@@ -37,23 +37,36 @@
 
     <ion-row>
       <ion-card class="card_list" padding>
-        <ion-row style="border-bottom: 1px solid #eee;padding-bottom: 5px;margin-bottom: 10px;">
+        <!-- <ion-row style="border-bottom: 1px solid #eee;padding-bottom: 5px;margin-bottom: 10px;">
           <ion-col col-6>
             <p class="text_dark m_0">Mobile Number </p>
           </ion-col>
           <ion-col col-6>
             <p class="text_dark m_0"> </p>
           </ion-col>
+        </ion-row> -->
+        <ion-row style="border-bottom: 1px solid #eee;padding-bottom: 5px;margin-bottom: 10px;">
+          <ion-col col-6>
+            <p class="text_dark m_0">Address </p>
+          </ion-col>
+          <ion-col col-6>
+            <p class="text_dark m_0">{{checkin_loc}} </p>
+          </ion-col>
         </ion-row>
         <ion-row style="border-bottom: 1px solid #eee;padding-bottom: 5px;margin-bottom: 10px;">
           <ion-col col-6>
-            <p class="text_dark m_0">Location </p>
+            <p class="text_dark m_0">Route </p>
           </ion-col>
           <ion-col col-6>
-            <p class="text_dark m_0"> </p>
+            <p class="text_dark m_0">{{checkout_loc}} </p>
           </ion-col>
         </ion-row>
       </ion-card>
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-footer padding>
+  <ion-button class="btn_red" expand="block" size="large" type="submit" (click)='gotoCheckIn()' [disabled]="!checkout_time == ''">Check Out
+  </ion-button>
+</ion-footer>

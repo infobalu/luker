@@ -24,16 +24,11 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-card class="card_list" padding *ngFor="let album of activeCheckins">
-          <!-- <ion-card class="card_list" padding *ngFor="let album of activeCheckins"> -->
+      <ion-card class="card_list" padding *ngFor="let album of activeCheckins" (click)="selectPack(album)">
         <div class="card_top_bar" *ngFor="let subitem of album.created_by">
           <h1 class="card_title">{{subitem.employee_name}}</h1>
           <p class="text_muted m_0">Location :  {{album.checkin_loc}}</p>
         </div>
-        <!-- <div class="card_bottom_bar">
-          <p class="text_dark"> Mobile Number : {{album.dealer_name}}</p>
-          <p class="text_dark"> Location : {{album.dealer_name}}</p>
-        </div> -->
 
         <div class="card_bottom_bar _timing">
             <ion-row>

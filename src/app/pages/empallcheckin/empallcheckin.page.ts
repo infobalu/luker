@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../services/api.service';
 import * as moment from 'moment';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-empallcheckin',
@@ -13,7 +14,7 @@ export class EmpallcheckinPage implements OnInit {
   activeCheckinsDist: any = [];
   internetstatus: any;
 
-  constructor( private apiService: ApiService) { }
+  constructor( private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.triggerAllCheckIns();
@@ -25,8 +26,8 @@ export class EmpallcheckinPage implements OnInit {
 
   todaysCheckin() {
     console.log("=TODAY=")
-    this.internetstatus = localStorage.getItem("internet");
-    if (this.internetstatus == '1') {
+   // this.internetstatus = localStorage.getItem("internet");
+   if (navigator.onLine) {
       this.triggerAllCheckIns();
     } else {
       alert('Please check your internet connection');
@@ -39,7 +40,7 @@ export class EmpallcheckinPage implements OnInit {
       if(result['success'] == 1){
         this.activeCheckins = result['data'];
         console.log("== this.getAllCheckins == : "+  JSON.stringify(this.activeCheckins));
-        this.activeCheckins =  this.activeCheckins.filter(d => d.check_in_for == 'dealer');
+        this.activeCheckins =  this.activeCheckins.filter(d => d.check_in_for == 'Dealer');
       }
     });
 
@@ -53,7 +54,7 @@ export class EmpallcheckinPage implements OnInit {
       if(result['success'] == 1){
         this.activeCheckins = result['data'];
         console.log("== this.getAllCheckins == : "+  JSON.stringify(this.activeCheckins));
-        this.activeCheckins =  this.activeCheckins.filter(d => d.check_in_for == 'distributor');
+        this.activeCheckins =  this.activeCheckins.filter(d => d.check_in_for == 'Distributor');
       }
     });
 
@@ -73,5 +74,15 @@ export class EmpallcheckinPage implements OnInit {
     });
   }
 
+  selectPack(pack) {
+
+    let navigateExtars: NavigationExtras = {
+      queryParams: {
+        _id: JSON.stringify(pack)
+      }
+
+    };
+    this.router.navigate(['checkindetail'], navigateExtars);
+  }
 
 }

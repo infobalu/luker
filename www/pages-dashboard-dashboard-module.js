@@ -35,6 +35,7 @@ var routes = [
             { path: 'empallcheckin', loadChildren: '../empallcheckin/empallcheckin.module#EmpallcheckinPageModule' },
             { path: 'emp-attendane-rpt', loadChildren: '../emp-attendane-rpt/emp-attendane-rpt.module#EmpAttendaneRptPageModule' },
             { path: 'clenttype', loadChildren: '../clenttype/clenttype.module#ClenttypePageModule' },
+            { path: 'mycheckins', loadChildren: '../mycheckins/mycheckins.module#MycheckinsPageModule' },
             { path: '', loadChildren: '../homee/homee.module#HomeePageModule' }
         ]
     }
@@ -67,7 +68,7 @@ var DashboardPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"homee\" (click)='tab2Selected()'>\n      <ion-icon name=\"home\"></ion-icon>\n      <ion-label>HOME</ion-label>\n\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"viewemployees\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <img src=\"assets/img/rep.png\" class=\"tab_img\">\n      <ion-label>REPRESENTATIVE</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"empallcheckin\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <img src=\"assets/img/check.png\" class=\"tab_img\">\n      <ion-label>CHECKINS</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"clenttype\" *ngIf=\"userDetails.user_type == 'employee'\">\n\n      <img src=\"assets/img/check.png\" class=\"tab_img\">\n      <ion-label>CHECKINS</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"profileadmin\">\n      <img src=\"assets/img/profile.png\" class=\"tab_img\">\n      <ion-label>PROFILE</ion-label>\n    </ion-tab-button>\n\n  </ion-tab-bar>\n</ion-tabs>"
+module.exports = "<ion-tabs>\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"homee\" (click)='tab2Selected()'>\n      <ion-icon name=\"home\"></ion-icon>\n      <ion-label>HOME</ion-label>\n\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"viewemployees\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <img src=\"assets/img/rep.png\" class=\"tab_img\">\n      <ion-label>REPRESENTATIVE</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"empallcheckin\" *ngIf=\"userDetails.user_type == 'owner'\">\n      <img src=\"assets/img/check.png\" class=\"tab_img\">\n      <ion-label>CHECKINS</ion-label>\n    </ion-tab-button> \n\n    <!-- <ion-tab-button tab=\"clenttype\" *ngIf=\"userDetails.user_type == 'employee'\"> -->\n        <ion-tab-button tab=\"mycheckins\" *ngIf=\"userDetails.user_type == 'employee'\">\n\n      <img src=\"assets/img/check.png\" class=\"tab_img\">\n      <ion-label>CHECKINS</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"profileadmin\">\n      <img src=\"assets/img/profile.png\" class=\"tab_img\">\n      <ion-label>PROFILE</ion-label>\n    </ion-tab-button>\n\n  </ion-tab-bar>\n</ion-tabs>"
 
 /***/ }),
 
@@ -110,8 +111,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var DashboardPage = /** @class */ (function () {
-    function DashboardPage(menu, apiService, router, alertController, geolocation, nativeGeocoder, toastController) {
+    function DashboardPage(menu, apiService, router, alertController, geolocation, nativeGeocoder, toastController, platform) {
         this.menu = menu;
         this.apiService = apiService;
         this.router = router;
@@ -119,6 +121,7 @@ var DashboardPage = /** @class */ (function () {
         this.geolocation = geolocation;
         this.nativeGeocoder = nativeGeocoder;
         this.toastController = toastController;
+        this.platform = platform;
         this.activeCheckins = [];
         this.n1 = 1;
         this.checkins = 0;
@@ -129,14 +132,10 @@ var DashboardPage = /** @class */ (function () {
         // this.getActiveCheckins();
     };
     DashboardPage.prototype.ngOnInit = function () {
-        console.log("==HAIIIII=");
         this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
         this.attendance = JSON.parse(localStorage.getItem("attendance"));
         //this.day_plan_status = this.userDetails.day_plan_status;
         this.day_plan_status = this.userDetails.day_plan_status;
-        console.log("=this.userDetails= : " + JSON.stringify(this.userDetails));
-        console.log("=this.user_type= : " + this.userDetails.user_type);
-        console.log("=this.attendance= : " + JSON.stringify(this.attendance));
         this.checkins = this.userDetails.checkins;
         this.att_id = this.userDetails.att_id;
         if (this.day_plan_status == '1') {
@@ -406,6 +405,48 @@ var DashboardPage = /** @class */ (function () {
             }
         });
     };
+    // ngAfterViewInit() {
+    //   this.platform.backButton.subscribe();
+    //   console.log("=this.router.url == : " + this.router.url);
+    //   this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+    //     this.presentAlertPromptExit();
+    //   });
+    // }
+    DashboardPage.prototype.presentAlertPromptExit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Exit',
+                            message: 'Are you sure want to quit?',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function (blah) {
+                                        console.log('Confirm Cancel: blah');
+                                    }
+                                }, {
+                                    text: 'Okay',
+                                    handler: function () {
+                                        console.log('Confirm Okay');
+                                        navigator['app'].exitApp();
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     DashboardPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-dashboard',
@@ -418,7 +459,8 @@ var DashboardPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
             _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__["Geolocation"],
             _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_7__["NativeGeocoder"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"]])
     ], DashboardPage);
     return DashboardPage;
 }());

@@ -58,7 +58,7 @@ var ViewemployeesPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n\n    <ion-toolbar text-center class=\"red_header\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button></ion-back-button>\n         </ion-buttons>\n    <ion-title>Representative List</ion-title>\n    <!-- <ion-back-button></ion-back-button> -->\n    </ion-toolbar>\n   \n  <!-- <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>  --> \n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\" (click)=\"presentModal(album)\">\n        <div class=\"card_top_bar\">\n          <h1 class=\"card_title\"> {{album.employee_name}}</h1>\n          <p class=\"text_muted m_0 \"> {{album.employee_designation}}</p>\n        </div>\n        <div class=\"card_bottom_bar\">\n          <p class=\"text_dark m_0\" > Mobile Number : {{album.employee_mobile}}</p>\n          <p class=\"text_dark\"> Location : {{album.employee_post_location}}</p>\n        </div>\n      </ion-card>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
+module.exports = "<ion-header>\n\n    <ion-toolbar text-center class=\"red_header\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button></ion-back-button>\n         </ion-buttons>\n    <ion-title>Representative List</ion-title>\n    <!-- <ion-back-button></ion-back-button> -->\n    </ion-toolbar>\n   \n  <!-- <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>  -->\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\" (click)=\"presentModal(album)\">\n        <div class=\"card_top_bar\">\n          <h1 class=\"card_title\"> {{album.employee_name}}</h1>\n          <p class=\"text_muted m_0 \"> {{album.employee_designation}}</p>\n        </div>\n        <div class=\"card_bottom_bar\">\n          <p class=\"text_dark m_0\" > Mobile Number : {{album.employee_mobile}}</p>\n          <p class=\"text_dark\"> Location : {{album.employee_post_location}}</p>\n        </div>\n      </ion-card>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
 
 /***/ }),
 
@@ -116,9 +116,15 @@ var ViewemployeesPage = /** @class */ (function () {
     ViewemployeesPage.prototype.ionViewWillEnter = function () {
         var _this = this;
         console.log("==ionViewWillEnter==");
-        this.apiService.getData('/users').subscribe(function (result) {
-            _this.activeCheckins = result['data'];
-        });
+        this.internetstatus = localStorage.getItem("internet");
+        if (navigator.onLine) {
+            this.apiService.getData('/users').subscribe(function (result) {
+                _this.activeCheckins = result['data'];
+            });
+        }
+        else {
+            alert('Please check your internet connection');
+        }
     };
     ViewemployeesPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

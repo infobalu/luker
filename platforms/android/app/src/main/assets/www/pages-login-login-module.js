@@ -59,7 +59,7 @@ var LoginPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content class=\"login-page\" padding>\n  <form [formGroup]=\"firstForm\" (ngSubmit)=\"login(firstForm)\">\n    <ion-grid>\n      <ion-row justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div text-center>\n            <h1>Team Guru</h1>\n          </div>\n          <div text-center>\n            <h3>Login</h3>\n          </div>\n          <div padding>\n            <ion-item>\n              <ion-input name=\"emailid\" type=\"email\" placeholder=\"your@email.com\" formControlName=\"emailid\"></ion-input>\n            </ion-item>\n            <ion-item>\n              <ion-input name=\"password\" type=\"password\" placeholder=\"Password\" formControlName=\"password\"></ion-input>\n            </ion-item>\n          </div>\n          <div padding>\n            <ion-button size=\"large\" type=\"submit\" [disabled]=\"firstForm.invalid\" expand=\"block\">Login</ion-button>\n          </div>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <div text-center>\n          If you don't have an account, please <a routerLink='/signup'>\n            register</a> first!\n        </div>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>"
+module.exports = "<ion-content class=\"login-page\" padding>\n  <form [formGroup]=\"firstForm\" (ngSubmit)=\"login(firstForm)\" style=\"position: relative;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\">\n    <ion-grid>\n      <ion-row justify-content-center>\n        <ion-col align-self-center size-md=\"6\" size-lg=\"5\" size-xs=\"12\">\n          <div style=\"padding: 10vh 0\">\n            <div text-center>\n              <h1> App Logo </h1>\n            </div>\n            <div text-center>\n              <h3>Login</h3>\n            </div>\n          </div>\n          <div padding>\n            <ion-item>\n              <ion-label position=\"floating\">Email ID</ion-label>\n              <ion-input name=\"emailid\" type=\"email\" formControlName=\"emailid\"></ion-input>\n            </ion-item>\n            <!-- <ion-input name=\"emailid\" type=\"email\" placeholder=\"your@email.com\" formControlName=\"emailid\"></ion-input> -->\n            <!-- <ion-item>\n              \n              <ion-input name=\"password\" type=\"password\" placeholder=\"Password\" formControlName=\"password\"></ion-input>\n            </ion-item> -->\n\n            <ion-item>\n              <ion-label position=\"floating\">Password </ion-label>\n              <ion-input name=\"password\" type=\"password\"  formControlName=\"password\"></ion-input>\n            </ion-item>\n          </div>\n          <div padding>\n            <ion-button class=\"btn_red\" expand=\"block\" size=\"large\" type=\"submit\" [disabled]=\"firstForm.invalid\">Login\n            </ion-button>\n            <!-- <ion-button class=\"btn_red\" size=\"large\" type=\"submit\" [disabled]=\"firstForm.invalid\" expand=\"block\">Login</ion-button> -->\n          </div>\n        </ion-col>\n      </ion-row>\n      <!-- <ion-row>\n        <div text-center>\n          If you don't have an account, please <a routerLink='/signup'>\n            register</a> first!\n        </div>\n      </ion-row> -->\n    </ion-grid>\n  </form>\n</ion-content>\n"
 
 /***/ }),
 
@@ -70,7 +70,7 @@ module.exports = "<ion-content class=\"login-page\" padding>\n  <form [formGroup
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".login-page .item-native {\n  border-color: black; }\n\n.login-page ion-item {\n  --color: rgb(0, 0, 0); }\n\n.login-page ion-button {\n  --background: #062f77; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3N1bWVzaGIvRGVza3RvcC9zYW1wbGUvZ3VydS9zcmMvYXBwL3BhZ2VzL2xvZ2luL2xvZ2luLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUVRLG1CQUFtQixFQUFBOztBQUYzQjtFQUtRLHFCQUFRLEVBQUE7O0FBTGhCO0VBUVEscUJBQWEsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2xvZ2luL2xvZ2luLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5sb2dpbi1wYWdlIHtcbiAgICAuaXRlbS1uYXRpdmUge1xuICAgICAgICBib3JkZXItY29sb3I6IGJsYWNrO1xuICAgIH1cbiAgICBpb24taXRlbXtcbiAgICAgICAgLS1jb2xvcjogcmdiKDAsIDAsIDApO1xuICAgIH1cbiAgICBpb24tYnV0dG9ue1xuICAgICAgICAtLWJhY2tncm91bmQ6ICMwNjJmNzc7XG4gICAgfVxufSJdfQ== */"
+module.exports = ".login-page ion-item {\n  --color: rgb(0, 0, 0); }\n\n.login-page ion-item {\n  margin-bottom: 2rem; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3N1bWVzaGIvRGVza3RvcC9zYW1wbGUvZ3VydS9zcmMvYXBwL3BhZ2VzL2xvZ2luL2xvZ2luLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUdRLHFCQUFRLEVBQUE7O0FBSGhCO0VBU1EsbUJBQW1CLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9sb2dpbi9sb2dpbi5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9naW4tcGFnZSB7XG4gICBcbiAgICBpb24taXRlbXtcbiAgICAgICAgLS1jb2xvcjogcmdiKDAsIDAsIDApO1xuICAgIH1cblxuICAgIFxuXG4gICAgaW9uLWl0ZW17XG4gICAgICAgIG1hcmdpbi1ib3R0b206IDJyZW07XG4gICAgfVxufSJdfQ== */"
 
 /***/ }),
 
@@ -90,6 +90,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+
 
 
 
@@ -98,13 +100,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(menu, router, apiService, toastController) {
+    function LoginPage(menu, router, apiService, toastController, alertController, network) {
         this.menu = menu;
         this.router = router;
         this.apiService = apiService;
         this.toastController = toastController;
+        this.alertController = alertController;
+        this.network = network;
+        this.network.onDisconnect().subscribe(function () {
+            console.log('NO INTERNET login');
+            localStorage.setItem('internet', "0");
+        });
+        this.network.onConnect().subscribe(function () {
+            console.log(' INTERNET login');
+            localStorage.setItem('internet', "1");
+        });
     }
     LoginPage.prototype.ngOnInit = function () {
+        var time1 = new Date(1570453660052);
+        console.log('==time1 = : ' + time1);
+        var time2 = new Date();
+        console.log('==time2 = : ' + time2);
+        //this.diff_minutes(time2, time1);
         this.firstForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             emailid: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
@@ -112,6 +129,53 @@ var LoginPage = /** @class */ (function () {
             ])),
             password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", this.passwordvalidation)
         });
+    };
+    LoginPage.prototype.presentAlertPrompt = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'SalesBlazon!',
+                            message: 'ERRRRRRROR!!!',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function (blah) {
+                                        console.log('Confirm Cancel: blah');
+                                        navigator['app'].exitApp();
+                                    }
+                                }, {
+                                    text: 'Okay',
+                                    handler: function () {
+                                        console.log('Confirm Okay');
+                                        navigator['app'].exitApp();
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoginPage.prototype.diff_minutes = function (dt2, dt1) {
+        var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+        diff /= 60;
+        var diffHr = Math.abs(dt1.getTime() - dt2.getTime()) / 3600000;
+        console.log('==diffHr== : ' + diffHr);
+        console.log('==diff== : ' + diff);
+        if (diff > 10000) {
+            this.presentAlertPrompt();
+        }
+        return Math.abs(Math.round(diff));
     };
     LoginPage.prototype.passwordvalidation = function (formcontrol) {
         if (formcontrol.value.length < 5) {
@@ -127,27 +191,30 @@ var LoginPage = /** @class */ (function () {
             email: data.value.emailid,
             password: data.value.password
         };
-        this.apiService.postData('/user/login', params).subscribe(function (result) {
-            console.log("=result= :" + JSON.stringify(result));
-            if (result['status'] == "success") {
-                localStorage.setItem('userDetails', JSON.stringify(result['data']['user']));
-                // localStorage.setItem('userDetails', JSON.stringify(result['data']));
-                if (result['data']['user']['employee_name']) {
-                    _this.presentToast('Welcome ' + result['data']['user']['employee_name'], 'bottom');
+        // this.internetstatus = localStorage.getItem("internet");
+        // console.log("= this.internetstatus == : "+ this.internetstatus);
+        if (navigator.onLine) {
+            this.apiService.postData('/user/login', params).subscribe(function (result) {
+                console.log("=result= :" + JSON.stringify(result));
+                if (result['status'] == "success") {
+                    localStorage.setItem('userDetails', JSON.stringify(result['data']['user']));
+                    /* if (result['data']['user']['employee_name']) {
+                       this.presentToast('Welcome ' + result['data']['user']['employee_name'], 'bottom');
+                     } else {
+                       this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
+                     }*/
+                    _this.router.navigateByUrl('/dashboard');
                 }
                 else {
-                    _this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
+                    _this.presentToast('Username or password is incorrect', 'middle');
                 }
-                console.log("dash=======11111");
-                _this.router.navigateByUrl('/dashboard');
-                console.log("dash=======2222222222");
-            }
-            else {
-                _this.presentToast('Username or password is incorrect', 'middle');
-            }
-        }, function (error) {
-            alert(JSON.stringify(error));
-        });
+            }, function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
+        else {
+            alert('Please check your internet connection');
+        }
     };
     LoginPage.prototype.presentToast = function (msg, position) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -176,65 +243,11 @@ var LoginPage = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
             _services_api_service__WEBPACK_IMPORTED_MODULE_5__["ApiService"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+            _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__["Network"]])
     ], LoginPage);
     return LoginPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/api.service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/services/api.service.ts ***!
-  \*****************************************/
-/*! exports provided: ApiService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/http/ngx */ "./node_modules/@ionic-native/http/ngx/index.js");
-
-
-
-
-
-var ApiService = /** @class */ (function () {
-    function ApiService(http, cordovahttp) {
-        this.http = http;
-        this.cordovahttp = cordovahttp;
-        this.baseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].service_URL;
-    }
-    ApiService.prototype.getData = function (url) {
-        console.log('=URL = : ' + this.baseURL + url);
-        return this.http.get(this.baseURL + url);
-    };
-    ApiService.prototype.postData = function (url, params) {
-        console.log('=URL = : ' + this.baseURL + url);
-        console.log('=params = : ' + JSON.stringify(params));
-        return this.http.post(this.baseURL + url, params);
-    };
-    ApiService.prototype.postApi = function (url, payload, header) {
-        //   this.cordovahttp.setHeader('':'')
-        //   payload.forEach((value,key) => {
-        //     console.log(key+" "+value)
-        //   });
-        //   return this.cordovahttp.post(url, payload, header);
-        // }
-    };
-    ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__["HTTP"]])
-    ], ApiService);
-    return ApiService;
 }());
 
 

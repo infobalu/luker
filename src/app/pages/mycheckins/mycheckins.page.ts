@@ -37,16 +37,21 @@ export class MycheckinsPage implements OnInit {
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
     console.log("= this.userDetails['_id']== : " + this.userDetails._id);
 
-    this.apiService.getData('/getCheckins/' + this.userDetails._id).subscribe(result => {
-      this.activeCheckins = result['data'];
-      console.log("== this.activeCheckins == : " + JSON.stringify(this.activeCheckins));
+    if (navigator.onLine) {
 
-      if (result['success'] == 1) {
-        this.count = result['checkins'];
-        console.log("===this.count= : " + this.count);
-      }
+      this.apiService.getData('/getCheckins/' + this.userDetails._id).subscribe(result => {
+        this.activeCheckins = result['data'];
+        console.log("== this.activeCheckins == : " + JSON.stringify(this.activeCheckins));
 
-    });
+        if (result['success'] == 1) {
+          this.count = result['checkins'];
+          console.log("===this.count= : " + this.count);
+        }
+
+      });
+    } else {
+      alert('Please check your internet connection');
+    }
   }
 
   async presentToast(msg, position) {
@@ -59,7 +64,7 @@ export class MycheckinsPage implements OnInit {
   }
 
   selectPack(pack) {
-   
+
     let navigateExtars: NavigationExtras = {
       queryParams: {
         _id: JSON.stringify(pack)

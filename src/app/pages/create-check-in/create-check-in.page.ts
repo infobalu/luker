@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as moment from 'moment';
 import { File, FileEntry } from '@ionic-native/file/ngx';
-import { DatePicker } from '@ionic-native/date-picker/ngx';
+import { DatePicker } from '@ionic-native/date-picker/ngx'; 
 
 
 declare var cordova;
@@ -112,7 +112,7 @@ export class CreateCheckInPage implements OnInit {
     const p = 'y-MM-dd'; // YYYY-MM-DD
     const dtr = dp.transform(new Date(), p);
     console.log('date', dtr);
-    if (this.checkInFor === 'dealer') {
+    if (this.checkInFor === 'Dealer') {
       // this.dealerForm.dateofvisit.patchValue(dtr);
       const val = 'dateofvisit';
       this.dealerForm.controls[val].patchValue(dtr);
@@ -144,7 +144,7 @@ export class CreateCheckInPage implements OnInit {
       created_by: this.userDetails._id,
       checkin_loc: this.distributorForm.value.retaileraddr,
       checkin_time: 6,
-      checkout_loc: this.distributorForm.value.routename,
+      checkout_loc: this.distributorForm.value.retaileraddr,
       checkout_time: time,
       distributor_name: this.distributorForm.value.distributorName,
       retailer_name: this.distributorForm.value.retailerName,
@@ -166,8 +166,8 @@ export class CreateCheckInPage implements OnInit {
     console.log('params', JSON.stringify(params));
     this.presentLoading();
 
-    this.internetstatus = localStorage.getItem("internet");
-    if (this.internetstatus == '1') {
+   // this.internetstatus = localStorage.getItem("internet");
+   if (navigator.onLine) {
 
       this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
         console.log('result distributor', JSON.stringify(result));
@@ -224,8 +224,8 @@ export class CreateCheckInPage implements OnInit {
       location: this.distributorForm.value.routename
     };
     this.presentLoading();
-    this.internetstatus = localStorage.getItem("internet");
-    if (this.internetstatus == '1') {
+    //this.internetstatus = localStorage.getItem("internet");
+    if (navigator.onLine) {
       this.apiService.postData('/createCheckIn', params).subscribe((result: any) => {
         console.log('result dealer', JSON.stringify(result));
         const finaldatas = result;
@@ -376,12 +376,15 @@ export class CreateCheckInPage implements OnInit {
   }
 
   showDatePicker() {
+
     this.datePicker.show({
       date: new Date(),
       mode: 'date',
       androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
     }).then(
-      date => { console.log('Got date: ', date), this.project_finalized_dt = date, console.log('project_finalized_dt: ', this.project_finalized_dt) },
+      date => { console.log('Got date: ', date), 
+      this.project_finalized_dt =  moment(date).format("DD/MM/YYYY"), 
+      console.log('project_finalized_dt: ', this.project_finalized_dt) },
       err => console.log('Error occurred while getting date: ', err)
     );
   }

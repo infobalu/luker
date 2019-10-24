@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { ToastController, AlertController, LoadingController } from '@ionic/angular';
 import { ApiService } from './../../services/api.service';
 import * as moment from 'moment';
+import { Platform } from '@ionic/angular';
+import { Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -32,13 +32,14 @@ export class HomeePage implements OnInit {
   present_emp: number = 0;
   loading: any;
   internetstatus: any;
-
+  backButtonSubscription
 
   constructor(private router: Router, private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,
     public toastController: ToastController, private apiService: ApiService,
     public loadingController: LoadingController,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    private platform: Platform) { }
 
   ngOnInit() {
     this.userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -63,6 +64,7 @@ export class HomeePage implements OnInit {
 
   }
 
+
   goToAddEmployee() {
     this.router.navigateByUrl('/add-employee');
   }
@@ -74,7 +76,7 @@ export class HomeePage implements OnInit {
   }
 
   notify(val) {
-    if (this.internetstatus == '1') {
+    if (navigator.onLine) {
       console.log("==notify called= : " + val);
       if (this.isToggled && this.n1 == 1) {
         console.log("Toggled: " + this.isToggled);
@@ -156,12 +158,12 @@ export class HomeePage implements OnInit {
             this.apiService.postData('/endAttendance', this.params).subscribe(result => {
               console.log("=result= :" + JSON.stringify(result));
               if (result['success'] == "1") {
-                this.presentToast(result['message'], 'middle');
+                this.presentToast(result['message'], 'bottom');
                 // this.router.navigateByUrl('/login');
                 this.isToggled = false;
                 this.n1 = 0;
               } else {
-                this.presentToast('Something went wrong, Please try again..', 'middle');
+                this.presentToast('Something went wrong, Please try again..', 'bottom');
                 this.isToggled = true;
                 this.n1 = 0;
               }
@@ -254,7 +256,7 @@ export class HomeePage implements OnInit {
           handler: data => {
 
             if (data.dayplan == "") {
-              this.presentToast("dayplan is required", 'bottom');
+              this.presentToast("Day plan is required", 'bottom');
               this.isToggled = false;
               this.n1 = 0;
             } else {
@@ -284,8 +286,11 @@ export class HomeePage implements OnInit {
                   this.presentToast(result['message'], 'bottom');
                   this.day_plan_status = '1';
                   // this.router.navigateByUrl('/dashboard');
+                  this.presentToast(result['message'], 'bottom');
                 } else {
-                  this.presentToast(result['message'], 'middle');
+                  this.presentToast(result['message'], 'bottom');
+                  this.isToggled = false;
+                  this.n1 = 0;
                 }
               }, error => {
                 console.log("=ERRRRRRRRR== : " + error);
@@ -305,7 +310,7 @@ export class HomeePage implements OnInit {
 
   goToCheckIn() {
     //this.router.navigateByUrl('/clenttype');
-    if (this.internetstatus == '1') {
+    if (navigator.onLine) {
       this.forCheckin = 1;
       this.getGeoLocation();
     }
@@ -325,7 +330,7 @@ export class HomeePage implements OnInit {
       userId: this.userDetails._id
     };
 
-    if (this.internetstatus == '1') {
+    if (navigator.onLine) {
       this.apiService.postData('/dashboard', params).subscribe(result => {
         console.log("=result= :" + JSON.stringify(result));
 
@@ -338,6 +343,16 @@ export class HomeePage implements OnInit {
 
             this.checkins = result['data']['user'].checkins;
             console.log("= this.checkins= :" + this.checkins);
+            console.log("=day_plan_status= : " + this.day_plan_status);
+
+            if (this.day_plan_status == '1') {
+              this.isToggled = true;
+              this.n1 = 1;
+            } else {
+              this.isToggled = false;
+              this.n1 = 1;
+            }
+
           }
         }
       }, error => {
@@ -361,6 +376,11 @@ export class HomeePage implements OnInit {
       message: 'Please Wait...',
     });
     await this.loading.present();
+  }
+
+  doRefresh(event) {
+    this.triggerHomeApi();
+    event.target.complete();
   }
 
 }

@@ -16,6 +16,12 @@
 
   <ion-content>
     <div class="red_mask"></div>
+    
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    
+    
     <ion-grid padding style="margin-top: 5vh">
       <ion-row>
         <ion-card class="card_list" padding>

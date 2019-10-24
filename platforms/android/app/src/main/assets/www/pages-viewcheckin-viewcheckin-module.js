@@ -58,7 +58,7 @@ var ViewcheckinPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title>View Check-ins</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n  <ion-list>\n    <ion-item type=\"item-text-wrap\" *ngFor=\"let album of activeCheckins\">\n      <ion-card background-color: #BEBEBE;>\n        <ion-card-header>\n          <ion-img [src]=\"imgurl\"></ion-img>\n          <ion-card-subtitle>Rep : {{album.dealer_name}}</ion-card-subtitle>\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <ion-item>\n            <ion-label>Checkin Time :{{album.checkin_time}}</ion-label>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Checkout Time :{{album.checkout_time}}</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Dealer Name :{{album.dealer_name}}</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Mobile Number :{{album.contractor_number}}</ion-label>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Location :{{album.checkin_loc}}</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Type of segment :{{album.type_of_segment}}</ion-label>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Project completion persontage :</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Focused verticals :</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Other value expected :</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Comments :{{album.remarks}}</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Support needed: </ion-label>\n          </ion-item>\n\n\n        </ion-card-content>\n      </ion-card>\n    </ion-item>\n  </ion-list>\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar text-center padding class=\"red_header\">\n    <ion-title>View Check-ins</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n  <ion-list>\n    <ion-item type=\"item-text-wrap\" *ngFor=\"let album of activeCheckins\">\n      <ion-card background-color: #BEBEBE;>\n        <ion-card-header>\n          <ion-img src=\"assets/img/user.svg\"></ion-img> \n          <ion-card-subtitle>Rep : {{album.dealer_name}}</ion-card-subtitle>\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <ion-item>\n            <ion-label>Checkin Time :{{album.checkin_time}}</ion-label>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Checkout Time :{{album.checkout_time}}</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Dealer Name :{{album.dealer_name}}</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Mobile Number :{{album.contractor_number}}</ion-label>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Location :{{album.checkin_loc}}</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Type of segment :{{album.type_of_segment}}</ion-label>\n          </ion-item>\n\n          <ion-item>\n            <ion-label>Project completion persontage :</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Focused verticals :</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Other value expected :</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Comments :{{album.remarks}}</ion-label>\n          </ion-item>\n\n\n          <ion-item>\n            <ion-label>Support needed: </ion-label>\n          </ion-item>\n\n\n        </ion-card-content>\n      </ion-card>\n    </ion-item>\n  </ion-list>\n\n</ion-content>"
 
 /***/ }),
 
@@ -103,8 +103,7 @@ var ViewcheckinPage = /** @class */ (function () {
             if (params && params._id) {
                 _this.checkinid = JSON.parse(params._id);
                 var k = params._id;
-                _this.imgurl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbWeXT7jA26O1mNr7cARA0MICtJ7eZ0KXetCkBqMczkZK9uW1R';
-                _this.triggerMyCheckIns();
+                _this.imgurl = '';
             }
         });
     };
@@ -117,6 +116,16 @@ var ViewcheckinPage = /** @class */ (function () {
             }
         });
     };
+    ViewcheckinPage.prototype.ionViewWillEnter = function () {
+        console.log("==ionViewWillEnter==");
+        this.internetstatus = localStorage.getItem("internet");
+        if (navigator.onLine) {
+            this.triggerMyCheckIns();
+        }
+        else {
+            alert('Please check your internet connection');
+        }
+    };
     ViewcheckinPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-viewcheckin',
@@ -127,62 +136,6 @@ var ViewcheckinPage = /** @class */ (function () {
             _services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"]])
     ], ViewcheckinPage);
     return ViewcheckinPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/api.service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/services/api.service.ts ***!
-  \*****************************************/
-/*! exports provided: ApiService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/http/ngx */ "./node_modules/@ionic-native/http/ngx/index.js");
-
-
-
-
-
-var ApiService = /** @class */ (function () {
-    function ApiService(http, cordovahttp) {
-        this.http = http;
-        this.cordovahttp = cordovahttp;
-        this.baseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].service_URL;
-    }
-    ApiService.prototype.getData = function (url) {
-        console.log('=URL = : ' + this.baseURL + url);
-        return this.http.get(this.baseURL + url);
-    };
-    ApiService.prototype.postData = function (url, params) {
-        console.log('=URL = : ' + this.baseURL + url);
-        console.log('=params = : ' + JSON.stringify(params));
-        return this.http.post(this.baseURL + url, params);
-    };
-    ApiService.prototype.postApi = function (url, payload, header) {
-        //   this.cordovahttp.setHeader('':'')
-        //   payload.forEach((value,key) => {
-        //     console.log(key+" "+value)
-        //   });
-        //   return this.cordovahttp.post(url, payload, header);
-        // }
-    };
-    ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_4__["HTTP"]])
-    ], ApiService);
-    return ApiService;
 }());
 
 

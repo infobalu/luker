@@ -90,6 +90,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+
 
 
 
@@ -98,19 +100,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(menu, router, apiService, toastController, alertController) {
+    function LoginPage(menu, router, apiService, toastController, alertController, network) {
         this.menu = menu;
         this.router = router;
         this.apiService = apiService;
         this.toastController = toastController;
         this.alertController = alertController;
+        this.network = network;
+        this.network.onDisconnect().subscribe(function () {
+            console.log('NO INTERNET login');
+            localStorage.setItem('internet', "0");
+        });
+        this.network.onConnect().subscribe(function () {
+            console.log(' INTERNET login');
+            localStorage.setItem('internet', "1");
+        });
     }
     LoginPage.prototype.ngOnInit = function () {
         var time1 = new Date(1570453660052);
         console.log('==time1 = : ' + time1);
         var time2 = new Date();
         console.log('==time2 = : ' + time2);
-        this.diff_minutes(time2, time1);
+        //this.diff_minutes(time2, time1);
         this.firstForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             emailid: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
@@ -180,27 +191,30 @@ var LoginPage = /** @class */ (function () {
             email: data.value.emailid,
             password: data.value.password
         };
-        this.apiService.postData('/user/login', params).subscribe(function (result) {
-            console.log("=result= :" + JSON.stringify(result));
-            if (result['status'] == "success") {
-                localStorage.setItem('userDetails', JSON.stringify(result['data']['user']));
-                // localStorage.setItem('userDetails', JSON.stringify(result['data']));
-                if (result['data']['user']['employee_name']) {
-                    _this.presentToast('Welcome ' + result['data']['user']['employee_name'], 'bottom');
+        // this.internetstatus = localStorage.getItem("internet");
+        // console.log("= this.internetstatus == : "+ this.internetstatus);
+        if (navigator.onLine) {
+            this.apiService.postData('/user/login', params).subscribe(function (result) {
+                console.log("=result= :" + JSON.stringify(result));
+                if (result['status'] == "success") {
+                    localStorage.setItem('userDetails', JSON.stringify(result['data']['user']));
+                    /* if (result['data']['user']['employee_name']) {
+                       this.presentToast('Welcome ' + result['data']['user']['employee_name'], 'bottom');
+                     } else {
+                       this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
+                     }*/
+                    _this.router.navigateByUrl('/dashboard');
                 }
                 else {
-                    _this.presentToast('Welcome ' + result['data']['user']['contact_person'], 'bottom');
+                    _this.presentToast('Username or password is incorrect', 'middle');
                 }
-                console.log("dash=======11111");
-                _this.router.navigateByUrl('/dashboard');
-                console.log("dash=======2222222222");
-            }
-            else {
-                _this.presentToast('Username or password is incorrect', 'middle');
-            }
-        }, function (error) {
-            alert(JSON.stringify(error));
-        });
+            }, function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
+        else {
+            alert('Please check your internet connection');
+        }
     };
     LoginPage.prototype.presentToast = function (msg, position) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -230,7 +244,8 @@ var LoginPage = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
             _services_api_service__WEBPACK_IMPORTED_MODULE_5__["ApiService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+            _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_6__["Network"]])
     ], LoginPage);
     return LoginPage;
 }());

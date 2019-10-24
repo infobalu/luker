@@ -58,7 +58,7 @@ var EmpAttendaneRptPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<ion-header>\n    <ion-toolbar text-center class=\"red_header\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button></ion-back-button>\n         </ion-buttons>\n    <ion-title>Employee Attendance</ion-title>\n    </ion-toolbar>\n  <!-- <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>  -->\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\">\n          <ion-item *ngFor=\"let subitem of album.user\">\n        <div class=\"card_top_bar\">\n          <h1 class=\"card_title\"> {{subitem.employee_name}}</h1>\n          <p class=\"text_dark .m_0\" > Mobile Number : {{subitem.employee_mobile}}</p>\n    \n          <p class=\"text_dark .m_0\"> Employee Type : {{subitem.employee_type}}</p>\n        </div>\n      </ion-item>\n        <div class=\"card_bottom_bar\">\n         \n          <p class=\"text_dark .m_0\"> Location : {{album.employee_post_location}}</p>\n         \n\n          <p class=\"text_dark .m_0\" > Status : {{album.status}}</p>\n          <p class=\"text_dark .m_0\" > Start Time : {{album.start_time}}</p>\n          <p class=\"text_dark .m_0\" > End Time : {{album.start_time}}</p>\n          <p class=\"text_dark .m_0\" > Location : {{album.start_location}}</p>\n        </div>\n      \n      </ion-card>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
+module.exports = "\n\n<ion-header>\n    <ion-toolbar text-center class=\"red_header\">\n        <ion-buttons slot=\"start\">\n            <ion-back-button></ion-back-button>\n         </ion-buttons>\n    <ion-title>Employee Attendance</ion-title>\n    </ion-toolbar>\n  <!-- <ion-searchbar (ionInput)=\"getItems($event)\"></ion-searchbar>  -->\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-card class=\"card_list\" padding *ngFor=\"let album of activeCheckins\">\n          <ion-item *ngFor=\"let subitem of album.user\">\n        <div class=\"card_top_bar\">\n          <h1 class=\"card_title\"> {{subitem.employee_name}}</h1>\n          <p class=\"text_dark .m_0\" > Mobile Number : {{subitem.employee_mobile}}</p>\n    \n          <p class=\"text_dark .m_0\"> Employee Type : {{subitem.employee_type}}</p>\n        </div>\n      </ion-item>\n        <div class=\"card_bottom_bar\">\n          <p class=\"text_dark .m_0\" > Status : {{album.status}}</p>\n          <p class=\"text_dark .m_0\" > Start Location : {{album.start_location}}</p>\n          <p class=\"text_dark .m_0\" > Start Time : {{album.start_time}}</p>\n          <p class=\"text_dark .m_0\" > End Location : {{album.end_location}}</p>\n          <p class=\"text_dark .m_0\" > End Time : {{album.end_time}}</p>\n        </div>\n      \n      </ion-card>\n    </ion-row>\n  </ion-grid>\n</ion-content>"
 
 /***/ }),
 
@@ -103,12 +103,18 @@ var EmpAttendaneRptPage = /** @class */ (function () {
     EmpAttendaneRptPage.prototype.goToAttendanceRpt = function () {
         var _this = this;
         var time = moment__WEBPACK_IMPORTED_MODULE_3__().format('YYYY-MM-DD');
-        this.apiService.getData('/attendanceReport/' + time).subscribe(function (result) {
-            _this.activeCheckins = result['data'];
-            console.log("== this.attendanceReport == : " + JSON.stringify(result['data']));
-            if (result['success'] == 1) {
-            }
-        });
+        // this.internetstatus = localStorage.getItem("internet");
+        if (navigator.onLine) {
+            this.apiService.getData('/attendanceReport/' + time).subscribe(function (result) {
+                _this.activeCheckins = result['data'];
+                console.log("== this.attendanceReport == : " + JSON.stringify(result['data']));
+                if (result['success'] == 1) {
+                }
+            });
+        }
+        else {
+            alert('Please check your internet connection');
+        }
     };
     EmpAttendaneRptPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

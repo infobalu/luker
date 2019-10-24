@@ -5,12 +5,12 @@
        </ion-buttons>
     <ion-title>New representative</ion-title> -->
 
-    <ion-toolbar text-center class="red_header">
-        <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
-         </ion-buttons>
+  <ion-toolbar text-center class="red_header">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>New representative</ion-title>
-    
+
   </ion-toolbar>
 </ion-header>
 
@@ -63,8 +63,8 @@
             <ion-item class="inp_box">
               <ion-label position="stacked">Employee Type*</ion-label>
               <ion-select name="type" formControlName="type" okText="Ok" cancelText="Dismiss">
-                <ion-select-option value="Normal Employee">Dealer</ion-select-option>
-                <ion-select-option value="Authorized Employee">Distributor</ion-select-option>
+                <ion-select-option value="Dealer">Dealer</ion-select-option>
+                <ion-select-option value="Distributor">Distributor</ion-select-option>
               </ion-select>
             </ion-item>
 
@@ -78,22 +78,18 @@
               <ion-input name="employee_area" type="text" formControlName="employee_area"></ion-input>
             </ion-item>
 
-            <ion-item hidden>
-                <ion-label stacked>Upload Image</ion-label>
-                <!-- <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
-                <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>
-                
-                <ion-avatar>
-                  <img *ngIf="capturedPhoto" [src]="capturedPhoto"/>
-                  <!-- <div class="header" *ngIf="image" [style.background-image]="image"></div> -->
-                </ion-avatar>
-                
-              </ion-item>
+            <!-- <ion-item hidden>
+              <ion-label stacked>Upload Image</ion-label>
+              <ion-button (click)="uploadFromCamera()" shape="round" fill="outline">+ Click to upload image</ion-button>
 
+              <ion-avatar>
+                <img *ngIf="capturedPhoto" [src]="capturedPhoto" />
+              </ion-avatar>
+            </ion-item> -->
 
           </div>
           <div padding>
-            <ion-button size="large" type="submit" [disabled]="firstForm.invalid" expand="block">Add Employee
+            <ion-button size="large" type="submit" [disabled]="firstForm.invalid" expand="block" (keyup.enter)="firstFormSubmit(firstForm)">Add Employee
             </ion-button>
           </div>
         </ion-col>

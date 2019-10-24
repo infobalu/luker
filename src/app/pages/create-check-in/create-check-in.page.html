@@ -1,20 +1,20 @@
 <ion-header>
   <ion-toolbar text-center class="red_header">
     <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{checkInFor}}&nbsp;Check In</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form *ngIf="checkInFor == 'distributor'" class="add-employee-form" [formGroup]="distributorForm"
+  <form *ngIf="checkInFor == 'Distributor'" class="add-employee-form" [formGroup]="distributorForm"
     (ngSubmit)="distributorFormSubmit(distributorForm)">
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
-
+ 
             <ion-item>
               <ion-label position="floating">Distributor Name</ion-label>
               <ion-input name="distributorName" type="text" formControlName="distributorName"></ion-input>
@@ -90,7 +90,7 @@
     </ion-grid>
   </form>
 
-  <form *ngIf="checkInFor == 'dealer'" class="add-employee-form" [formGroup]="dealerForm"
+  <form *ngIf="checkInFor == 'Dealer'" class="add-employee-form" [formGroup]="dealerForm"
     (ngSubmit)="dealerFormSubmit(dealerForm)">
     <ion-grid>
       <ion-row justify-content-center>

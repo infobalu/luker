@@ -40,7 +40,7 @@ export class ViewemployeesPage implements OnInit {
   ionViewWillEnter(){
     console.log("==ionViewWillEnter==");
     this.internetstatus = localStorage.getItem("internet");
-    if (this.internetstatus == '1') {
+    if (navigator.onLine) {
       this.apiService.getData('/users').subscribe(result => {
         this.activeCheckins = result['data'];
       });
